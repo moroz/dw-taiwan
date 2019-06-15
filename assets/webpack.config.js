@@ -29,8 +29,24 @@ module.exports = (env, options) => ({
         }
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        test: /\.(css|sass|scss)$/,
+        use: ["style-loader", MiniCssExtractPlugin.loader, 'css-loader', "sass-loader"]
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            outputPath: "../images/"
+          }
+        }
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/,
+        loader: "image-webpack-loader",
+        enforce: "pre"
       }
     ]
   },

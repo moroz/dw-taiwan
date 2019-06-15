@@ -16,7 +16,7 @@ config :diamondway, Diamondway.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :diamondway, DiamondwayWeb.Endpoint,
-  http: [port: 4000],
+  http: [port: 3000],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -26,6 +26,7 @@ config :diamondway, DiamondwayWeb.Endpoint,
       "--mode",
       "development",
       "--watch-stdin",
+      "--color",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
