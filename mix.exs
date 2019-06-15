@@ -46,8 +46,8 @@ defmodule Diamondway.MixProject do
 
       # Deployment
       {:distillery, "~> 2.0"},
-      {:mix_systemd, "~> 0.1.0"},
-      {:mix_deploy, "~> 0.1.0"}
+      {:mix_systemd, github: "cogini/mix_systemd", override: true},
+      {:mix_deploy, github: "cogini/mix_deploy", override: true}
     ]
   end
 
