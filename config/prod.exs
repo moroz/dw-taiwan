@@ -11,10 +11,22 @@ use Mix.Config
 # before starting your production server.
 config :diamondway, DiamondwayWeb.Endpoint,
   url: [host: "example.com", port: 80],
+  http: [:inet6, port: System.get_env("PORT") || 4000],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+config :phoenix, serve_endpoints: true
+
+config :mix_deploy,
+  app_user: "app",
+  app_group: "app"
+
+# Minimal
+config :mix_systemd,
+  app_user: "app",
+  app_group: "app"
 
 # ## SSL Support
 #
