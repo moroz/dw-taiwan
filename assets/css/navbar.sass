@@ -1,0 +1,31 @@
+.navbar
+  +font-emph
+  background: $navbar-bg
+  border-bottom: 1px solid #333
+  color: #fff
+  position: fixed
+  width: 100%
+  height: $navbar-height
+  line-height: $navbar-height
+
+  a
+    color: inherit
+    min-width: 80px
+    height: 100%
+    padding: 0 1rem
+    text-align: center
+  
+    &:hover
+      background: transparentize(white, .8)
+
+a.navbar__logo
+  margin-right: auto
+  height: $navbar-height
+  align-self: stretch
+  display: flex
+  align-items: center
+  img
+    height: 40px
+
+.navbar__menu
+  display: flex
