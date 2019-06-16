@@ -15,8 +15,8 @@ defmodule Diamondway.Users.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:display_name, :email, :password_hash])
-    |> validate_required([:display_name, :email, :password_hash])
+    |> cast(attrs, [:display_name, :email, :password])
+    |> validate_required([:display_name, :email, :password])
     |> unique_constraint(:email)
     |> encrypt_password()
   end
