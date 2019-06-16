@@ -1,0 +1,6 @@
+set -e
+git pull
+./build
+./deploy-release
+./deploy-migrate
+sudo ./deploy-restart
