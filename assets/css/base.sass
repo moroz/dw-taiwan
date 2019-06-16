@@ -4,10 +4,15 @@
 body, html
   margin: 0
   padding: 0
+  min-height: 100vh
 
-body
+body:not(.admin)
   font-size: 1rem
   font-family: $family-sans
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  background-image: url("../static/images/background.jpg")
 
 section.parallax__section
   height: 100vh
