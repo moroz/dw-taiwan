@@ -4,6 +4,8 @@ defmodule DiamondwayWeb.GuestController do
   alias Diamondway.Guests
   alias Diamondway.Guests.Guest
 
+  plug :put_layout, :admin
+
   def index(conn, _params) do
     guests = Guests.list_guests()
     render(conn, "index.html", guests: guests)

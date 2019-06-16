@@ -20,6 +20,8 @@ defmodule DiamondwayWeb.Router do
   end
 
   scope "/admin/", DiamondwayWeb do
+    pipe_through :browser
+
     resources "/guests", GuestController
   end
 
