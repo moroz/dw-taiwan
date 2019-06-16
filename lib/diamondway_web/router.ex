@@ -13,14 +13,22 @@ defmodule DiamondwayWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug :browser
+    plug DiamondwayWeb.Plugs.FetchUser
+    plug DiamondwayWeb.Plugs.RestrictAccess
+  end
+
   scope "/", DiamondwayWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/admin/login", SessionController, :new
+    post "/admin/login", SessionController, :create
   end
 
   scope "/admin/", DiamondwayWeb do
-    pipe_through :browser
+    pipe_through :admin
 
     resources "/guests", GuestController
   end
