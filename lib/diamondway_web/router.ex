@@ -13,14 +13,14 @@ defmodule DiamondwayWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/.well-known/", DiamondwayWeb do
-    get "/acme-challenge/WHO13ceSmFjzo3Aq9Ez5pVUsWT5KNjEk2tq2kAw2GGQ", AcmeController, :challenge
-  end
-
   scope "/", DiamondwayWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/admin/", DiamondwayWeb do
+    resources "/guests", GuestController
   end
 
   # Other scopes may use custom stacks.
