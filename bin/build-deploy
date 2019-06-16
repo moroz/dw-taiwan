@@ -1,6 +1,11 @@
 set -e
+
+BUILD_DIR="$HOME/build/diamondway"
+
+cd $BUILD_DIR
+
 git pull
-./build
-./deploy-release
-./deploy-migrate
-sudo ./deploy-restart
+bin/build
+bin/deploy-release
+bin/deploy-migrate
+sudo bin/deploy-restart
