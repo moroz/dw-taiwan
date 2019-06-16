@@ -1,3 +1,5 @@
+$overlay-3: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2))
+
 *, html
   font-size: 16px
 
@@ -7,12 +9,18 @@ body, html
   min-height: 100vh
 
 body:not(.admin)
-  font-size: 1rem
+  font-size: 1.2rem
   font-family: $family-sans
   background-position: center
   background-repeat: no-repeat
   background-size: cover
-  background-image: url("../static/images/background.jpg")
+  background-image: $overlay-3, url("../static/images/background.jpg")
+
+p
+  font-size: 1.5rem
+
+p:last-child
+  margin-bottom: 0
 
 section.parallax__section
   height: 100vh
@@ -23,10 +31,17 @@ section.parallax__section
   display: flex
   align-items: center
 
+.parallax__section__placeholder, 
 .parallax__section__content
-  font-size: 3rem
+  padding: 2rem
   max-width: 900px
   margin: auto
 
-#landing
-  background-image: url("../static/images/background.jpg")
+.parallax__section__placeholder
+  font-size: 3rem
+
+.parallax__section__content
+  background-color: transparentize(white, .7)
+
+  a
+    font-size: inherit
