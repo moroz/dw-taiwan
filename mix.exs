@@ -45,7 +45,6 @@ defmodule Diamondway.MixProject do
       {:plug_cowboy, "~> 2.0"},
 
       # Deployment
-      {:distillery, "~> 2.0"},
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
       {:mix_deploy, github: "cogini/mix_deploy", override: true},
 
