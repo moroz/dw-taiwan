@@ -14,6 +14,10 @@ defmodule DiamondwayWeb.ErrorHelpers do
     end)
   end
 
+  def has_error?(form, field) do
+    Enum.any?(Keyword.get_values(form.errors, field))
+  end
+
   @doc """
   Translates an error message using gettext.
   """

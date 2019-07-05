@@ -19,12 +19,14 @@ defmodule DiamondwayWeb.Router do
     plug DiamondwayWeb.Plugs.RestrictAccess
   end
 
-  pages = [:register, :venue, :faq, :contact]
+  pages = [:venue, :faq, :contact]
 
   scope "/", DiamondwayWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/register", RegistrationController, :new
+    post "/register", RegistrationController, :create
 
     for page <- pages do
       get "/#{page}", PageController, page

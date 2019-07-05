@@ -40,6 +40,7 @@ defmodule DiamondwayWeb do
       use Phoenix.HTML
 
       import DiamondwayWeb.ErrorHelpers
+      import DiamondwayWeb.FormHelpers
       import DiamondwayWeb.Gettext
       alias DiamondwayWeb.Router.Helpers, as: Routes
     end
