@@ -10,7 +10,8 @@ defmodule Diamondway.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -51,6 +52,14 @@ defmodule Diamondway.MixProject do
       # User authentication
       {:comeonin, "~> 4.1"},
       {:argon2_elixir, "~> 1.3"}
+    ]
+  end
+
+  defp releases do
+    [
+      diamondway: [
+        include_executables_for: [:unix]
+      ]
     ]
   end
 
