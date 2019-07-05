@@ -29,11 +29,16 @@ mix deps.get --only "$MIX_ENV"
 echo "===> Compiling"
 mix compile
 
+if [ ! -x $(which yarn) ]; then
+  echo "===> Installing yarn"
+  npm install --global yarn
+fi
+
 echo "===> Installing node modules"
-(cd assets && npm install)
+(cd assets && yarn install)
 
 echo "===> Generating assets"
-(cd assets && npm run deploy)
+(cd assets && yarn deploy)
 
 echo "Building digest files"
 mix phx.digest
