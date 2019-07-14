@@ -4,3 +4,46 @@
     <h3 class="subtitle">18-20 March, 2020</h3>
   </div>
 </section>
+
+<section class="news">
+  <div class="container columns">
+    <div class="card column">
+      <header class="card-header">
+        <p class="card-header-title has-text-centered">
+          Lama Ole Nydahl
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+Lama Ole Nydahl is one of the few fully qualified Western Buddhist lamas in the Karma Kagyu lineage. Since being asked by the 16th Karmapa, in 1972 to offer Buddhism to those who were interested in the West, he has been doing so constantly in spiritually free countries all around the world.
+        </div>
+      </div>
+    </div>
+
+    <div class="card column">
+      <header class="card-header">
+        <p class="card-header-title has-text-centered">
+          Diamond Way Buddhism
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+Diamond Way Buddhism is a worldwide network for lay people from all walks of life, who incorporate Buddhist practice in their daily lives. Lama Ole Nydahl established Diamond Way Buddhism in the 1970s, together with his wife Hannah Nydahl.
+        </div>
+      </div>
+    </div>
+
+    <div class="card column">
+      <header class="card-header">
+        <p class="card-header-title has-text-centered">
+          Venue
+        </p>
+      </header>
+      <div class="card-content">
+        <div class="content">
+The lectures will take place at the Tamsui Cultural Park in Taipei’s Danshui (Tamsui) District. The venue is located in a beautiful seaside neighborhood, with convenient connections to the city center and numerous tourist spots.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
