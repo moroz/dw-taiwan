@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
+    <div class="landing-bg"></div>
     <%= render "_header.html", assigns %>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>

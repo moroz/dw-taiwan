@@ -1,7 +1,7 @@
 <nav class="navbar">
   <div class="navbar__menu container">
     <a class="navbar__logo" href="/">
-      <img src="<%= Routes.static_path(@conn, "/images/course-logo-white.svg") %>" alt="Mahamudra Taipei" />
+      <img src="<%= Routes.static_path(@conn, "/images/logo-website.svg") %>" alt="Mahamudra Taipei" />
     </a>
     <a class="navbar__item" href="/register"> Register </a>
     <a class="navbar__item" href="/venue">Venue</a>

@@ -1,8 +1,7 @@
 .navbar
-  +font-emph
-  background: $navbar-bg
-  border-bottom: 1px solid #333
-  color: #fff
+  z-index: 5
+  border-bottom: 1px solid $brand-color
+  color: $brand-color
   position: fixed
   width: 100%
   height: $navbar-height
@@ -14,18 +13,20 @@
     height: 100%
     padding: 0 1rem
     text-align: center
-  
+
     &:hover
       background: transparentize(white, .8)
 
 a.navbar__logo
   margin-right: auto
+  padding: 0
   height: $navbar-height
   align-self: stretch
   display: flex
   align-items: center
+
   img
-    height: 40px
+    height: 50px
 
 .navbar__menu
   display: flex

@@ -1,5 +1,9 @@
 $overlay-3: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.2))
 
+$white-gradient-start: rgba(255,255,255,.4)
+$white-gradient-end: rgba(255,255,255,1)
+$white-gradient: linear-gradient($white-gradient-start, $white-gradient-end)
+
 *, html
   font-size: 16px
 
@@ -11,10 +15,12 @@ body, html
 body:not(.admin)
   font-size: 1.2rem
   font-family: $family-sans
-  background-position: center
-  background-repeat: no-repeat
-  background-size: cover
-  background-image: $overlay-3, url("../static/images/background.jpg")
+  background: #fff
+
+.container
+  margin: 0 auto
+  width: 960px
+  max-width: 960px
 
 p
   font-size: 1.5rem
@@ -31,7 +37,7 @@ section.parallax__section
   display: flex
   align-items: center
 
-.parallax__section__placeholder, 
+.parallax__section__placeholder,
 .parallax__section__content
   padding: 2rem
   max-width: 900px
