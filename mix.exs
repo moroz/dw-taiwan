@@ -10,7 +10,8 @@ defmodule Diamondway.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: releases()
     ]
   end
 
@@ -45,13 +46,20 @@ defmodule Diamondway.MixProject do
       {:plug_cowboy, "~> 2.0"},
 
       # Deployment
-      {:distillery, "~> 2.0"},
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
       {:mix_deploy, github: "cogini/mix_deploy", override: true},
 
       # User authentication
       {:comeonin, "~> 4.1"},
       {:argon2_elixir, "~> 1.3"}
+    ]
+  end
+
+  defp releases do
+    [
+      diamondway: [
+        include_executables_for: [:unix]
+      ]
     ]
   end
 
