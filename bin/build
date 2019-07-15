@@ -21,6 +21,8 @@ TARBALL="releases/${VERSION}/${RELEASE_NAME}.tar.gz"
 BASEDIR="$BINDIR/.."
 cd "$BASEDIR"
 
+git pull
+
 echo "==> Running build task"
 
 echo "===> Updating Elixir libs"
