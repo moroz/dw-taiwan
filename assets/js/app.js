@@ -1,7 +1,7 @@
 // We need to import the CSS so that webpack will load it.
 // The MiniCssExtractPlugin is used to separate it out into
 // its own CSS file.
-import css from "../css/app.sass"
+import css from "../css/app.sass";
 
 // webpack automatically bundles all modules in your
 // entry points. Those entry points can be configured
@@ -9,9 +9,18 @@ import css from "../css/app.sass"
 //
 // Import dependencies
 //
-import "phoenix_html"
+import "phoenix_html";
 
-// Import local files
-//
-// Local files can be imported directly using relative paths, for example:
-// import socket from "./socket"
+function setNavbarOpacityClass() {
+  const navigation = document.getElementById("navbar");
+  if (navigation && window.pageYOffset > navigation.clientHeight) {
+    navigation.classList.add("navbar--opaque");
+  } else {
+    navigation.classList.remove("navbar--opaque");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("scroll", setNavbarOpacityClass);
+  setNavbarOpacityClass();
+});

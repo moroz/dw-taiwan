@@ -51,7 +51,9 @@ defmodule Diamondway.MixProject do
 
       # User authentication
       {:comeonin, "~> 4.1"},
-      {:argon2_elixir, "~> 1.3"}
+      {:argon2_elixir, "~> 1.3"},
+
+      {:phoenix_slime, "~> 0.12.0"}
     ]
   end
 

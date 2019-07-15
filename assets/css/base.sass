@@ -15,12 +15,18 @@ body, html
 body:not(.admin)
   font-size: 1.2rem
   font-family: $family-sans
-  background: #fff
+
+body
+  display: flex
+  flex-direction: column
 
 .container
   margin: 0 auto
   width: 960px
   max-width: 960px
+
+main
+  flex: 1
 
 p
   font-size: 1.5rem

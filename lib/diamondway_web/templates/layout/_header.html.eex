@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <div class="navbar__menu container">
     <a class="navbar__logo" href="/">
       <img src="<%= Routes.static_path(@conn, "/images/logo-website.svg") %>" alt="Mahamudra Taipei" />

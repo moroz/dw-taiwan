@@ -7,6 +7,7 @@
   height: $navbar-height
   line-height: $navbar-height
   top: 0
+  transition: .2s
 
   a
     color: inherit
@@ -14,9 +15,16 @@
     height: 100%
     padding: 0 1rem
     text-align: center
+    transition: .2s ease-in-out
 
     &:hover
       background: transparentize(white, .8)
+
+.navbar--opaque
+  background: #fff
+
+  a:hover
+    background: transparentize($brand-color, .95)
 
 a.navbar__logo
   margin-right: auto

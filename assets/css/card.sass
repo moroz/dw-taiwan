@@ -1,3 +1,36 @@
+.columns
+  display: grid
+  width: 100%
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr))
+  grid-column-gap: 1.25rem
+
 .card
   background: #fff
   border-radius: 2px
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1)
+  color: #111
+  max-width: 100%
+  display: flex
+  flex-direction: column
+  position: relative
+
+.card__header
+  text-align: center
+  font-size: 1.25em
+  height: 3rem
+  line-height: 3rem
+  color: $brand-color
+  text-transform: uppercase
+
+.card__image
+  width: 100%
+  max-width: 100%
+
+.card__content
+  font-size: .95em
+  padding: 1.5em
+  flex: 1
+
+.card__cta
+  text-align: center
+  padding: 0 1em 1em
