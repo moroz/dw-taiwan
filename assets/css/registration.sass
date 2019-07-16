@@ -4,6 +4,8 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
 .registration_page
   display: grid
   grid-template-columns: calc(50vw - 200px) 1fr
+  grid-template-rows: $navbar-height 1fr
+  grid-gap: 1.5rem
   align-items: stretch
   height: 100vh
 
@@ -12,6 +14,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   background-repeat: no-repeat
   background-size: cover
   display: flex
+  grid-row: 1 / span 2
   flex-direction: column
   justify-content: center
   color: #fff
@@ -27,3 +30,43 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
 
   p
     font-size: 1.25rem
+    margin-bottom: 3rem
+
+.registration_page__right_pane
+  grid-row: 2
+  overflow-y: auto
+
+  p
+    font-size: 1.125rem
+    margin-bottom: 1em
+
+  h3
+    color: $brand-color
+    font-size: 1.5rem
+    font-weight: 600
+    margin-top: 1.5rem
+    margin-bottom: 1rem
+
+.registration_form
+  display: grid
+  grid-template-columns: 360px 360px
+  grid-column-gap: 1.25rem
+  color: #000
+
+  .label
+    color: inherit
+    font-weight: 400
+
+  p, h3, button, .alert
+    grid-column: 1 / span 2
+
+  h3
+    margin: 1.5rem 0 .5rem
+
+  p + h3
+    margin-top: .5rem
+
+  button[type="submit"]
+    margin-top: 1.5rem
+    justify-self: center
+    display: inline-block

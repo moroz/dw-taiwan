@@ -5,22 +5,26 @@
       p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Far East Sangha will be given priority in the registration process.
 
   .registration_page__right_pane
-    = form_for @changeset, Routes.registration_path(@conn, :create), fn f ->
+
+    = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
+      p
+        | Please fill in your details in the form below.<br/> We will reach out to you once your registration is successfully processed.
+      h3 Personal data
       = if @changeset.action do
         .alert.alert-danger
-          p | Oops, something went wrong! Please check the errors below.
+          p Oops, something went wrong! Please check the errors below.
 
       = text_field f, :first_name, dgettext("registration", "First name:")
       = text_field f, :last_name, dgettext("registration", "Last name:")
       = text_field f, :email, dgettext("registration", "E-mail address:")
+      = text_field f, :phone, dgettext("registration", "Phone number:")
 
-      = label f, :country
-      = text_input f, :country
-      = error_tag f, :country
-
+      h3 Sangha and references
+      p Please fill in the data of the Diamond Way center or group that you attend.<br/> We will contact your center to verify your identity.
+      = text_field f, :country, dgettext("registration", "Country:")
       = text_field f, :city, dgettext("registration", "City (sangha):")
-      = text_field f, :reference_name
-      = text_field f, :reference_email
+      = text_field f, :reference_name, dgettext("registration", "Reference person:")
+      = text_field f, :reference_email, dgettext("registration", "Contact e-mail of reference person:")
 
-      div= submit "Save"
+      = submit "Submit application", class: "button is-primary is-medium"
 

@@ -6,8 +6,10 @@ defmodule DiamondwayWeb.FormHelpers do
   def text_field(form, field, label \\ []) do
     content_tag :div, class: field_class(form, field) do
       [
-        label(form, field, label),
-        text_input(form, field),
+        label(form, field, label, class: "label"),
+        content_tag :div, class: "control" do
+          text_input(form, field, class: "input")
+        end,
         ErrorHelpers.error_tag(form, field)
       ]
     end
@@ -16,10 +18,10 @@ defmodule DiamondwayWeb.FormHelpers do
   defp field_class(form, field) do
     case ErrorHelpers.has_error?(form, field) do
       true ->
-        "form-field has-error"
+        "field has-error"
 
       _ ->
-        "form-field"
+        "field"
     end
   end
 end
