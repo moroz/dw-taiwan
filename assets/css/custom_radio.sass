@@ -9,8 +9,10 @@ $custom-radio-inactive-color: transparentize(#999, .5)
 
 .custom_radio__group
   input[type="radio"]
-    transform: scale(0)
-    width: 0
+    opacity: 0
+    height: 0
+    display: inline
+    position: absolute
 
     + label
       border: 1px solid $custom-radio-inactive-color
