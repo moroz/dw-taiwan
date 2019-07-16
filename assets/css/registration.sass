@@ -1,4 +1,5 @@
-$registration-left-pane-overlay-color: transparentize($brand-color, .13)
+// $registration-left-pane-overlay-color: transparentize($brand-color, .13)
+$registration-left-pane-overlay-color: transparentize($secondary, .13)
 $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay-color, $registration-left-pane-overlay-color)
 
 .registration_page
@@ -10,7 +11,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   height: 100vh
 
 .registration_page__left_pane
-  background: $registration-left-pane-overlay, url(/images/bg-registration.jpg)
+  background: $registration-left-pane-overlay, url(../static/images/bg-registration.jpg)
   background-repeat: no-repeat
   background-size: cover
   display: flex

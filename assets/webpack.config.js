@@ -15,11 +15,6 @@ module.exports = (env, options) => ({
   entry: {
     "./js/app.js": glob.sync("./vendor/**/*.js").concat(["./js/app.js"])
   },
-  resolve: {
-    alias: {
-      images: path.resolve(__dirname, "../static/images")
-    }
-  },
   output: {
     filename: "app.js",
     path: path.resolve(__dirname, "../priv/static/js")
@@ -49,7 +44,8 @@ module.exports = (env, options) => ({
           loader: "url-loader",
           options: {
             limit: 8192,
-            outputPath: "../images/"
+            outputPath: "../images/",
+            name: "[hash].[ext]"
           }
         }
       },
