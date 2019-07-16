@@ -18,6 +18,17 @@
       = text_field f, :last_name, dgettext("registration", "Last name:")
       = text_field f, :email, dgettext("registration", "E-mail address:")
       = text_field f, :phone, dgettext("registration", "Phone number:")
+      .field.custom_radio
+        label.label Sex
+        .custom_radio__options
+          .custom_radio__group
+            = radio_button f, :sex, "male"
+            label for="guest_sex_male"
+              | Yes, please
+          .custom_radio__group
+            = radio_button f, :sex, "female"
+            label for="guest_sex_female"
+              | Sorry, no
 
       h3 Sangha and references
       p Please fill in the data of the Diamond Way center or group that you attend.<br/> We will contact your center to verify your identity.

@@ -1,0 +1,53 @@
+$custom-radio-color: $brand-color
+$custom-radio-inactive-color: transparentize(#999, .5)
+
+.custom_radio__options
+  margin-top: .5em
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-gap: 1rem
+
+.custom_radio__group
+  input[type="radio"]
+    transform: scale(0)
+    width: 0
+
+    + label
+      border: 1px solid $custom-radio-inactive-color
+      border-radius: .3em
+      height: 3rem
+      padding-left: 2.6em
+      width: 100%
+      line-height: 3
+      display: inline-block
+      position: relative
+      cursor: pointer
+      transition: background .1s ease-in, border .1s ease-in
+
+      &:hover
+        background: transparentize($custom-radio-color, .9)
+
+      &::before, &::after
+        content: ''
+        display: inline-block
+        position: absolute
+        border-radius: 50%
+        top: 50%
+        transform: translateY(-50%)
+
+      &::before
+        border: 1px solid $custom-radio-color
+        width: 20px
+        height: 20px
+        left: 12px
+
+  input:checked + label
+    border-color: $custom-radio-color
+    &::before
+      background: $custom-radio-color
+
+    &::after
+      width: 10px
+      height: 10px
+      background: #fff
+      left: 17px
