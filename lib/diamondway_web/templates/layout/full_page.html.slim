@@ -1,0 +1,8 @@
+doctype html
+html lang="en"
+  = render "_head.html", assigns
+  body
+    = render "_header.html", Map.put(assigns, :light_logo, true)
+    main role="main"
+      = render @view_module, @view_template, assigns
+    | <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"

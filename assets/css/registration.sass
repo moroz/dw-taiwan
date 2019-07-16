@@ -1,0 +1,29 @@
+$registration-left-pane-overlay-color: transparentize($brand-color, .13)
+$registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay-color, $registration-left-pane-overlay-color)
+
+.registration_page
+  display: grid
+  grid-template-columns: calc(50vw - 200px) 1fr
+  align-items: stretch
+  height: 100vh
+
+.registration_page__left_pane
+  background: $registration-left-pane-overlay, url(/images/bg-registration.jpg)
+  background-repeat: no-repeat
+  background-size: cover
+  display: flex
+  flex-direction: column
+  justify-content: center
+  color: #fff
+
+.left_pane__content
+  max-width: 80%
+  margin: auto
+  text-align: center
+  h1
+    font-weight: 300
+    font-size: 3rem
+    margin-bottom: 1.5rem
+
+  p
+    font-size: 1.25rem

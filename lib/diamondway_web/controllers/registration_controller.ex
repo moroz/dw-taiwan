@@ -4,6 +4,8 @@ defmodule DiamondwayWeb.RegistrationController do
   alias Diamondway.Guests
   alias Diamondway.Guests.Guest
 
+  plug :put_layout, :full_page
+
   def new(conn, _params) do
     changeset = Guests.change_guest(%Guest{})
     render(conn, "new.html", changeset: changeset)

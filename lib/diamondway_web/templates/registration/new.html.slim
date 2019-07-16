@@ -1,0 +1,26 @@
+.registration_page
+  .registration_page__left_pane
+    .left_pane__content
+      h1 Join the waiting list
+      p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Far East Sangha will be given priority in the registration process.
+
+  .registration_page__right_pane
+    = form_for @changeset, Routes.registration_path(@conn, :create), fn f ->
+      = if @changeset.action do
+        .alert.alert-danger
+          p | Oops, something went wrong! Please check the errors below.
+
+      = text_field f, :first_name, dgettext("registration", "First name:")
+      = text_field f, :last_name, dgettext("registration", "Last name:")
+      = text_field f, :email, dgettext("registration", "E-mail address:")
+
+      = label f, :country
+      = text_input f, :country
+      = error_tag f, :country
+
+      = text_field f, :city, dgettext("registration", "City (sangha):")
+      = text_field f, :reference_name
+      = text_field f, :reference_email
+
+      div= submit "Save"
+

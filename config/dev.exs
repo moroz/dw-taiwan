@@ -62,7 +62,7 @@ config :diamondway, DiamondwayWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/diamondway_web/{live,views}/.*(ex)$",
-      ~r"lib/diamondway_web/templates/.*(eex|slime?)$"
+      ~r"lib/diamondway_web/templates/.*(eex|slime|slim)$"
     ]
   ]
 
