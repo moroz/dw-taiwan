@@ -17,7 +17,13 @@
       = text_field f, :first_name, dgettext("registration", "First name:")
       = text_field f, :last_name, dgettext("registration", "Last name:")
       = text_field f, :email, dgettext("registration", "E-mail address:")
-      = text_field f, :phone, dgettext("registration", "Phone number:")
+
+      .field
+        label.label Nationality:
+        .control
+          .select
+            = select f, :nationality_id, @countries, prompt: "Please select:", selected: ""
+
       .field.custom_radio
         label.label Sex
         .custom_radio__options
@@ -29,11 +35,16 @@
             = radio_button f, :sex, "female"
             label for="guest_sex_female"
               | Sorry, no
+      = text_field f, :phone, dgettext("registration", "Phone number:"), "Please use the international notation."
 
       h3 Sangha and references
       p Please fill in the data of the Diamond Way center or group that you attend.<br/> We will contact your center to verify your identity.
-      = text_field f, :country, dgettext("registration", "Country:")
-      = text_field f, :city, dgettext("registration", "City (sangha):")
+      .field
+        label.label Country of residence:
+        .control
+          .select
+            = select f, :nationality_id, @countries, prompt: "Please select:", selected: ""
+      = text_field f, :city, dgettext("registration", "Sangha (Diamond Way center or group):")
       = text_field f, :reference_name, dgettext("registration", "Reference person:")
       = text_field f, :reference_email, dgettext("registration", "Contact e-mail of reference person:")
 
