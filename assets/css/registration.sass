@@ -37,7 +37,9 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   grid-row: 2
   overflow-y: auto
   padding: 1.5em 1em 3em 0
-  margin-bottom: 3em
+
+  > :last-child
+    margin-bottom: 3em
 
   p
     font-size: 1.125rem
@@ -49,6 +51,22 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
     font-weight: 600
     margin-top: 1.5rem
     margin-bottom: 1rem
+
+.field.has-error
+  label.label
+    color: $error-color
+
+  input
+    border-color: $error-color
+
+.error-explanation
+  color: $error-color
+  background-color: transparentize($error-color, .85)
+  padding: .1em .3em
+  margin-top: 2px
+  display: inline-block
+  font-size: .9em
+
 
 .registration_form
   display: grid

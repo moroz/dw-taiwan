@@ -21,7 +21,8 @@ defmodule DiamondwayWeb.RegistrationController do
         |> redirect(to: Routes.guest_path(conn, :show, guest))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        countries = Countries.list_countries_for_select()
+        render(conn, "new.html", changeset: changeset, countries: countries)
     end
   end
 end
