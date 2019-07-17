@@ -48,5 +48,21 @@
       = text_field f, :reference_name, dgettext("registration", "Reference person:")
       = text_field f, :reference_email, dgettext("registration", "Contact e-mail of reference person:")
 
+      h3 Terms and conditions
+
+      .custom_checkbox
+        = checkbox(f, :single_person_registration)
+        label.custom_checkbox__label for="guest_single_person_registration"
+          | I acknowledge that I am registering only myself. Applications for groups or couples will not be accepted.
+      .custom_checkbox
+        = checkbox(f, :travel_insurance)
+        label.custom_checkbox__label for="guest_travel_insurance"
+          | I will purchase travel insurance for the duration of my stay in Taiwan.
+      .custom_checkbox
+        = checkbox(f, :visa_requirements)
+        label.custom_checkbox__label for="guest_visa_requirements"
+          | I have acquainted myself with the detailed requirements for issuing a tourist visa or for the visa extension program of the Republic of China (Taiwan). We cannot and will not send visa invitation letters.
+
+
       = submit "Submit application", class: "button is-primary is-medium"
 

@@ -6,7 +6,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   display: grid
   grid-template-columns: calc(50vw - 200px) 1fr
   grid-template-rows: $navbar-height 1fr
-  grid-gap: 1.5rem
+  grid-column-gap: 1.5rem
   align-items: stretch
   height: 100vh
 
@@ -36,6 +36,8 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
 .registration_page__right_pane
   grid-row: 2
   overflow-y: auto
+  padding: 1.5em 1em 3em 0
+  margin-bottom: 3em
 
   p
     font-size: 1.125rem
@@ -53,6 +55,9 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   grid-template-columns: 360px 360px
   grid-column-gap: 1.25rem
   color: #000
+
+  .custom_checkbox
+    grid-column: 1 / span 2
 
   .select, select
     width: 100%
