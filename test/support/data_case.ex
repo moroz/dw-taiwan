@@ -32,6 +32,8 @@ defmodule Diamondway.DataCase do
       Ecto.Adapters.SQL.Sandbox.mode(Diamondway.Repo, {:shared, self()})
     end
 
+    Diamondway.TestSeeds.run()
+
     :ok
   end
 
