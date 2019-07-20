@@ -1,6 +1,7 @@
 defmodule Diamondway.Guests.Guest do
   use Ecto.Schema
   import Ecto.Changeset
+  import EmailTldValidator.Ecto
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++ ~w(single_person_registration travel_insurance visa_requirements)a
@@ -35,5 +36,7 @@ defmodule Diamondway.Guests.Guest do
     |> validate_acceptance(:single_person_registration)
     |> validate_acceptance(:travel_insurance)
     |> validate_acceptance(:visa_requirements)
+    |> validate_email()
+    |> validate_email(:reference_email)
   end
 end

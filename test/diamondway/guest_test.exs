@@ -28,27 +28,53 @@ defmodule Diamondway.Guests.GuestTest do
     )
   end
 
+  def changeset(attrs \\ []) do
+    Guest.changeset(%Guest{}, valid_attrs(attrs))
+  end
+
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @validates_confirmation ~w(single_person_registration travel_insurance visa_requirements)a
 
   describe "changeset/2" do
     test "is valid with valid attributes" do
-      changeset = Guest.changeset(%Guest{}, valid_attrs())
+      changeset = changeset()
       assert changeset.valid?
     end
 
     for attr <- @required ++ @validates_confirmation do
       test "is invalid when #{attr} is nil" do
-        changeset = Guest.changeset(%Guest{}, valid_attrs([{unquote(attr), nil}]))
+        changeset = changeset([{unquote(attr), nil}])
         refute changeset.valid?
       end
     end
 
     for attr <- @validates_confirmation do
       test "is invalid when #{attr} is not accepted" do
-        changeset = Guest.changeset(%Guest{}, valid_attrs([{unquote(attr), false}]))
+        changeset = changeset([{unquote(attr), false}])
         refute changeset.valid?
       end
+    end
+  end
+
+  describe "email validation" do
+    test "is valid with valid email" do
+      changeset = changeset(email: "user@example.com")
+      assert changeset.valid?
+    end
+
+    test "is invalid when email is an empty string" do
+      changeset = changeset(email: "")
+      refute changeset.valid?
+    end
+
+    test "is invalid when email is not a valid e-mail address" do
+      changeset = changeset(email: "user@example")
+      refute changeset.valid?
+    end
+
+    test "is invalid when email has invalid TLD" do
+      changeset = changeset(email: "user@example.fake")
+      refute changeset.valid?
     end
   end
 end
