@@ -44,6 +44,7 @@ defmodule Diamondway.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:ecto_enum, "~> 1.3"},
 
       # Deployment
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
@@ -52,7 +53,6 @@ defmodule Diamondway.MixProject do
       # User authentication
       {:comeonin, "~> 4.1"},
       {:argon2_elixir, "~> 1.3"},
-
       {:phoenix_slime, "~> 0.12.0"}
     ]
   end
