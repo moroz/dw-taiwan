@@ -1,5 +1,5 @@
 begin;
-truncate table countries;
+truncate table countries cascade;
 alter sequence countries_id_seq restart;
 copy countries from stdin csv header;
 id,name
