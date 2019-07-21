@@ -1,3 +1,7 @@
+@function rem-calc($size)
+  $remSize: $size / 16
+  @return #{$remSize}rem
+
 $brand-color: #cd2030
 $navbar-height: 60px
 $thin-border: 1px solid #eaeaea
@@ -26,4 +30,25 @@ $secondary: $blue
 $widescreen-enabled: false
 $fullhd-enabled: false
 
+$tablet-breakpoint: 810px
+$mobile-breakpoint: 570px
+
+$container-width: rem-calc(960)
+
 $control-height: 2.5em
+
+=mobile-only
+  @media (max-width: $mobile-breakpoint - 1px)
+    @content
+
+=gt-mobile
+  @media screen and (min-width: $mobile-breakpoint)
+    @content
+
+=tablet-only
+  @media (min-width: $mobile-breakpoint) and (max-width: $tablet-breakpoint - 1px)
+    @content
+
+=gt-tablet
+  @media (min-width: $tablet-breakpoint)
+    @content

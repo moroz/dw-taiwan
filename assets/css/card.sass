@@ -1,8 +1,12 @@
 .columns
   display: grid
   width: 100%
-  grid-template-columns: repeat(auto-fit, minmax(0, 1fr))
-  grid-column-gap: 1.25rem
+  grid-template-columns: 1fr
+  +gt-mobile
+    grid-template-columns: 1fr 1fr
+  +gt-tablet
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr))
+  grid-gap: 1.25rem
 
 .card
   background: #fff

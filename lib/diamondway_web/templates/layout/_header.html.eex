@@ -1,11 +1,7 @@
 <nav class="navbar" id="navbar">
   <div class="navbar__menu container">
     <a class="navbar__logo" href="/">
-      <%= if assigns[:light_logo] do %>
-        <img src="<%= Routes.static_path(@conn, "/images/logo-website-white.svg") %>" alt="Mahamudra Taipei" />
-      <% else %>
-        <img src="<%= Routes.static_path(@conn, "/images/logo-website.svg") %>" alt="Mahamudra Taipei" />
-      <% end %>
+      <%= logo_tag(:desktop, assigns[:logo_light]) %>
     </a>
     <a class="navbar__item" href="/register"> Register </a>
     <a class="navbar__item" href="/venue">Venue</a>

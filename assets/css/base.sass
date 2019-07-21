@@ -22,8 +22,11 @@ body
 
 .container
   margin: 0 auto
-  width: 960px
-  max-width: 960px
+  width: $container-width
+  max-width: $container-width
+
+  @media (max-width: $container-width)
+    width: 100%
 
 main
   flex: 1
