@@ -1,46 +1,67 @@
-.landing
-  height: 50vh
+.landing__section
   position: relative
-  background-repeat: no-repeat
-  background-size: cover
-  background-image: $white-gradient, url(../static/images/bg-landing.jpg)
-  margin-bottom: -6rem
+  min-height: 100vh
+  padding-bottom: rem-calc(36)
 
-  +mobile-only
-    margin-bottom: 3rem
+  &:nth-of-type(odd)
+    background: #fafafa
 
-.hero
-  +mobile-only
-    height: 90vh
-
-.hero-text
-  position: absolute
-  top: 45%
+.landing__hero__header,
+.landing__hero__subheader
   color: #fff
-  +gt-mobile
-    left: 50%
-    transform: translate(-50%, -50%)
+
+.landing__hero__header, .landing__section__header h1
+  font-weight: 900
+  font-family: $family-serif
+  font-size: 26px
+
+.landing__section__header
+  text-align: center
+  color: #222
+  padding-top: 1em
+  padding-bottom: .6em
+
+.landing__section__image
+  width: 100vw
+
+.landing__section__text
+  margin: 1.5rem
+  font-size: rem-calc(18)
+
+.landing__section__cta
+  text-align: center
+  a
+    text-decoration: underline
     color: $brand-color
+    font-size: rem-calc(20)
 
-    .title
-      font-size: 3rem
+.landing__hero__subheader
+  font-size: 20px
 
-    .subtitle
-      font-size: 2.25rem
+.landing__hero__cta
+  @extend .button
+  position: absolute
+  font-size: rem-calc(20)
+  line-height: 2.5
+  height: 2.5em
+  width: 10em
+  bottom: 3rem
+  left: 50%
+  transform: translateX(-50%)
+  color: $blue
+  transition: .15s ease-in-out
 
-  +mobile-only
-    position: absolute
-    top: 35%
-    left: 50%
-    width: 150vw
-    transform: translate(-50%, -50%) rotate(-15deg)
-    text-align: center
-    padding:
-      top: 1em
-      bottom: 1em
-    background: transparentize($brand-color, .3)
+  &:hover
+    background: $blue
+    border-color: lighten($blue, 10%)
+    color: #fff
 
-  .title, .subtitle
-    line-height: 1.5
-    font-weight: 200
-    color: inherit
+#landingHero
+  background-image: url("../static/images/bg-landing-hero.jpg")
+  color: #fff
+  background-position: 50% 50%
+  background-size: cover
+  background-repeat: no-repeat
+  padding-top: $navbar-height + 10px
+  padding-left: 1em
+  padding-right: 1em
