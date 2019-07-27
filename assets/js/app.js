@@ -20,7 +20,20 @@ function setNavbarOpacityClass() {
   }
 }
 
+function setOffCanvasOpenClass(e) {
+  if (!e || !e.target) return;
+  const offcanvas = document.getElementById("offcanvas");
+  offcanvas &&
+    offcanvas.classList.toggle("navbar__menu--open", e.target.checked);
+  const navigation = document.getElementById("navbar");
+  if (e.target.checked && navigation)
+    navigation.classList.toggle("navbar--opaque", e.target.checked);
+  else setNavbarOpacityClass();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", setNavbarOpacityClass);
   setNavbarOpacityClass();
+  const hamburger = document.getElementById("hamburgerToggle");
+  hamburger && hamburger.addEventListener("change", setOffCanvasOpenClass);
 });

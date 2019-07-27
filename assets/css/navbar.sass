@@ -1,30 +1,122 @@
+$offcanvas-fg: $brand-color
+$offcanvas-bg: #fff
+
 .navbar
-  z-index: 5
-  border-bottom: 2px solid #fff
-  color: #fff
+  --navbar-fg: #fff
+  z-index: 11
+  border-bottom: 1px solid var(--navbar-fg)
+  box-sizing: border-box
   position: fixed
+  transition: .2s
+  color: var(--navbar-fg)
   width: 100%
+
+.navbar__inner
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0 1em
   height: $navbar-height
   line-height: $navbar-height
-  top: 0
-  transition: .2s
+
+.navbar__sitename
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  font-size: 1rem
 
 .navbar--opaque
   background: #fff
-
-  a:hover
-    background: transparentize($brand-color, .95)
-
-a.navbar__logo
-  margin-right: auto
-  padding: 0
-  height: $navbar-height
-  align-self: stretch
-  display: flex
-  align-items: center
-
-  img
-    height: 50px
+  border-bottom-width: 1px
+  --navbar-fg: #{$brand-color}
 
 .navbar__menu
+  position: fixed
+  background: $offcanvas-bg
+  overflow: hidden
+  height: 100vh
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)
+  opacity: 0
   display: flex
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  padding-top: $navbar-height
+  flex-direction: column
+  transition: .2s
+
+.navbar__menu--open
+  height: 100vh
+  opacity: 1
+  max-height: 100vh
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
+
+.navbar__item
+  font-size: 1.5em
+  color: $offcanvas-fg
+  height: $navbar-height
+  padding-left: 1rem
+  transition: .1s ease-in-out
+
+  &:first-of-type
+    border-top: 1px solid $offcanvas-fg
+
+  &:hover
+    color: $offcanvas-bg
+    background: $offcanvas-fg
+
+a.navbar__logo
+  height: $navbar-height
+  display: flex
+  z-index: 10
+
+  img
+    margin: auto
+    height: 50px
+
+#hamburgerToggle
+  input
+    display: block
+    width: $navbar-height
+    height: $navbar-height
+    position: fixed
+    cursor: pointer
+    top: 0
+    left: 0
+    opacity: 0 // hide this
+    z-index: 34 // and place it over the hamburger
+    -webkit-touch-callout: none
+
+  span
+    display: block
+    width: 33px
+    height: 4px
+    margin-bottom: 5px
+    margin-top: 5px
+    position: relative
+    background: var(--navbar-fg)
+    border-radius: 3px
+    z-index: 10
+    transform-origin: 4px 0px
+    transition: transform 0.3s cubic-bezier(0.77,0.2,0.05,1.0), background 0.3s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.35s ease
+
+  span:first-child
+    transform-origin: 0% 0%
+
+  span:nth-of-type(3)
+    transform-origin: 0% 100%
+
+  input:checked ~ span
+    opacity: 1
+    transform: translate(2px, 2px) rotate(45deg) translate(-2px, -1px)
+    background: $offcanvas-fg
+
+  input:checked ~ span:nth-of-type(2)
+    opacity: 0
+    transform: rotate(0deg) scale(0.2, 0.2)
+
+  input:checked ~ span:nth-of-type(3)
+    transform: translate(2px, 2px) rotate(-45deg) translate(0, -1px)

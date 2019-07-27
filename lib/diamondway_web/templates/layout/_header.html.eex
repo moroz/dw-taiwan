@@ -1,12 +1,20 @@
 <nav class="navbar" id="navbar">
-  <div class="navbar__menu container">
+  <div class="navbar__inner">
+    <div id="hamburgerToggle">
+      <input type="checkbox" />
+      <span></span><span></span><span></span>
+    </div>
+    <div class="navbar__menu" id="offcanvas">
+      <a class="navbar__item" href="/">Homepage</a>
+      <a class="navbar__item" href="/register"> Register </a>
+      <a class="navbar__item" href="/venue">Venue</a>
+      <a class="navbar__item" href="/faq"> FAQ </a>
+      <a class="navbar__item" href="/contact"> Contact </a>
+    </div>
+    <p class="navbar__sitename">mahamudra.taipei</p>
     <a class="navbar__logo" href="/">
-      <%= logo_tag(:desktop, assigns[:logo_light]) %>
+      <%= img_tag Routes.static_path(@conn, "/images/logo-solo.svg") %>
     </a>
-    <a class="navbar__item" href="/register"> Register </a>
-    <a class="navbar__item" href="/venue">Venue</a>
-    <a class="navbar__item" href="/faq"> FAQ </a>
-    <a class="navbar__item" href="/contact"> Contact </a>
   </div>
 </nav>
 
