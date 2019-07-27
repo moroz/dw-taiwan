@@ -5,8 +5,6 @@ defmodule DiamondwayWeb.RegistrationController do
   alias Diamondway.Countries
   alias Diamondway.Guests.Guest
 
-  plug :put_layout, :full_page
-
   def new(conn, _params) do
     changeset = Guests.change_guest(%Guest{})
     countries = Countries.list_countries_for_select()

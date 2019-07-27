@@ -35,5 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", setNavbarOpacityClass);
   setNavbarOpacityClass();
   const hamburger = document.getElementById("hamburgerToggle");
+  console.log(hamburger);
   hamburger && hamburger.addEventListener("change", setOffCanvasOpenClass);
 });

@@ -2,7 +2,6 @@
 <html lang="en">
   <%= render "_head.html", assigns %>
   <body>
-    <div class="landing-bg"></div>
     <%= render "_header.html", assigns %>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>
