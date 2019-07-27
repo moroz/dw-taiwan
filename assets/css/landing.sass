@@ -6,19 +6,41 @@
   background-image: $white-gradient, url(../static/images/bg-landing.jpg)
   margin-bottom: -6rem
 
+  +mobile-only
+    margin-bottom: 3rem
+
+.hero
+  +mobile-only
+    height: 90vh
+
 .hero-text
   position: absolute
   top: 45%
-  left: 50%
-  transform: translate(-50%, -50%)
+  color: #fff
+  +gt-mobile
+    left: 50%
+    transform: translate(-50%, -50%)
+    color: $brand-color
+
+    .title
+      font-size: 3rem
+
+    .subtitle
+      font-size: 2.25rem
+
+  +mobile-only
+    position: absolute
+    top: 35%
+    left: 50%
+    width: 150vw
+    transform: translate(-50%, -50%) rotate(-15deg)
+    text-align: center
+    padding:
+      top: 1em
+      bottom: 1em
+    background: transparentize($brand-color, .3)
 
   .title, .subtitle
     line-height: 1.5
-    color: $brand-color
     font-weight: 200
-
-  .title
-    font-size: 3rem
-
-  .subtitle
-    font-size: 2.25rem
+    color: inherit
