@@ -7,6 +7,34 @@
   &:nth-of-type(odd)
     background: #fafafa
 
+#landingHero
+  background-image: url("../static/images/bg-landing-hero.jpg")
+  color: #fff
+  background-position: 50% 50%
+  background-size: cover
+  background-repeat: no-repeat
+  padding-top: $navbar-height + .5rem
+  padding-left: 1em
+  padding-right: 1em
+
+.landing__hero__cta
+  @extend .button
+  position: absolute
+  font-size: rem-calc(20)
+  line-height: 2.5
+  height: 2.5em
+  width: 10em
+  bottom: 3rem
+  left: 50%
+  transform: translateX(-50%)
+  color: $blue
+  transition: .15s ease-in-out
+
+  &:hover
+    background: $blue
+    border-color: lighten($blue, 10%)
+    color: #fff
+
 .landing__hero__header,
 .landing__hero__subheader
   color: #fff
@@ -35,33 +63,62 @@
     color: $brand-color
     font-size: 1.1em
 
+@media screen and (min-width: 850px)
+  .landing__hero__cta
+    left: 2rem
+    transform: none
+
+  #landingHero
+    padding-left: 2rem
+
+  .landing__section--responsive
+    display: grid
+    grid-template-columns: 50vw 1fr
+    grid-column-gap: 2rem
+    align-items: center
+    padding: 0
+    padding-right: 2rem
+
+    .landing__section__image
+      grid-column: 1
+      grid-row: 1 / span 3
+      object-fit: cover
+      align-self: stretch
+
+    .landing__section__image,
+    .landing__section__text,
+    .landing__section__header,
+    .landing__section__cta
+      padding: 0
+      margin: 0
+
+    .landing__section__text,
+    .landing__section__header,
+    .landing__section__cta
+      justify-self: start
+      text-align: left
+
+    .landing__section__header
+      align-self: end
+
+    .landing__section__cta
+      align-self: start
+
+  .landing__section--responsive.landing__section--inverted
+    grid-template-columns: 1fr 50vw
+    padding-right: 0
+    padding-left: 2rem
+
+    .landing__section__image
+      grid-column: 2
+
+    .landing__section__text,
+    .landing__section__header,
+    .landing__section__cta
+      grid-column: 1
+      text-align: right
+      justify-self: end
+
+
 .landing__hero__subheader
   @include fluid-type($min_width, $max_width, 20px, 45px)
-
-.landing__hero__cta
-  @extend .button
-  position: absolute
-  font-size: rem-calc(20)
-  line-height: 2.5
-  height: 2.5em
-  width: 10em
-  bottom: 3rem
-  left: 50%
-  transform: translateX(-50%)
-  color: $blue
-  transition: .15s ease-in-out
-
-  &:hover
-    background: $blue
-    border-color: lighten($blue, 10%)
-    color: #fff
-
-#landingHero
-  background-image: url("../static/images/bg-landing-hero.jpg")
-  color: #fff
-  background-position: 50% 50%
-  background-size: cover
-  background-repeat: no-repeat
-  padding-top: $navbar-height + 10px
-  padding-left: 1em
-  padding-right: 1em
