@@ -1,3 +1,4 @@
+
 .landing__section
   position: relative
   min-height: 100vh
@@ -13,7 +14,7 @@
 .landing__hero__header, .landing__section__header h1
   font-weight: 900
   font-family: $family-serif
-  font-size: 26px
+  @include fluid-type($min_width, $max_width, 26px, 72px)
 
 .landing__section__header
   text-align: center
@@ -26,17 +27,16 @@
 
 .landing__section__text
   margin: 1.5rem
-  font-size: rem-calc(18)
 
 .landing__section__cta
   text-align: center
   a
     text-decoration: underline
     color: $brand-color
-    font-size: rem-calc(20)
+    font-size: 1.1em
 
 .landing__hero__subheader
-  font-size: 20px
+  @include fluid-type($min_width, $max_width, 20px, 45px)
 
 .landing__hero__cta
   @extend .button

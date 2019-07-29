@@ -36,6 +36,7 @@ $offcanvas-bg: #fff
   position: fixed
   background: $offcanvas-bg
   overflow: hidden
+  pointer-events: none
   height: 100vh
   clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)
   opacity: 0
@@ -50,6 +51,7 @@ $offcanvas-bg: #fff
 
 .navbar__menu--open
   height: 100vh
+  pointer-events: auto
   opacity: 1
   max-height: 100vh
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
