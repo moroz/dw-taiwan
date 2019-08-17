@@ -5,6 +5,12 @@ defmodule DiamondwayWeb.RegistrationController do
   alias Diamondway.Countries
   alias Diamondway.Guests.Guest
 
+  plug :set_body_class, "opaque-header"
+
+  defp set_body_class(conn, class) do
+    assign(conn, :body_class, class)
+  end
+
   def new(conn, _params) do
     changeset = Guests.change_guest(%Guest{})
     countries = Countries.list_countries_for_select()

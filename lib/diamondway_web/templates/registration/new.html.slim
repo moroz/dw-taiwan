@@ -1,18 +1,17 @@
 .registration_page
-  .registration_page__left_pane
-    .left_pane__content
-      h1 Join the Waiting List
-      p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Far East Sangha will be given priority in the registration process.
+  .registration_page__hero
+    h1 Join the Waiting List
+    p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Far East Sangha will be given priority in the registration process.
 
-  .registration_page__right_pane
+  .registration_page__form_wrapper
 
     = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
       p
         | Please fill in your details in the form below.<br/> We will reach out to you once your registration is successfully processed.
       h3 Personal data
       = if @changeset.action do
-        .alert.alert-danger
-          p Oops, something went wrong! Please check the errors below.
+        .notification.is-warning
+          | Your registration could not be processed. Please check the errors below.
 
       = text_field f, :first_name, dgettext("registration", "First name:")
       = text_field f, :last_name, dgettext("registration", "Last name:")

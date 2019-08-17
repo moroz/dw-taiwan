@@ -3,40 +3,27 @@ $registration-left-pane-overlay-color: transparentize($secondary, .13)
 $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay-color, $registration-left-pane-overlay-color)
 
 .registration_page
-  display: grid
-  grid-template-columns: calc(50vw - 200px) 1fr
-  grid-template-rows: $navbar-height 1fr
-  grid-column-gap: 1.5rem
-  align-items: stretch
-  height: 100vh
+  padding-top: $navbar-height
 
-.registration_page__left_pane
-  background: $registration-left-pane-overlay, url(../static/images/bg-registration.jpg)
-  background-repeat: no-repeat
-  background-size: cover
-  display: flex
-  grid-row: 1 / span 2
-  flex-direction: column
-  justify-content: center
-  color: #fff
-
-.left_pane__content
-  max-width: 80%
+.registration_page__hero
+  padding-top: 1em
+  text-align: center
+  width: 80%
   margin: auto
   text-align: center
   h1
     font-weight: 300
     font-size: 2.8rem
-    margin-bottom: 1.5rem
 
   p
     font-size: 1.25rem
-    margin-bottom: 3rem
 
-.registration_page__right_pane
-  grid-row: 2
+.registration_page__form_wrapper
   overflow-y: auto
-  padding: 1.5em 1em 3em 0
+  padding: 1.5em
+
+  +gt-mobile
+    padding: 2em
 
   > :last-child
     margin-bottom: 3em
@@ -69,10 +56,13 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
 
 
 .registration_form
-  display: grid
-  grid-template-columns: 360px 360px
   grid-column-gap: 1.25rem
+  grid-template-columns: 1fr
   color: #000
+
+  +gt-mobile
+    display: grid
+    grid-template-columns: 1fr 1fr
 
   .custom_checkbox
     grid-column: 1 / span 2
@@ -88,7 +78,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
     font-size: .9em
     color: #666
 
-  p, h3, button, .alert
+  p, h3, button, .alert, .notification
     grid-column: 1 / span 2
 
   h3

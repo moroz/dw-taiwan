@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <%= render "_head.html", assigns %>
-  <body>
+  <%= if assigns[:body_class] do %>
+    <body class="<%= @body_class %>">
+  <% else %>
+    <body>
+  <% end %>
     <%= render "_header.html", assigns %>
     <main role="main">
       <%= render @view_module, @view_template, assigns %>
