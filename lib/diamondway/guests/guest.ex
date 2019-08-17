@@ -32,7 +32,7 @@ defmodule Diamondway.Guests.Guest do
     guest
     |> cast(attrs, @all)
     |> validate_required(@required)
-    |> unique_constraint(:email)
+    |> unique_constraint(:email, message: "this address has already been used")
     |> validate_acceptance(:single_person_registration)
     |> validate_acceptance(:travel_insurance)
     |> validate_acceptance(:visa_requirements)
