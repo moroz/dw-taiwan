@@ -2,34 +2,27 @@
 $registration-left-pane-overlay-color: transparentize($secondary, .13)
 $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay-color, $registration-left-pane-overlay-color)
 
-.registration_page
-  padding-top: $navbar-height
-
 .registration_page__hero
   padding-top: 1em
-  text-align: center
-  width: 80%
   margin: auto
-  text-align: center
   h1
+    text-align: center
     font-weight: 300
     font-size: 2rem
 
-  p
-    font-size: 1.15rem
-
-.registration_page__form_wrapper
+.registration_page
   overflow-y: auto
-  padding: 1.5em
+  padding: 2.5em 1.25em 1.5em
+  color: #222
 
   +gt-mobile
-    padding: 2em
+    padding: 2.5em 2em
 
   > :last-child
     margin-bottom: 3em
 
   p
-    font-size: 1.125rem
+    font-size: 1.05rem
     margin-bottom: 1em
 
   h3

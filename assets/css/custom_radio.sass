@@ -65,6 +65,8 @@ $checkbox-hover-bg: transparentize(lighten($custom-radio-color, 30%), .5)
       left: 1.05em
 
 .custom_checkbox
+  +mobile-only
+    margin-left: -1em
   &:hover
     background: darken(white, 5%)
 
