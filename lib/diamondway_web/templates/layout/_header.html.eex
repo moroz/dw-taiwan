@@ -6,7 +6,7 @@
     </div>
     <div class="navbar__menu" id="offcanvas">
       <a class="navbar__item" href="/">Homepage</a>
-      <a class="navbar__item" href="/register"> Register </a>
+      <%= link "Register", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
       <!-- <a class="navbar__item" href="/venue">Venue</a> -->
       <!-- <a class="navbar__item" href="/faq"> FAQ </a> -->
       <!-- <a class="navbar__item" href="/contact"> Contact </a> -->
@@ -17,4 +17,3 @@
     </a>
   </div>
 </nav>
-

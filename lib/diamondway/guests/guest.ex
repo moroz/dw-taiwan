@@ -5,7 +5,6 @@ defmodule Diamondway.Guests.Guest do
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++ ~w(single_person_registration travel_insurance visa_requirements)a
-  @acceptance_message "Please confirm."
 
   schema "guests" do
     field :city, :string
@@ -43,5 +42,18 @@ defmodule Diamondway.Guests.Guest do
     )
     |> validate_email()
     |> validate_email(:reference_email)
+    |> validate_different_emails()
+  end
+
+  defp validate_different_emails(changeset) do
+    email = get_field(changeset, :email)
+    reference_email = get_field(changeset, :reference_email)
+
+    if email not in ["", nil] and reference_email not in ["", nil] and
+         String.downcase(email) == String.downcase(reference_email) do
+      add_error(changeset, :reference_email, "This address should be different from yours.")
+    else
+      changeset
+    end
   end
 end
