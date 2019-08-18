@@ -2,11 +2,13 @@
   padding-top: 1em
   margin: auto
   +gt-desktop
-    grid-column: 1
-    grid-row: 1
-    align-self: center
+    height: 100vh
+    display: flex
     text-align: center
+    flex-direction: column
+    justify-content: center
     padding: 2em
+    padding-top: $navbar-height
 
   h1
     text-align: center
@@ -14,6 +16,16 @@
     margin-bottom: .25em
     +gt-mobile
       font-size: 2rem
+
+.registration_page__form_wrapper
+  padding-right: 1.5em
+  grid-row: 1 / span 2
+  grid-column: 2
+  height: 100vh
+  padding-bottom: 2em
+  +gt-desktop
+    padding-top: $navbar-height + 1
+    overflow-y: auto
 
 .registration_page
   overflow-y: auto
@@ -25,11 +37,13 @@
 
   +gt-desktop
     padding: 0
-    margin-top: $navbar-height
+    margin: 0
+    height: 100vh
+    overflow: hidden
+    align-items: stretch
+    justify-content: center
     display: grid
     grid-template-columns: 1fr 1.618fr
-    grid-template-rows: calc(100vh - #{$navbar-height}) auto
-    align-items: center
 
   > :last-child
     margin-bottom: 3em
@@ -97,10 +111,3 @@
     margin-top: 1.5rem
     justify-self: center
     display: inline-block
-
-
-.registration_page__form_wrapper
-  padding-top: 1em
-  padding-right: 1.5em
-  grid-row: 1 / span 2
-  grid-column: 2
