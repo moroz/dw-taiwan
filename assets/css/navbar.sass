@@ -11,12 +11,19 @@ $offcanvas-bg: #fff
   color: var(--navbar-fg)
   width: 100%
 
+  a
+    transition: .15s
+
+    &:hover
+      color: #fff
+      background: transparentize(#fff, .85)
+
 .navbar__inner
   position: relative
   display: flex
   align-items: center
   justify-content: space-between
-  padding: 0 1em
+  padding: 0 .5em 0 1em
   height: $navbar-height
   line-height: $navbar-height
 
@@ -25,12 +32,20 @@ $offcanvas-bg: #fff
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
+  color: inherit
+  padding-left: 1em
+  padding-right: 1em
   font-size: 1rem
 
 .navbar--opaque, .opaque-header .navbar
   background: #fff
   border-bottom-width: 1px
   --navbar-fg: #{$brand-color}
+
+  a
+    &:hover
+      color: inherit
+      background: darken(#fff, 5%)
 
 .navbar__menu
   position: fixed
@@ -75,6 +90,8 @@ a.navbar__logo
   height: $navbar-height
   display: flex
   z-index: 10
+  padding-left: .5em
+  padding-right: .5em
 
   img
     margin: auto

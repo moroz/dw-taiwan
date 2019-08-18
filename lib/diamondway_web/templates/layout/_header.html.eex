@@ -7,11 +7,11 @@
     <div class="navbar__menu" id="offcanvas">
       <a class="navbar__item" href="/">Homepage</a>
       <a class="navbar__item" href="/register"> Register </a>
-      <a class="navbar__item" href="/venue">Venue</a>
-      <a class="navbar__item" href="/faq"> FAQ </a>
-      <a class="navbar__item" href="/contact"> Contact </a>
+      <!-- <a class="navbar__item" href="/venue">Venue</a> -->
+      <!-- <a class="navbar__item" href="/faq"> FAQ </a> -->
+      <!-- <a class="navbar__item" href="/contact"> Contact </a> -->
     </div>
-    <p class="navbar__sitename">mahamudra.taipei</p>
+    <a href="/" class="navbar__sitename">mahamudra.taipei</a>
     <a class="navbar__logo" href="/">
       <%= img_tag Routes.static_path(@conn, "/images/logo-solo.svg") %>
     </a>
