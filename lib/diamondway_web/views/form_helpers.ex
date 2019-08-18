@@ -16,6 +16,31 @@ defmodule DiamondwayWeb.FormHelpers do
     end
   end
 
+  def select_group(form, field, data, label, opts \\ []) do
+    content_tag :div, class: field_class(form, field) do
+      [
+        label(form, field, label, class: "label"),
+        content_tag :div, class: "control" do
+          content_tag :div, class: "select" do
+            select(form, field, data, opts)
+          end
+        end,
+        ErrorHelpers.error_tag(form, field)
+      ]
+    end
+  end
+
+  def custom_checkbox(form, field, do: block) do
+    content_tag :div, class: field_class(form, field) <> " custom_checkbox" do
+      [
+        checkbox(form, field),
+        label(form, field, class: "custom_checkbox__label") do
+          [block, ErrorHelpers.error_tag(form, field)]
+        end
+      ]
+    end
+  end
+
   def custom_radio(form, field, label \\ [], options \\ []) do
     content_tag :div, class: field_class(form, field) <> " custom_radio" do
       [

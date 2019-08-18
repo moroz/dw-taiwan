@@ -7,7 +7,7 @@
 
     = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
       p
-        | Please fill in your details in the form below.<br/> We will reach out to you once your registration is successfully processed.
+        | Please fill in your details in the form below. All fields in the form are required.<br/> We will reach out to you once your registration is successfully processed.
       h3 Personal data
       = if @changeset.action do
         .notification.is-warning
@@ -17,43 +17,31 @@
       = text_field f, :last_name, dgettext("registration", "Last name:")
       = text_field f, :email, dgettext("registration", "E-mail address:")
 
-      .field
-        label.label Nationality:
-        .control
-          .select
-            = select f, :nationality_id, @countries, prompt: "Please select:", selected: ""
+      = select_group(f, :nationality_id, @countries, "Nationality:", prompt: "Please select:", selected: "")
 
       = custom_radio(f, :sex, "Sex:", [{:male, "Male"}, {:female, "Female"}])
 
-      = text_field f, :phone, dgettext("registration", "Phone number:"), "Please use the international notation."
+      = text_field f, :phone, dgettext("registration", "Phone number:"), "Please use the international notation (with country code)."
 
       h3 Sangha and references
       p Please fill in the data of the Diamond Way center or group that you attend.<br/> We will contact your center to verify your identity.
-      .field
-        label.label Country of residence:
-        .control
-          .select
-            = select f, :residence_id, @countries, prompt: "Please select:", selected: ""
+
+      = select_group(f, :residence_id, @countries, "Country of residence:", prompt: "Please select:", selected: "")
       = text_field f, :city, dgettext("registration", "Sangha (Diamond Way center or group):")
       = text_field f, :reference_name, dgettext("registration", "Reference person:")
       = text_field f, :reference_email, dgettext("registration", "Contact e-mail of reference person:")
 
       h3 Terms and conditions
 
-      .custom_checkbox
-        = checkbox(f, :single_person_registration)
-        label.custom_checkbox__label for="guest_single_person_registration"
-          | I acknowledge that I am registering only myself. Applications for groups or couples will not be accepted.
-      .custom_checkbox
-        = checkbox(f, :travel_insurance)
-        label.custom_checkbox__label for="guest_travel_insurance"
-          | I will purchase travel insurance for the duration of my stay in Taiwan.
-      .custom_checkbox
-        = checkbox(f, :visa_requirements)
-        label.custom_checkbox__label for="guest_visa_requirements"
-          | I have acquainted myself with the detailed requirements for issuing a tourist visa or for the visa extension program of the Republic of China (Taiwan). We cannot and will not send visa invitation letters.
+      = custom_checkbox f, :single_person_registration do
+        | I acknowledge that I am registering only myself. Applications for groups or couples will not be accepted.
 
+      = custom_checkbox f, :travel_insurance do
+        | I will purchase travel insurance for the duration of my stay in Taiwan.
 
-      .has-text-centered
+      = custom_checkbox f, :visa_requirements do
+        | I have acquainted myself with the detailed requirements for issuing a tourist visa or for the visa extension program of the Republic of China (Taiwan). We cannot and will not send visa invitation letters.
+
+      .form-actions.has-text-centered
         = submit "Submit application", class: "button is-primary is-medium"
 

@@ -5,6 +5,7 @@ defmodule Diamondway.Guests.Guest do
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++ ~w(single_person_registration travel_insurance visa_requirements)a
+  @acceptance_message "Please confirm."
 
   schema "guests" do
     field :city, :string
@@ -31,11 +32,15 @@ defmodule Diamondway.Guests.Guest do
   def changeset(guest, attrs) do
     guest
     |> cast(attrs, @all)
-    |> validate_required(@required)
+    |> validate_required(@required, message: "This field is required.")
     |> unique_constraint(:email, message: "this address has already been used")
-    |> validate_acceptance(:single_person_registration)
-    |> validate_acceptance(:travel_insurance)
-    |> validate_acceptance(:visa_requirements)
+    |> validate_acceptance(:single_person_registration, message: "Please confirm.")
+    |> validate_acceptance(:travel_insurance,
+      message: "Please confirm."
+    )
+    |> validate_acceptance(:visa_requirements,
+      message: "Please confirm."
+    )
     |> validate_email()
     |> validate_email(:reference_email)
   end

@@ -7,7 +7,10 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   margin: auto
   h1
     text-align: center
-    font-size: 2rem
+    font-size: 1.75rem
+    margin-bottom: .25em
+    +gt-mobile
+      font-size: 2rem
 
 .registration_page
   overflow-y: auto
@@ -34,7 +37,8 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   label.label
     color: $error-color
 
-  input
+  input, select
+    color: $error-color
     border-color: $error-color
 
 .error-explanation
@@ -44,7 +48,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
   margin-top: 2px
   display: inline-block
   font-size: .9em
-
+  border-radius: .15em
 
 .registration_form
   grid-column-gap: 1.25rem
@@ -55,7 +59,7 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
     display: grid
     grid-template-columns: 1fr 1fr
 
-  .custom_checkbox
+  .custom_checkbox, .form-actions
     grid-column: 1 / span 2
 
   .select, select
