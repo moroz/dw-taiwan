@@ -32,9 +32,8 @@ $family-serif: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida
 $family-sans-serif: $family-sans
 $primary: $brand-color
 $secondary: $blue
-$widescreen-enabled: false
-$fullhd-enabled: false
 
+$desktop-breakpoint: 1200px
 $tablet-breakpoint: 810px
 $mobile-breakpoint: 570px
 
@@ -48,6 +47,10 @@ $control-height: 2.5em
 
 =gt-mobile
   @media screen and (min-width: $mobile-breakpoint)
+    @content
+
+=gt-desktop
+  @media screen and (min-width: $desktop-breakpoint)
     @content
 
 =tablet-only

@@ -17,12 +17,14 @@ defmodule DiamondwayWeb.RegistrationController do
     render(conn, "new.html", changeset: changeset, countries: countries)
   end
 
+  def success(conn, _params) do
+    render(conn, "success.html")
+  end
+
   def create(conn, %{"guest" => guest_params}) do
     case Guests.create_guest(guest_params) do
       {:ok, guest} ->
-        conn
-        |> put_flash(:info, "Guest created successfully.")
-        |> redirect(to: Routes.guest_path(conn, :show, guest))
+        redirect(conn, to: Routes.registration_path(conn, :success))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         countries = Countries.list_countries_for_select()

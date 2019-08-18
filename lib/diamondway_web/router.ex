@@ -27,6 +27,7 @@ defmodule DiamondwayWeb.Router do
     get "/", PageController, :index
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
+    get "/register/success", RegistrationController, :success
 
     for page <- pages do
       get "/#{page}", PageController, page

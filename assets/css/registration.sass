@@ -1,10 +1,13 @@
-// $registration-left-pane-overlay-color: transparentize($brand-color, .13)
-$registration-left-pane-overlay-color: transparentize($secondary, .13)
-$registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay-color, $registration-left-pane-overlay-color)
-
 .registration_page__hero
   padding-top: 1em
   margin: auto
+  +gt-desktop
+    grid-column: 1
+    grid-row: 1
+    align-self: center
+    text-align: center
+    padding: 2em
+
   h1
     text-align: center
     font-size: 1.75rem
@@ -19,6 +22,14 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
 
   +gt-mobile
     padding: 2.5em 2em
+
+  +gt-desktop
+    padding: 0
+    margin-top: $navbar-height
+    display: grid
+    grid-template-columns: 1fr 1.618fr
+    grid-template-rows: calc(100vh - #{$navbar-height}) auto
+    align-items: center
 
   > :last-child
     margin-bottom: 3em
@@ -86,3 +97,10 @@ $registration-left-pane-overlay: linear-gradient($registration-left-pane-overlay
     margin-top: 1.5rem
     justify-self: center
     display: inline-block
+
+
+.registration_page__form_wrapper
+  padding-top: 1em
+  padding-right: 1.5em
+  grid-row: 1 / span 2
+  grid-column: 2
