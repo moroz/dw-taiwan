@@ -7,8 +7,8 @@
     <title>Mahamudra Taipei 2020</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="admin">
-    <%= render "_admin_header.html", assigns %>
+  <body class="admin opaque-header">
+    <%= render "_header.html", assigns %>
     <main role="main" class="container">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

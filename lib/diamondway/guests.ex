@@ -18,7 +18,7 @@ defmodule Diamondway.Guests do
 
   """
   def list_guests do
-    Repo.all(Guest)
+    Repo.all(from g in Guest, preload: [:residence, :nationality])
   end
 
   @doc """

@@ -7,7 +7,7 @@ defmodule DiamondwayWeb.Plugs.RestrictAccess do
   def init(default), do: default
 
   def call(conn, _) do
-    case Map.get(conn.assigns, :user) do
+    case Map.get(conn.assigns, :current_user) do
       %Users.User{} ->
         conn
 

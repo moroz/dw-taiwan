@@ -9,7 +9,7 @@ defmodule DiamondwayWeb.Plugs.FetchUser do
     case get_session(conn, :user_id) do
       user_id when is_integer(user_id) ->
         user = Users.get_user!(user_id)
-        assign(conn, :user, user)
+        assign(conn, :current_user, user)
 
       _ ->
         conn

@@ -42,9 +42,4 @@ defmodule DiamondwayWeb.Router do
 
     resources "/guests", GuestController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", DiamondwayWeb do
-  #   pipe_through :api
-  # end
 end

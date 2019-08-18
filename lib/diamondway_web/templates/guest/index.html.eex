@@ -1,5 +1,4 @@
 <h1>Listing Guests</h1>
-
 <table>
   <thead>
     <tr>
@@ -10,29 +9,26 @@
       <th>City</th>
       <th>Reference name</th>
       <th>Reference email</th>
-
       <th></th>
     </tr>
   </thead>
   <tbody>
-<%= for guest <- @guests do %>
-    <tr>
-      <td><%= guest.first_name %></td>
-      <td><%= guest.last_name %></td>
-      <td><%= guest.email %></td>
-      <td><%= guest.country %></td>
-      <td><%= guest.city %></td>
-      <td><%= guest.reference_name %></td>
-      <td><%= guest.reference_email %></td>
-
-      <td>
-        <%= link "Show", to: Routes.guest_path(@conn, :show, guest) %>
-        <%= link "Edit", to: Routes.guest_path(@conn, :edit, guest) %>
-        <%= link "Delete", to: Routes.guest_path(@conn, :delete, guest), method: :delete, data: [confirm: "Are you sure?"] %>
-      </td>
-    </tr>
-<% end %>
+    <%= for guest <- @guests do %>
+      <tr>
+        <td><%= guest.first_name %></td>
+        <td><%= guest.last_name %></td>
+        <td><%= guest.email %></td>
+        <td><%= guest.residence && guest.residence.name %></td>
+        <td><%= guest.city %></td>
+        <td><%= guest.reference_name %></td>
+        <td><%= guest.reference_email %></td>
+        <td>
+          <%= link "Show", to: Routes.guest_path(@conn, :show, guest) %>
+          <%= link "Edit", to: Routes.guest_path(@conn, :edit, guest) %>
+          <%= link "Delete", to: Routes.guest_path(@conn, :delete, guest), method: :delete, data: [confirm: "Are you sure?"] %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
-
 <span><%= link "New Guest", to: Routes.guest_path(@conn, :new) %></span>

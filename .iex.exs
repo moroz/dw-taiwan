@@ -1,1 +1,1 @@
-alias Diamondway.{Guests, Countries, Repo}
+alias Diamondway.{Guests, Countries, Repo, Users}
