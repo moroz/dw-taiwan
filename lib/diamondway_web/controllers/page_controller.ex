@@ -3,6 +3,8 @@ defmodule DiamondwayWeb.PageController do
 
   @pages [:register, :venue, :faq, :contact]
 
+  plug DiamondwayWeb.Plugs.SetBodyClass, "opaque-header" when action != :index
+
   def index(conn, _params) do
     render(conn, "index.html")
   end

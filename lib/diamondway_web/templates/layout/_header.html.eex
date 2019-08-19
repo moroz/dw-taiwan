@@ -7,8 +7,7 @@
     <div class="navbar__menu" id="offcanvas">
       <a class="navbar__item" href="/">Homepage</a>
       <%= link "Register", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
-      <!-- <a class="navbar__item" href="/venue">Venue</a> -->
-      <!-- <a class="navbar__item" href="/faq"> FAQ </a> -->
+      <a class="navbar__item" href="/faq">Travel information</a>
       <!-- <a class="navbar__item" href="/contact"> Contact </a> -->
       <%= if assigns[:current_user] do %>
         <h3>Admin zone</h3>
