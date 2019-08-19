@@ -10,12 +10,16 @@
 #landingHero
   background-image: url("../static/images/bg-landing-hero.jpg")
   color: #fff
-  background-position: 50% 50%
   background-size: cover
   background-repeat: no-repeat
   padding-top: $navbar-height + .5rem
   padding-left: 1em
   padding-right: 1em
+  background-position: 65%
+  +gt-mobile
+    background-position: 50% 50%
+
+
 
 .landing__hero__cta
   @extend .button
