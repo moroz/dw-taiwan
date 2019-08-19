@@ -8,6 +8,8 @@
     = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
       p
         | Please fill in your details in the form below. All fields in the form are required.<br/> We will reach out to you once your registration is successfully processed.
+      p
+        | As usual, the whole course is organised by a tiny group of unpaid volunteers.<br/>This website, too, is still heavily under construction.
       h3 Personal data
       = if @changeset.action do
         .notification.is-warning
@@ -24,12 +26,17 @@
       = text_field f, :phone, dgettext("registration", "Phone number:"), "Please use the international notation (with country code)."
 
       h3 Sangha and references
-      p Please fill in the data of the Diamond Way center or group that you attend.<br/> We will contact your center to verify your identity.
+      p Please fill in the data of the Diamond Way center or group that you attend.<br/>We may contact your center to verify your identity.
 
       = select_group(f, :residence_id, @countries, "Country of residence:", prompt: "Please select:", selected: "")
       = text_field f, :city, dgettext("registration", "Sangha (Diamond Way center or group):")
       = text_field f, :reference_name, dgettext("registration", "Reference person:")
       = text_field f, :reference_email, dgettext("registration", "Contact e-mail of reference person:")
+
+      h3 Notes
+      p If there is anything else you wanted to tell us, please write it in the area below:
+      = textarea(f, :notes, class: "textarea span-2", placeholder: "E.g. Karmapa Chenno :)")
+      span.helper_text Max. 1000 characters, all HTML tags will be removed.
 
       h3 Terms and conditions
 
@@ -42,6 +49,8 @@
       = custom_checkbox f, :visa_requirements do
         | I have acquainted myself with the detailed requirements for issuing a tourist visa or for the visa waiver program of the Republic of China. We will not send visa invitation letters to anyone.
 
+      p
+        | You will <span class="red-text">NOT receive</span> receive any confirmation e-mail yet, as the mailer module has <span class="red-text">NOT yet been implemented</span>. Fear not, if you see the &ldquo;Thank you&rdquo; page, this means that your data has been stored.
+
       .form-actions.has-text-centered
         = submit "Submit application", class: "button is-primary is-medium"
-

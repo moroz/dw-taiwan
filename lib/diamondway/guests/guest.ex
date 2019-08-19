@@ -4,7 +4,7 @@ defmodule Diamondway.Guests.Guest do
   import EmailTldValidator.Ecto
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
-  @all @required ++ ~w(single_person_registration travel_insurance visa_requirements)a
+  @all @required ++ ~w(single_person_registration travel_insurance visa_requirements notes)a
 
   schema "guests" do
     field :city, :string
@@ -23,6 +23,7 @@ defmodule Diamondway.Guests.Guest do
     field :single_person_registration, :boolean, virtual: true
     field :travel_insurance, :boolean, virtual: true
     field :visa_requirements, :boolean, virtual: true
+    field :notes, :string
 
     timestamps()
   end
