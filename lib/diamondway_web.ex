@@ -41,6 +41,7 @@ defmodule DiamondwayWeb do
 
       import DiamondwayWeb.ErrorHelpers
       import DiamondwayWeb.FormHelpers
+      import DiamondwayWeb.FlashHelpers
       import DiamondwayWeb.Gettext
       alias DiamondwayWeb.Router.Helpers, as: Routes
     end

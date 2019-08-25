@@ -1,9 +1,11 @@
-= form_for @conn, Routes.session_path(@conn, :create), [method: :post], fn f ->
-  = text_field f, :email, "Email:"
+.login-form
+  = render_flash @conn
+  = form_for @conn, Routes.session_path(@conn, :create), [method: :post], fn f ->
+    = text_field f, :email, "Email:"
 
-  .field
-    label.label Password:
-    .control
-      = password_input f, :password, class: "input"
+    .field
+      label.label Password:
+      .control
+        = password_input f, :password, class: "input"
 
-  = submit "Sign in", class: "button is-primary"
+    = submit "Sign in", class: "button is-primary is-wide"
