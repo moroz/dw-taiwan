@@ -29,7 +29,7 @@ defmodule DiamondwayWeb.GuestController do
   end
 
   def show(conn, %{"id" => id}) do
-    guest = Guests.get_guest!(id)
+    guest = Guests.get_guest!(id) |> Guests.preload_countries()
     render(conn, "show.html", guest: guest)
   end
 

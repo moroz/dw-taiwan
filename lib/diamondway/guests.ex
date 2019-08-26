@@ -21,6 +21,10 @@ defmodule Diamondway.Guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality])
   end
 
+  def preload_countries(guest) do
+    Repo.preload(guest, [:residence, :nationality])
+  end
+
   @doc """
   Gets a single guest.
 

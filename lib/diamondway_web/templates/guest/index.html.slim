@@ -1,0 +1,18 @@
+h1.title Waiting list
+table.table.is-bordered.guest_table
+  thead
+    tr
+      th #
+      th.guest_table__full_name Full name
+      th Email
+      th Country
+      th Sangha
+  tbody
+    = for guest <- @guests do
+      <tr data-href="<%= Routes.guest_path(@conn, :show, guest) %>">
+        td= guest.id
+        td= full_name(guest)
+        td= guest.email
+        td= display_country(guest)
+        td= guest.city
+      </tr>

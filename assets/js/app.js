@@ -31,10 +31,19 @@ function setOffCanvasOpenClass(e) {
   else setNavbarOpacityClass();
 }
 
+function initClickableTable() {
+  document.querySelectorAll("[data-href]").forEach(el => {
+    el.addEventListener(
+      "click",
+      () => (window.location.href = el.dataset.href)
+    );
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", setNavbarOpacityClass);
   setNavbarOpacityClass();
   const hamburger = document.getElementById("hamburgerToggle");
-  console.log(hamburger);
   hamburger && hamburger.addEventListener("change", setOffCanvasOpenClass);
+  initClickableTable();
 });
