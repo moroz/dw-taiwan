@@ -37,6 +37,16 @@ defmodule DiamondwayWeb.Router do
     post "/admin/login", SessionController, :create
   end
 
+  if Mix.env() == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      get "/email/registration", DiamondwayWeb.EmailController, :registration
+
+      forward("/mailbox", Plug.Swoosh.MailboxPreview, base_path: "/dev/mailbox")
+    end
+  end
+
   scope "/admin/", DiamondwayWeb do
     pipe_through :admin
 

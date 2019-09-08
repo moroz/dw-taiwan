@@ -50,6 +50,7 @@ defmodule Diamondway.MixProject do
       # Sending emails
       {:swoosh, "~> 0.23"},
       {:gen_smtp, "~> 0.14"},
+      {:phoenix_swoosh, "~> 0.2"},
 
       # Deployment
       {:distillery, "~> 2.1"},
