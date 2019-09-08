@@ -1,5 +1,5 @@
-<center>
-  <a href="https://www.horizon-sim.com" target="_blank" title="Horizon-Sim官方網站">
-    <img src="https://s3-ap-northeast-1.amazonaws.com/horizon-sim-prod/horizon-sim-prod/horizon-logo.png" border="0" alt="Horizon-Sim logo" style="margin-bottom: 20px; margin-top: 30px" width="200" />
+<div style="text-align: right">
+  <a href="https://mahamudra.taipei" target="_blank" title="Mahamudra Taipei 2020 Website">
+    <img src="<%= Routes.static_path(DiamondwayWeb.Endpoint, "/images/logo-email.png") %>" border="0" alt="Horizon-Sim logo" style="margin-bottom: 3px; margin-top: 10px; margin-right: 10px;" width="200" />
   </a>
-</center>
+</div>

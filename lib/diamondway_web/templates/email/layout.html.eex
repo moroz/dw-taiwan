@@ -11,13 +11,16 @@
     <tr>
       <td>
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#F1F4F5" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 18px;">
+          <tr>
+            <td class="spacer" style="height: 20px;"></td>
+          </tr>
     <tr>
-      <td class="header">
+      <td class="header" bgcolor="#FFFFFF" style="margin-top: 20px;">
         <%= render "_header.html" %>
       </td>
     </tr>
     <tr>
-      <td class="container" bgcolor="#FFFFFF" style="padding: 16px; border-top: 5px solid #ed1c24;">
+      <td class="container" bgcolor="#FFFFFF" style="padding: 20px; border-top: 2px solid <%= brand_color %>;">
         <%= render @view_module, @view_template, assigns %>
       </td>
     </tr>
