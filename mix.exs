@@ -47,6 +47,10 @@ defmodule Diamondway.MixProject do
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
 
+      # Sending emails
+      {:swoosh, "~> 0.23"},
+      {:gen_smtp, "~> 0.14"},
+
       # Deployment
       {:distillery, "~> 2.1"},
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
