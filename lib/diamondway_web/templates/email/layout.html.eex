@@ -12,7 +12,7 @@
       <td>
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#F1F4F5" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 18px;">
           <tr>
-            <td class="spacer" style="height: 20px;"></td>
+            <td class="spacer" style="height: 30px;"></td>
           </tr>
     <tr>
       <td class="header" bgcolor="#FFFFFF" style="margin-top: 20px;">

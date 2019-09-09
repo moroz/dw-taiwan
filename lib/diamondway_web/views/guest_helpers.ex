@@ -8,5 +8,5 @@ defmodule DiamondwayWeb.GuestHelpers do
   end
 
   def title(%{sex: :male}), do: "Mr."
-  def title(%{sex: :female}), do: "Mrs."
+  def title(%{sex: :female}), do: "Ms."
 end
