@@ -4,6 +4,12 @@ defmodule DiamondwayWeb.EmailView do
 
   def brand_color, do: "#cd2030"
 
+  def format_date(%module{} = date) when module in [NaiveDateTime, DateTime, Date] do
+    date
+    |> Timex.Timezone.convert("Asia/Taipei")
+    |> Timex.format!("%d %B %Y %H:%M", :strftime)
+  end
+
   def auto_msg_warning do
     content_tag :p,
       align: "center",

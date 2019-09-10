@@ -1,6 +1,5 @@
 defmodule DiamondwayWeb.RegistrationEmail do
   use Phoenix.Swoosh, view: DiamondwayWeb.EmailView, layout: {DiamondwayWeb.EmailView, :layout}
-  alias DiamondwayWeb.Mailer
   alias Diamondway.Guests
 
   def confirmation(guest) do
@@ -8,7 +7,7 @@ defmodule DiamondwayWeb.RegistrationEmail do
 
     new()
     |> from({"Diamond Way Group Taipei", "no-reply@mahamudra.taipei"})
-    |> to("k.j.moroz@gmail.com")
+    |> to({"#{guest.first_name} #{guest.last_name}", guest.email})
     |> subject("Taipei Mahamudra Pre-registration")
     |> render_body("registration.html", guest: guest)
   end

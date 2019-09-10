@@ -1,5 +1,5 @@
 <div style="text-align: right">
   <a href="https://mahamudra.taipei" target="_blank" title="Mahamudra Taipei 2020 Website">
-    <img src="<%= Routes.static_path(DiamondwayWeb.Endpoint, "/images/logo-email.png") %>" border="0" alt="Horizon-Sim logo" style="margin-bottom: 3px; margin-top: 10px; margin-right: 10px;" width="200" />
+    <img src="https://mahamudra.taipei/images/logo-email.png" border="0" alt="Horizon-Sim logo" style="margin-bottom: 3px; margin-top: 10px; margin-right: 10px;" width="200" />
   </a>
 </div>

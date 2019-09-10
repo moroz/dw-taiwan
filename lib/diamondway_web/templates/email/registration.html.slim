@@ -5,7 +5,7 @@ div style="line-height: 1.6; padding: 0 8px"
     | Dear #{title(@guest)} #{full_name(@guest)},
 
   p style="text-indent: 2em; margin-top: .5em"
-    | You are receiving this message because you (or someone pretending to be you) have used this e-mail address to join the waiting list for the <strong>Mahamudra Course with Lama Ole Nydahl</strong>, which will take place in <strong>Taipei, Taiwan</strong>, on 6-8 March, 2020.
+    | You are receiving this message because on <strong><%= format_date(@guest.inserted_at) %></strong> (Taipei Time), you (or someone pretending to be you) have used this e-mail address to join the waiting list for the <strong>Mahamudra Course with Lama Ole Nydahl</strong>, which will take place in <strong>Taipei, Taiwan</strong>, on 6-8 March, 2020.
 
   p style="text-indent: 2em; margin-top: .5em"
     | This message is not a guarantee of an actual place at the course, but rather a mere confirmation that your data had been sucessfully stored in our database. Below is an overview of the data you have entered in the registration form:

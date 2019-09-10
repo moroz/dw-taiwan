@@ -46,6 +46,7 @@ defmodule Diamondway.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
+      {:timex, "~> 3.6"},
 
       # Sending emails
       {:swoosh, "~> 0.23"},
