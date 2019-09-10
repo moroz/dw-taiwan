@@ -75,3 +75,11 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :diamondway, DiamondwayWeb.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "mail.gandi.net",
+  username: "no-reply@mahamudra.taipei",
+  password: "5Fef5!HveDl2oE0KnRYP",
+  ssl: true,
+  port: 465
