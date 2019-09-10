@@ -18,16 +18,39 @@ defmodule Diamondway.Guests do
 
   def get_guest!(id), do: Repo.get!(Guest, id)
 
+  def send_confirmation_email(%{email_sent: true}), do: :noop
+
   def send_confirmation_email(guest) do
+    {:ok, _ref} =
+      guest
+      |> DiamondwayWeb.RegistrationEmail.confirmation()
+      |> DiamondwayWeb.Mailer.deliver()
+
+    mark_email_sent(guest)
+  end
+
+  def mark_email_sent(%{email_sent: true}), do: :noop
+
+  def mark_email_sent(guest) do
     guest
-    |> DiamondwayWeb.RegistrationEmail.confirmation()
-    |> DiamondwayWeb.Mailer.deliver()
+    |> Guest.changeset(%{email_sent: true})
+    |> Repo.update()
   end
 
   def create_guest(attrs \\ %{}) do
     %Guest{}
-    |> Guest.changeset(attrs)
+    |> Guest.registration_changeset(attrs)
     |> Repo.insert()
+  end
+
+  def create_guest_and_send_email(attrs \\ %{}) do
+    with {:ok, guest} <- create_guest(attrs) do
+      Task.start(fn ->
+        send_confirmation_email(guest)
+      end)
+
+      {:ok, guest}
+    end
   end
 
   def update_guest(%Guest{} = guest, attrs) do

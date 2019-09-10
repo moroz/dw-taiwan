@@ -22,7 +22,7 @@ defmodule DiamondwayWeb.RegistrationController do
   end
 
   def create(conn, %{"guest" => guest_params}) do
-    case Guests.create_guest(guest_params) do
+    case Guests.create_guest_and_send_email(guest_params) do
       {:ok, guest} ->
         redirect(conn, to: Routes.registration_path(conn, :success))
 

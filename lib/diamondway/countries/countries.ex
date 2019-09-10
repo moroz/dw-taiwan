@@ -4,10 +4,13 @@ defmodule Diamondway.Countries do
   import Ecto.Query
 
   @popular [
-    {"Taiwan", 70},
+    {"Australia", 3},
+    {"Germany", 29},
+    {"Czech Republic", 21},
     {"Russia", 60},
+    {"Taiwan", 70},
     {"Poland", 57},
-    {"Germany", 29}
+    {"New Zealand", 51}
   ]
 
   @separator [{"------------", nil}]

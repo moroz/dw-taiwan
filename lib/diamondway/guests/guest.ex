@@ -4,7 +4,8 @@ defmodule Diamondway.Guests.Guest do
   import EmailTldValidator.Ecto
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
-  @all @required ++ ~w(single_person_registration travel_insurance visa_requirements notes)a
+  @all @required ++
+         ~w(single_person_registration travel_insurance visa_requirements notes email_sent)a
 
   schema "guests" do
     field :city, :string
@@ -14,6 +15,7 @@ defmodule Diamondway.Guests.Guest do
     field :reference_email, :string
     field :reference_name, :string
     field :phone, :string
+    field :email_sent, :boolean
 
     field :sex, GuestSex
 
@@ -34,6 +36,13 @@ defmodule Diamondway.Guests.Guest do
     |> cast(attrs, @all)
     |> validate_required(@required, message: "This field is required.")
     |> unique_constraint(:email, message: "this address has already been used")
+    |> validate_email()
+    |> validate_email(:reference_email)
+    |> validate_different_emails()
+  end
+
+  def registration_changeset(guest, attrs) do
+    changeset(guest, attrs)
     |> validate_acceptance(:single_person_registration, message: "Please confirm.")
     |> validate_acceptance(:travel_insurance,
       message: "Please confirm."
@@ -41,9 +50,6 @@ defmodule Diamondway.Guests.Guest do
     |> validate_acceptance(:visa_requirements,
       message: "Please confirm."
     )
-    |> validate_email()
-    |> validate_email(:reference_email)
-    |> validate_different_emails()
   end
 
   defp validate_different_emails(changeset) do

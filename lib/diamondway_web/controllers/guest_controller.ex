@@ -16,18 +16,6 @@ defmodule DiamondwayWeb.GuestController do
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"guest" => guest_params}) do
-    case Guests.create_guest(guest_params) do
-      {:ok, guest} ->
-        conn
-        |> put_flash(:info, "Guest created successfully.")
-        |> redirect(to: Routes.guest_path(conn, :show, guest))
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
-  end
-
   def show(conn, %{"id" => id}) do
     guest = Guests.get_guest!(id) |> Guests.preload_countries()
     render(conn, "show.html", guest: guest)
