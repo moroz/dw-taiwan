@@ -35,3 +35,4 @@ npm-debug.log
 /rel/templates
 /bin/deploy-*
 .elixir_ls
+config/*.secret.exs
