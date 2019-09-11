@@ -13,7 +13,7 @@ defmodule DiamondwayWeb.Plugs.RestrictAccess do
 
       _ ->
         conn
-        |> put_flash(:error, "You are not authorized to see this page.")
+        |> put_flash(:info, "Please sign in to proceed.")
         |> redirect(to: "/admin/login")
         |> halt()
     end

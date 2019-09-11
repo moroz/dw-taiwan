@@ -14,12 +14,16 @@ defmodule DiamondwayWeb.SessionController do
       %Users.User{} = user ->
         conn
         |> put_session(:user_id, user.id)
-        |> redirect(to: "/admin/guests")
+        |> redirect(to: Routes.admin_root_path(@conn, :index))
 
       nil ->
         conn
         |> put_flash(:error, "Login failed for the given email and password combination.")
         |> render("new.html")
     end
+  end
+
+  def delete(conn, _) do
+    conn |> clear_session() |> redirect(to: "/")
   end
 end

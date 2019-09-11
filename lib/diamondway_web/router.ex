@@ -35,6 +35,7 @@ defmodule DiamondwayWeb.Router do
 
     get "/admin/login", SessionController, :new
     post "/admin/login", SessionController, :create
+    get "/admin/logout", SessionController, :delete
   end
 
   if Mix.env() == :dev do
@@ -47,9 +48,10 @@ defmodule DiamondwayWeb.Router do
     end
   end
 
-  scope "/admin/", DiamondwayWeb do
+  scope "/admin", DiamondwayWeb do
     pipe_through :admin
 
-    resources "/guests", GuestController
+    get "/", GuestController, :index, as: :admin_root
+    resources "/guests", GuestController, except: [:index]
   end
 end

@@ -9,7 +9,7 @@ defmodule Diamondway.Guests do
   alias Diamondway.Guests.Guest
 
   def list_guests do
-    Repo.all(from g in Guest, preload: [:residence, :nationality])
+    Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
   end
 
   def preload_countries(guest) do

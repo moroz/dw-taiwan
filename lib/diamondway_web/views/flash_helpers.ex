@@ -4,7 +4,7 @@ defmodule DiamondwayWeb.FlashHelpers do
 
   def alert_class("error"), do: "notification is-danger"
   def alert_class("alert"), do: "notification is-danger"
-  def alert_class(other) when is_binary(other), do: "alert alert-#{other}"
+  def alert_class(other) when is_binary(other), do: "notification is-#{other}"
 
   def render_flash(%Plug.Conn{} = conn) do
     for {level, val} <- get_flash(conn) do

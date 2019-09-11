@@ -1,4 +1,6 @@
-h1.title Waiting list
+.admin_module_header
+  h1.title Waiting list
+  = link "Sign out", to: Routes.session_path(@conn, :delete), class: "sign_out_link"
 table.table.is-bordered.guest_table
   thead
     tr

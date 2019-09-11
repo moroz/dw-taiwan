@@ -1,6 +1,6 @@
 h1.title Guest: #{full_name(@guest)}
 
-= link "<< Back to list", to: Routes.guest_path(@conn, :index)
+= link "<< Back to list", to: Routes.admin_root_path(@conn, :index)
 
 table.table.is-bordered
   tbody
@@ -21,3 +21,8 @@ table.table.is-bordered
     tr
       th[scope="row"] Reference:
       td= reference(@guest)
+
+= if @guest.notes do
+  h4 Notes
+  .guost__notes
+    = text_to_html(@guest.notes)
