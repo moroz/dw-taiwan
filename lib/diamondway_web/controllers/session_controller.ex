@@ -14,7 +14,7 @@ defmodule DiamondwayWeb.SessionController do
       %Users.User{} = user ->
         conn
         |> put_session(:user_id, user.id)
-        |> redirect(to: Routes.admin_root_path(@conn, :index))
+        |> redirect(to: "/admin")
 
       nil ->
         conn
