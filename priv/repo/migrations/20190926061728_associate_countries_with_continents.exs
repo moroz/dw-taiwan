@@ -3,7 +3,7 @@ defmodule Diamondway.Repo.Migrations.AssociateCountriesWithContinents do
 
   def change do
     alter table :countries do
-      add :continent_id, references(:continents)
+      add :continent_id, references(:continents, on_delete: :nothing)
     end
   end
 end
