@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ssh dw "cd build/diamondway && bin/build && bin/deploy-release && sudo bin/deploy-restart"
