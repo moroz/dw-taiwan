@@ -16,7 +16,7 @@ defmodule Diamondway.Guests.GuestTest do
         first_name: "Sergey",
         last_name: "Solzhenicyn",
         reference_name: "Dasha",
-        reference_email: "user@example.com",
+        reference_email: "another_user@example.com",
         phone: "+886912345678",
         sex: :male,
         nationality_id: russia.id,
@@ -29,13 +29,13 @@ defmodule Diamondway.Guests.GuestTest do
   end
 
   def changeset(attrs \\ []) do
-    Guest.changeset(%Guest{}, valid_attrs(attrs))
+    Guest.registration_changeset(%Guest{}, valid_attrs(attrs))
   end
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @validates_confirmation ~w(single_person_registration travel_insurance visa_requirements)a
 
-  describe "changeset/2" do
+  describe "registration_changeset/2" do
     test "is valid with valid attributes" do
       changeset = changeset()
       assert changeset.valid?
