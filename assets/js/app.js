@@ -41,9 +41,10 @@ function initClickableTable() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  window.addEventListener("scroll", setNavbarOpacityClass);
-  setNavbarOpacityClass();
   const hamburger = document.getElementById("hamburgerToggle");
   hamburger && hamburger.addEventListener("change", setOffCanvasOpenClass);
-  initClickableTable();
 });
+
+window.addEventListener("scroll", setNavbarOpacityClass);
+document.addEventListener("DOMContentLoaded", setNavbarOpacityClass);
+document.addEventListener("DOMContentLoaded", initClickableTable);

@@ -1,6 +1,7 @@
 defmodule Diamondway.Guests.Guest do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query
   import EmailTldValidator.Ecto
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
@@ -21,6 +22,7 @@ defmodule Diamondway.Guests.Guest do
 
     belongs_to :nationality, Diamondway.Countries.Country
     belongs_to :residence, Diamondway.Countries.Country
+    has_one :continent, through: [:residence, :continent]
 
     field :single_person_registration, :boolean, virtual: true
     field :travel_insurance, :boolean, virtual: true
@@ -39,6 +41,11 @@ defmodule Diamondway.Guests.Guest do
     |> validate_email()
     |> validate_email(:reference_email)
     |> validate_different_emails()
+  end
+
+  def from_asia(query \\ __MODULE__) do
+    from(g in query, join: r in assoc(g, :residence))
+    |> where([g, r], r.id in [1, 3, 4])
   end
 
   def registration_changeset(guest, attrs) do

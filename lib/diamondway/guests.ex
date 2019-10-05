@@ -12,6 +12,11 @@ defmodule Diamondway.Guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
   end
 
+  def count_guests(query \\ Guest) do
+    from(g in query, select: count(g))
+    |> Repo.one()
+  end
+
   def preload_countries(guest) do
     Repo.preload(guest, [:residence, :nationality])
   end

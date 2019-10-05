@@ -1,10 +1,11 @@
-.admin_module_header
-  h1.title Waiting list
-  = link "Sign out", to: Routes.session_path(@conn, :delete), class: "sign_out_link"
+h1.title Waiting list
+.notification
+  p There are currently #{@guest_count} guests on the waiting list.
+  p Of those, #{@privileged_count} reside in privileged countries (Asia, Oceania, and Africa).
 table.table.is-bordered.guest_table
   thead
     tr
-      th #
+      th ID
       th.guest_table__full_name Full name
       th Email
       th Country

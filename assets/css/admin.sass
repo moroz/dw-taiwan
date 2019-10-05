@@ -2,6 +2,9 @@ body.admin
   main
     padding-top: $navbar-height + 1.5rem
 
+h1.title:not(:last-child)
+  margin-bottom: 1rem
+
 .flex
   display: flex
 .admin_module_header
@@ -14,6 +17,7 @@ header.admin-header
   width: 100%
   background: $admin-navbar-bg
   border-bottom: $thin-border
+  display: flex
   position: fixed
   height: $admin-navbar-height
   margin-bottom: 2rem
@@ -21,8 +25,6 @@ header.admin-header
 
   a
     color: inherit
-
-  .navbar-item
     display: inline-block
     height: $admin-navbar-height
     padding-left: .8em
@@ -32,6 +34,9 @@ header.admin-header
     &:hover
       background: darken($admin-navbar-bg, 6%)
       color: $primary
+
+.admin-header__right
+  margin-left: auto
 
 .login-form
   width: 350px
@@ -50,3 +55,10 @@ header.admin-header
 
 .is-monospace
   font-family: monospace
+
+.guest_list_info, .guest_list_info p
+  font-size: .9em
+.guest_list_info
+  border: 1px solid #ccc
+  padding: 1em
+  margin-bottom: 1em

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body class="admin opaque-header">
-    <%= render "_header.html", assigns %>
+    <%= render "_admin_header.html", assigns %>
     <main role="main" class="container">
       <%= render @view_module, @view_template, assigns %>
     </main>

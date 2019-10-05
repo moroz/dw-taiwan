@@ -4,8 +4,7 @@ defmodule Diamondway.Countries.Continent do
 
   schema "continents" do
     field :name, :string
-
-    timestamps()
+    has_many :countries, Diamondway.Countries.Country
   end
 
   @doc false

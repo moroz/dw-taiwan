@@ -1,0 +1,4 @@
+header.admin-header
+  <a class="admin-header__appname navbar-item" href="/admin/guests">mahamudra.taipei</a>
+  .admin-header__right
+    = link "Sign out", to: Routes.session_path(@conn, :delete), class: "sign_out_link"

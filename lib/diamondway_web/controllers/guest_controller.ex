@@ -8,7 +8,14 @@ defmodule DiamondwayWeb.GuestController do
 
   def index(conn, _params) do
     guests = Guests.list_guests()
-    render(conn, "index.html", guests: guests)
+    guest_count = Guests.count_guests()
+    privileged_count = Guest.from_asia() |> Guests.count_guests()
+
+    render(conn, "index.html",
+      guests: guests,
+      guest_count: guest_count,
+      privileged_count: privileged_count
+    )
   end
 
   def new(conn, _params) do
