@@ -1,7 +1,11 @@
 .registration_page
   .registration_page__hero
-    h1 Join the Waiting List
-    p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Asia and Australia Sanghas will be given priority in the registration process.
+    .registration_page__hero__overlay
+      h1 Join the Waiting List
+      p Due to high numbers of friends we are expecting, we are unable to guarantee a place at the course for everyone. Please note that friends from the Asia and Australia Sanghas will be given priority in the registration process.
+
+    p.registration_page__hero__credit
+      | Picture: Zarion, <a href="https://commons.wikimedia.org/w/index.php?curid=68347648" target="_blank">Wikimedia Commons</a>
 
   .registration_page__form_wrapper
 
@@ -50,7 +54,7 @@
         | I have acquainted myself with the detailed requirements for issuing a tourist visa or for the visa waiver program of the Republic of China. We will not send visa invitation letters to anyone.
 
       p
-        | You will <span class="red-text">NOT receive</span> receive any confirmation e-mail yet, as the mailer module has <span class="red-text">NOT yet been implemented</span>. Fear not, if you see the &ldquo;Thank you&rdquo; page, this means that your data has been stored.
+        | You will receive a confirmation e-mail with the details of your registration. Please note that the e-mail itself is not a guarantee of a place at the course.
 
       .form-actions.has-text-centered
         = submit "Submit application", class: "button is-primary is-medium"
