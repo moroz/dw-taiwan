@@ -9,14 +9,18 @@
       <%= link "Register", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
       <a class="navbar__item" href="/faq">Travel information</a>
       <!-- <a class="navbar__item" href="/contact"> Contact </a> -->
-      <%= if assigns[:current_user] do %>
-        <h3>Admin zone</h3>
-        <%= link "Guest list", to: Routes.admin_root_path(@conn, :index), class: "navbar__item" %>
-      <% end %>
     </div>
     <a href="/" class="navbar__sitename">mahamudra.taipei</a>
-    <a class="navbar__logo" href="/">
-      <%= img_tag Routes.static_path(@conn, "/images/logo-solo.svg") %>
-    </a>
+    <div class="navbar__right">
+      <%= if assigns[:current_user] do %>
+        <%= link to: Routes.admin_root_path(@conn, :index), class: "navbar__dashboard" do %>
+          <%= img_tag Routes.static_path(@conn, "/images/tools.svg") %>
+          <span class="navbar__dashboard__label">Admin</span>
+        <% end %>
+      <% end %>
+      <a class="navbar__logo" href="/">
+        <%= img_tag Routes.static_path(@conn, "/images/logo-solo.svg") %>
+      </a>
+    </div>
   </div>
 </nav>

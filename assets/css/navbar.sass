@@ -12,7 +12,11 @@ $offcanvas-bg: #fff
   width: 100%
 
   a
+    color: inherit
     transition: .15s
+    padding-left: 1em
+    padding-right: 1em
+    font-size: 1rem
 
     &:hover
       color: #fff
@@ -33,9 +37,6 @@ $offcanvas-bg: #fff
   left: 50%
   transform: translate(-50%, -50%)
   color: inherit
-  padding-left: 1em
-  padding-right: 1em
-  font-size: 1rem
 
 .navbar--opaque, .opaque-header .navbar
   background: #fff
@@ -71,20 +72,25 @@ $offcanvas-bg: #fff
   max-height: 100vh
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
 
-.navbar__item
-  font-size: 1.5em
-  color: $offcanvas-fg
-  height: 2.25em
-  line-height: 2.25em
-  padding-left: 1rem
-  transition: .1s ease-in-out
+.navbar
+  .navbar__item
+    font-size: 1.5rem
+    color: $offcanvas-fg
+    height: 2.25em
+    line-height: 2.25em
+    padding-left: 1rem
+    transition: .1s ease-in-out
 
-  &:first-of-type
-    border-top: 1px solid $offcanvas-fg
+    &:first-of-type
+      border-top: 1px solid $offcanvas-fg
 
-  &:hover
-    color: $offcanvas-bg
-    background: $offcanvas-fg
+    &:hover
+      color: $offcanvas-bg
+      background: $offcanvas-fg
+
+.navbar__right
+  display: flex
+  z-index: 30
 
 a.navbar__logo
   height: $navbar-height
@@ -96,6 +102,27 @@ a.navbar__logo
   img
     margin: auto
     height: 50px
+
+a.navbar__dashboard
+  color: #2980b9 !important
+  height: $navbar-height
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  line-height: 20px
+  img
+    height: 1.6em
+  +mobile-only
+    padding: 0
+
+  .navbar__dashboard__label
+    font-size: .7em
+    text-transform: uppercase
+    font-weight: bold
+
+.navbar__dashboard + .navbar__logo
+  display: none
 
 #hamburgerToggle
   input
