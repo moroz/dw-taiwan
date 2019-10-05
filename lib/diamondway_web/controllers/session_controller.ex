@@ -5,12 +5,14 @@ defmodule DiamondwayWeb.SessionController do
 
   plug :put_layout, :admin
 
-  def new(%{assigns: %{current_user: nil}} = conn, _) do
-    render(conn, "new.html")
-  end
-
   def new(conn, _) do
-    redirect(conn, to: "/admin")
+    case conn.assigns[:current_user] do
+      nil ->
+        render(conn, "new.html")
+
+      %Users.User{} ->
+        redirect(conn, to: "/admin")
+    end
   end
 
   def create(conn, %{"email" => email, "password" => password}) do
