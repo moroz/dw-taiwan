@@ -16,7 +16,6 @@ defmodule DiamondwayWeb.Router do
 
   pipeline :admin do
     plug :browser
-    plug DiamondwayWeb.Plugs.FetchUser
     plug DiamondwayWeb.Plugs.RestrictAccess
   end
 

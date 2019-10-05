@@ -6,14 +6,13 @@ defmodule DiamondwayWeb.GuestController do
 
   plug :put_layout, :admin
 
-  def index(conn, _params) do
-    guests = Guests.list_guests()
-    guest_count = Guests.count_guests()
+  def index(conn, params) do
+    page = Guests.paginate_guests(params)
     privileged_count = Guest.from_asia() |> Guests.count_guests()
 
     render(conn, "index.html",
-      guests: guests,
-      guest_count: guest_count,
+      guests: page,
+      page: page,
       privileged_count: privileged_count
     )
   end

@@ -45,7 +45,7 @@ defmodule Diamondway.Guests.Guest do
 
   def from_asia(query \\ __MODULE__) do
     from(g in query, join: r in assoc(g, :residence))
-    |> where([g, r], r.id in [1, 3, 4])
+    |> where([g, r], r.continent_id in [1, 4])
   end
 
   def registration_changeset(guest, attrs) do

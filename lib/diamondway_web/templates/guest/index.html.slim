@@ -1,7 +1,7 @@
 h1.title Waiting list
 .notification
-  p There are currently #{@guest_count} guests on the waiting list.
-  p Of those, #{@privileged_count} reside in privileged countries (Asia, Oceania, and Africa).
+  p There are #{@page.total_entries} guests on the waiting list, including #{@privileged_count} from the Far East (Asia and Oceania).
+  p Now displaying: <strong>page #{@page.page_number}</strong>, entries: <strong>#{(@page.page_number - 1) * @page.page_size + 1}&ndash;#{@page.page_number * @page.page_size}</strong> out of <strong>#{@page.total_entries}</strong>.
 table.table.is-bordered.guest_table
   thead
     tr
@@ -19,3 +19,5 @@ table.table.is-bordered.guest_table
         td= display_country(guest)
         td= guest.city
       </tr>
+
+= pagination_links @page

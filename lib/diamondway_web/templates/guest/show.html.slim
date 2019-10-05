@@ -1,6 +1,6 @@
 h1.title Guest: #{full_name(@guest)}
 
-= link "<< Back to list", to: Routes.admin_root_path(@conn, :index)
+= link "<< Back to list", to: {:javascript, "history.back()"}
 
 table.table.is-bordered
   tbody

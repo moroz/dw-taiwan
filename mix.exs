@@ -48,6 +48,10 @@ defmodule Diamondway.MixProject do
       {:email_tld_validator, "~> 0.1.0"},
       {:timex, "~> 3.6"},
 
+      # Pagination
+      {:scrivener_ecto, "~> 2.0"},
+      {:scrivener_html, "~> 1.8"},
+
       # Sending emails
       {:swoosh, "~> 0.23"},
       {:gen_smtp, "~> 0.14"},

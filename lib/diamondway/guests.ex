@@ -12,6 +12,13 @@ defmodule Diamondway.Guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
   end
 
+  def paginate_guests(params) do
+    Guest
+    |> order_by([g], desc: :id)
+    |> preload([g], [:residence, :nationality])
+    |> Repo.paginate(params)
+  end
+
   def count_guests(query \\ Guest) do
     from(g in query, select: count(g))
     |> Repo.one()

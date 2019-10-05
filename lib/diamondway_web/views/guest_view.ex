@@ -1,5 +1,6 @@
 defmodule DiamondwayWeb.GuestView do
   use DiamondwayWeb, :view
+  use Scrivener.HTML
   alias Diamondway.Countries.Country
 
   def full_name(%{first_name: first_name, last_name: last_name}), do: "#{first_name} #{last_name}"
