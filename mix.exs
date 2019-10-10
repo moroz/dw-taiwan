@@ -62,8 +62,13 @@ defmodule Diamondway.MixProject do
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
       {:mix_deploy, github: "cogini/mix_deploy", override: true},
 
+      # GraphQL
+      {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
+
       # User authentication
       {:comeonin, "~> 4.1"},
+      {:guardian, "~> 1.2"},
       {:argon2_elixir, "~> 1.3"},
       {:phoenix_slime, "~> 0.12.0"}
     ]

@@ -13,7 +13,7 @@
     <a href="/" class="navbar__sitename">mahamudra.taipei</a>
     <div class="navbar__right">
       <%= if assigns[:current_user] do %>
-        <%= link to: Routes.admin_root_path(@conn, :index), class: "navbar__dashboard" do %>
+        <%= link to: "/admin", class: "navbar__dashboard" do %>
           <%= img_tag Routes.static_path(@conn, "/images/tools.svg") %>
           <span class="navbar__dashboard__label">Admin</span>
         <% end %>

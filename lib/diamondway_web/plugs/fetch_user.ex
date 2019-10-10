@@ -6,13 +6,24 @@ defmodule DiamondwayWeb.Plugs.FetchUser do
   def init(default), do: default
 
   def call(conn, _) do
-    case get_session(conn, :user_id) do
-      user_id when is_integer(user_id) ->
-        user = Users.get_user!(user_id)
-        assign(conn, :current_user, user)
+    user =
+      conn
+      |> fetch_cookies()
+      |> Map.get(:cookies)
+      |> case do
+        %{"access_token" => token} when is_binary(token) ->
+          case Diamondway.Guardian.resource_from_token(token) do
+            {:ok, user, _claims} ->
+              user
 
-      _ ->
-        conn
-    end
+            _ ->
+              nil
+          end
+      end
+
+    context = %{current_user: user}
+
+    assign(conn, :current_user, user)
+    |> Absinthe.Plug.put_options(context: context)
   end
 end
