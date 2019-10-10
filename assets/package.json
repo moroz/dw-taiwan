@@ -6,6 +6,10 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.6.0",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
     "bulma": "^0.7.5",
     "file-loader": "^4.0.0",
     "image-webpack-loader": "^5.0.0",
@@ -17,6 +21,8 @@
     "phoenix_html": "file:../deps/phoenix_html",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
     "url-loader": "^2.0.0"
   },
   "devDependencies": {
