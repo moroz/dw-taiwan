@@ -19,6 +19,9 @@ defmodule DiamondwayWeb.Plugs.FetchUser do
             _ ->
               nil
           end
+
+        _ ->
+          nil
       end
 
     context = %{current_user: user}

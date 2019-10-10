@@ -48,6 +48,9 @@ defmodule Diamondway.MixProject do
       {:email_tld_validator, "~> 0.1.0"},
       {:timex, "~> 3.6"},
 
+      # Testing
+      {:ex_machina, "~> 2.3", only: :test},
+
       # Pagination
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_html, "~> 1.8"},
