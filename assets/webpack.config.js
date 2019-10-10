@@ -14,17 +14,19 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: {
-    "./js/app.js": glob.sync("./vendor/**/*.js").concat(["./js/app.js"])
+  entry: { app: "./js/app.js", admin: "./js/admin.tsx" },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+    mainFields: ["es2015", "module", "main"]
   },
   output: {
-    filename: "app.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "../priv/static/js")
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"

@@ -8,10 +8,8 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body class="admin opaque-header">
-    <%= render "_admin_header.html", assigns %>
-    <main role="main" class="container">
-      <%= render @view_module, @view_template, assigns %>
-    </main>
+    <div id="app"></div>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/admin.js") %>"></script>
   </body>
 </html>
