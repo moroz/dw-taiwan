@@ -7,7 +7,9 @@ defmodule Diamondway.Factory do
       last_name: "Paweł",
       reference_email: "reference@example.com",
       reference_name: "Józef Piłsudski",
-      phone: "+48555123123"
+      phone: "+48555123123",
+      email: sequence(:email, fn i -> "guest+#{i}@example.com" end),
+      sex: :male
     }
   end
 end
