@@ -17,7 +17,10 @@ module.exports = (env, options) => ({
   entry: { app: "./js/app.js", admin: "./js/admin.js" },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".sass"],
-    mainFields: ["es2015", "module", "main"]
+    mainFields: ["es2015", "module", "main"],
+    alias: {
+      "../../theme.config$": path.join(__dirname, "theme.config")
+    }
   },
   output: {
     filename: "[name].js",
@@ -31,6 +34,15 @@ module.exports = (env, options) => ({
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader"
+        ]
       },
       {
         test: /\.(css|sass|scss)$/,
