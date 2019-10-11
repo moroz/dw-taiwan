@@ -14,9 +14,9 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: { app: "./js/app.js", admin: "./js/admin.tsx" },
+  entry: { app: "./js/app.js", admin: "./js/admin.js" },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
+    extensions: [".ts", ".tsx", ".js", ".sass"],
     mainFields: ["es2015", "module", "main"]
   },
   output: {
@@ -61,7 +61,7 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+    new MiniCssExtractPlugin({ filename: "../css/[name].css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
