@@ -31,7 +31,9 @@ defmodule DiamondwayWeb.SessionController do
     end
   end
 
-  def delete(conn, _) do
-    conn |> clear_session() |> redirect(to: "/")
+  def delete(conn, _params) do
+    delete_resp_cookie(conn, "access_token", secure: true)
+    |> put_flash(:info, "You have been signed out.")
+    |> redirect(to: "/")
   end
 end
