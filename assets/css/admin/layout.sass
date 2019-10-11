@@ -1,0 +1,41 @@
+.admin
+  height: 100vh
+  width: 100vw
+  display: flex
+
+.admin__left,
+.admin__header,
+.admin__topbar
+  color: #fff
+
+.admin__menu,
+.admin__topbar
+  padding: 1rem
+
+.admin__left
+  height: 100vh
+  width: $side-width
+  background: $red
+
+.admin__header
+  height: $top-height
+  color: #fff
+  text-transform: uppercase
+  display: flex
+  align-items: center
+  justify-content: center
+  font-weight: 200
+  background: transparentize(white, .85)
+
+.admin__right
+  flex: 1
+
+.admin__topbar
+  height: $top-height
+  background: $red
+
+  h1
+    margin-top: .6rem
+    text-transform: uppercase
+    font-weight: normal
+    font-size: 1.85rem

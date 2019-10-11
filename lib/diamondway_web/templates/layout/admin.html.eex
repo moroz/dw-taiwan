@@ -7,7 +7,7 @@
     <title>Mahamudra Taipei 2020</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/admin.css") %>"/>
   </head>
-  <body class="admin">
+  <body>
     <%= render @view_module, @view_template, assigns %>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/admin.js") %>"></script>
   </body>
