@@ -1,4 +1,5 @@
 import React from "react";
+import GuestTable from "./components/GuestTable";
 
 export default class MahamudraAdmin extends React.Component {
   render() {
@@ -45,7 +46,9 @@ export default class MahamudraAdmin extends React.Component {
           <div className="admin__topbar">
             <h1>Waiting List</h1>
           </div>
-          <main className="admin__main">Hello from React!</main>
+          <main className="admin__main">
+            <GuestTable />
+          </main>
         </div>
       </div>
     );
