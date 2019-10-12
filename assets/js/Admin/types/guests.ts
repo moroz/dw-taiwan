@@ -7,3 +7,12 @@ export interface Guest {
   city: string;
   id: id;
 }
+
+export enum GuestActionType {
+  Fetch = "FETCH_GUESTS"
+}
+
+export type GuestAction = {
+  type: GuestActionType;
+  payload: any;
+};
