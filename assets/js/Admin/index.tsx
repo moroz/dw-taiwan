@@ -1,7 +1,6 @@
 import React from "react";
 import GuestTable from "./components/GuestTable";
 import Sidebar from "./layout/Sidebar";
-import Topbar from "./layout/Topbar";
 import SidebarFooter from "./layout/SidebarFooter";
 import SidebarHeader from "./layout/SidebarHeader";
 import store from "./store";
@@ -20,12 +19,9 @@ export default class MahamudraAdmin extends React.Component {
               <SidebarFooter />
             </div>
             <div className="admin__right">
-              <Topbar title="Waiting List" />
-              <main className="admin__main">
-                <Switch>
-                  <Route exact path="/" component={GuestTable} />
-                </Switch>
-              </main>
+              <Switch>
+                <Route exact path="/" component={GuestTable} />
+              </Switch>
             </div>
           </div>
         </Router>

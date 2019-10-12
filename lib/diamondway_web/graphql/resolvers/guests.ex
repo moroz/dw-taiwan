@@ -1,8 +1,8 @@
 defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
   alias Diamondway.Guests
 
-  def filter_guests(_, _) do
-    page = Guests.filter_and_paginate_guests(%{})
+  def filter_guests(params, _) do
+    page = Guests.filter_and_paginate_guests(Map.get(params, :params))
     {:ok, format_page(page)}
   end
 

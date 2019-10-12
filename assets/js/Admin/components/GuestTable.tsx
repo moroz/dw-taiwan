@@ -4,36 +4,58 @@ import { Guest } from "../types/guests";
 import { Cursor } from "../types/common";
 import Guests from "../actions/Guests";
 import GuestRow from "./GuestRow";
+import Topbar from "../layout/Topbar";
+import MainWrapper from "../layout/MainWrapper";
+import Loader from "./Loader";
+import qs from "qs";
 
 interface Props extends React.Props<GuestTable> {
   loading: boolean;
   entries: Guest[];
   cursor: Cursor | null;
+  location: any;
 }
 
 class GuestTable extends React.Component<Props> {
   async componentDidMount() {
-    Guests.fetchGuests();
+    Guests.fetchGuests({ page: this.getPageNumber() });
   }
 
+  getPageNumber = () => {
+    const params =
+      this.props.location &&
+      this.props.location.search &&
+      qs.parse(this.props.location.search.replace(/^\?/, ""));
+    return parseInt(params.page) || 1;
+  };
+
   render() {
-    if (this.props.loading) return <h1>Loading...</h1>;
+    const { loading, entries } = this.props;
     return (
-      <table className="ui table celled guest_table">
-        <thead>
-          <tr>
-            <th className="guest_table__id">ID</th>
-            <th>Name</th>
-            <th>Country</th>
-            <th>Sangha</th>
-          </tr>
-        </thead>
-        <tbody>
-          {this.props.entries.map(guest => (
-            <GuestRow guest={guest} key={`guest-${guest.id}`} />
-          ))}
-        </tbody>
-      </table>
+      <>
+        <Topbar title="Waiting List"></Topbar>
+        <MainWrapper>
+          {loading ? (
+            <Loader></Loader>
+          ) : (
+            <table className="ui table celled guest_table">
+              <thead>
+                <tr>
+                  <th className="guest_table__id">ID</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Sangha</th>
+                </tr>
+              </thead>
+              <tbody>
+                {entries.map(guest => (
+                  <GuestRow guest={guest} key={`guest-${guest.id}`} />
+                ))}
+              </tbody>
+            </table>
+          )}
+        </MainWrapper>
+      </>
     );
   }
 }

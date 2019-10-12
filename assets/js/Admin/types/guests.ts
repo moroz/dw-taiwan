@@ -16,3 +16,8 @@ export type GuestAction = {
   type: GuestActionType;
   payload: any;
 };
+
+export interface IGuestSearchParams {
+  name?: string;
+  page?: number | string;
+}

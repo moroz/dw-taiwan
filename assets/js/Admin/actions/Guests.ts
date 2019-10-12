@@ -1,13 +1,15 @@
 import store from "../store";
 import client from "../graphql/client";
-import { GuestActionType, GuestAction, Guest } from "../types/guests";
+import { GuestActionType, IGuestSearchParams } from "../types/guests";
 
 export default class Guests {
-  static async fetchGuests() {
+  static async fetchGuests(params?: IGuestSearchParams) {
     try {
-      const { guests } = await client.query(`
-        {
-          guests {
+      const currentParams = store.getState().guests.params;
+      const { guests } = await client.query(
+        `
+        query guests($params: GuestSearchParams) {
+          guests(params: $params) {
             entries {
               firstName lastName id
               residence nationality city
@@ -16,7 +18,9 @@ export default class Guests {
               totalEntries totalPages page
             }
           }
-        }`);
+        }`,
+        { params: { ...currentParams, ...params } }
+      );
       store.dispatch({
         type: GuestActionType.Fetch,
         payload: guests
