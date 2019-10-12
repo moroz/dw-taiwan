@@ -1,34 +1,17 @@
 import React from "react";
 
 import { Guest } from "../types/guests";
+import { Cursor } from "../types/common";
 import client from "../graphql/client";
 import GuestRow from "./GuestRow";
 
-const GUESTS: Guest[] = [
-  {
-    firstName: "Borys",
-    lastName: "Szyc",
-    residence: "United Catholic Emirates",
-    city: "Warsaw",
-    id: 252
-  },
-  {
-    firstName: "Jan",
-    lastName: "Paweł II",
-    residence: "Vatican",
-    city: "Vatican",
-    id: 251
-  },
-  {
-    firstName: "Olaf",
-    lastName: "Lubaszenko",
-    residence: "Israel",
-    city: "Tel Aviv",
-    id: 250
-  }
-];
+interface State {
+  loading: boolean;
+  entries: Guest[];
+  cursor: Cursor | null;
+}
 
-export default class GuestTable extends React.Component {
+export default class GuestTable extends React.Component<any, State> {
   state = {
     loading: true,
     entries: [],
@@ -36,18 +19,19 @@ export default class GuestTable extends React.Component {
   };
 
   async componentDidMount() {
-    const { guests } = await client.query(`
-    {
-      guests {
-        entries {
-          firstName lastName id
-          residence nationality city
+    const { guests } = await client.query(
+      `{
+        guests {
+          entries {
+            firstName lastName id
+            residence nationality city
+          }
+          cursor {
+            totalEntries totalPages page
+          }
         }
-        cursor {
-          totalEntries totalPages page
-        }
-      }
-    }`);
+      }`
+    );
     this.setState({
       entries: guests.entries,
       cursor: guests.cursor,
