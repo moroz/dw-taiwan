@@ -48,6 +48,10 @@ defmodule DiamondwayWeb.Router do
     end
   end
 
+  scope "/api" do
+    forward "/", Absinthe.Plug, schema: DiamondwayWeb.GraphQL.Schema
+  end
+
   scope "/admin", DiamondwayWeb do
     pipe_through :admin
 

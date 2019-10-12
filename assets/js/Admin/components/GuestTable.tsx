@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Guest } from "../types/guests";
+import client from "../graphql/client";
 import GuestRow from "./GuestRow";
 
 const GUESTS: Guest[] = [
@@ -28,7 +29,34 @@ const GUESTS: Guest[] = [
 ];
 
 export default class GuestTable extends React.Component {
+  state = {
+    loading: true,
+    entries: [],
+    cursor: null
+  };
+
+  async componentDidMount() {
+    const { guests } = await client.query(`
+    {
+      guests {
+        entries {
+          firstName lastName id
+          residence nationality city
+        }
+        cursor {
+          totalEntries totalPages page
+        }
+      }
+    }`);
+    this.setState({
+      entries: guests.entries,
+      cursor: guests.cursor,
+      loading: false
+    });
+  }
+
   render() {
+    if (this.state.loading) return <h1>Loading...</h1>;
     return (
       <table className="ui table celled guest_table">
         <thead>
@@ -38,7 +66,7 @@ export default class GuestTable extends React.Component {
           <th>Sangha</th>
         </thead>
         <tbody>
-          {GUESTS.map(guest => (
+          {this.state.entries.map(guest => (
             <GuestRow guest={guest} key={`guest-${guest.id}`} />
           ))}
         </tbody>
