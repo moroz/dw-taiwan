@@ -14,7 +14,6 @@ export default class GraphQLClient {
           variables
         })
       }).then(res => res.json());
-      console.log(data);
       return data;
     } catch (e) {
       console.error(e);

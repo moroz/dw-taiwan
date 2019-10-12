@@ -4,11 +4,13 @@ import { Cursor } from "../types/common";
 interface IGuestReducerState {
   entries: Guest[];
   cursor: Cursor | null;
+  loading: boolean;
 }
 
 const initialState: IGuestReducerState = {
   entries: [],
-  cursor: null
+  cursor: null,
+  loading: true
 };
 
 export default function(
@@ -19,7 +21,8 @@ export default function(
     case GuestActionType.Fetch:
       return {
         ...state,
-        entries: action.payload
+        loading: false,
+        ...action.payload
       };
 
     default:

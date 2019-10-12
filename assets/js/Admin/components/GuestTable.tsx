@@ -1,56 +1,35 @@
 import React from "react";
-
+import { connect } from "react-redux";
 import { Guest } from "../types/guests";
 import { Cursor } from "../types/common";
-import client from "../graphql/client";
+import Guests from "../actions/Guests";
 import GuestRow from "./GuestRow";
 
-interface State {
+interface Props extends React.Props<GuestTable> {
   loading: boolean;
   entries: Guest[];
   cursor: Cursor | null;
 }
 
-export default class GuestTable extends React.Component<any, State> {
-  state = {
-    loading: true,
-    entries: [],
-    cursor: null
-  };
-
+class GuestTable extends React.Component<Props> {
   async componentDidMount() {
-    const { guests } = await client.query(
-      `{
-        guests {
-          entries {
-            firstName lastName id
-            residence nationality city
-          }
-          cursor {
-            totalEntries totalPages page
-          }
-        }
-      }`
-    );
-    this.setState({
-      entries: guests.entries,
-      cursor: guests.cursor,
-      loading: false
-    });
+    Guests.fetchGuests();
   }
 
   render() {
-    if (this.state.loading) return <h1>Loading...</h1>;
+    if (this.props.loading) return <h1>Loading...</h1>;
     return (
       <table className="ui table celled guest_table">
         <thead>
-          <th className="guest_table__id">ID</th>
-          <th>Name</th>
-          <th>Country</th>
-          <th>Sangha</th>
+          <tr>
+            <th className="guest_table__id">ID</th>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Sangha</th>
+          </tr>
         </thead>
         <tbody>
-          {this.state.entries.map(guest => (
+          {this.props.entries.map(guest => (
             <GuestRow guest={guest} key={`guest-${guest.id}`} />
           ))}
         </tbody>
@@ -58,3 +37,9 @@ export default class GuestTable extends React.Component<any, State> {
     );
   }
 }
+
+function mapState(state: any) {
+  return { entries: state.guests.entries, loading: state.guests.loading };
+}
+
+export default connect(mapState)(GuestTable);
