@@ -1,9 +1,13 @@
 import React from "react";
 
-export default function Topbar() {
+interface Props {
+  title: string;
+}
+
+export default function Topbar({ title }: Props) {
   return (
     <div className="admin__topbar">
-      <h1>Waiting List</h1>
+      <h1>{title}</h1>
     </div>
   );
 }

@@ -3,5 +3,5 @@ defmodule Diamondway.Repo do
     otp_app: :diamondway,
     adapter: Ecto.Adapters.Postgres
 
-  use Scrivener, page_size: 30
+  use Scrivener, page_size: 20
 end

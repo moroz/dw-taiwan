@@ -39,7 +39,11 @@ class GuestTable extends React.Component<Props> {
 }
 
 function mapState(state: any) {
-  return { entries: state.guests.entries, loading: state.guests.loading };
+  return {
+    entries: state.guests.entries,
+    loading: state.guests.loading,
+    cursor: state.guests.cursor
+  };
 }
 
 export default connect(mapState)(GuestTable);
