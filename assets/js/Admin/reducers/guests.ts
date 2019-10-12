@@ -5,12 +5,22 @@ interface IGuestReducerState {
   entries: Guest[];
   cursor: Cursor | null;
   loading: boolean;
+  params: IGuestSearchParams;
+}
+
+interface IGuestSearchParams {
+  name?: string;
+  page?: number | string;
 }
 
 const initialState: IGuestReducerState = {
   entries: [],
   cursor: null,
-  loading: true
+  loading: true,
+  params: {
+    name: "",
+    page: ""
+  }
 };
 
 export default function(
