@@ -10,7 +10,6 @@ interface Props extends React.Props<GuestPagination> {
 
 export default class GuestPagination extends React.Component<Props> {
   handlePageChange = (data: any) => {
-    debugger;
     let page = data.selected;
     if (typeof page !== "number") page = 0;
     this.props.history.push(`/?page=${page + 1}`);
@@ -24,11 +23,12 @@ export default class GuestPagination extends React.Component<Props> {
       <ReactPaginate
         containerClassName="ui pagination menu"
         pageLinkClassName="item"
+        activeLinkClassName="active"
         previousLinkClassName="item"
         nextLinkClassName="item"
         breakLinkClassName="item"
         pageCount={totalPages}
-        pageRangeDisplayed={5}
+        pageRangeDisplayed={15}
         onPageChange={this.handlePageChange}
         marginPagesDisplayed={2}
       />
