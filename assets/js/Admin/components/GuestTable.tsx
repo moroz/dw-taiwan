@@ -8,6 +8,7 @@ import Topbar from "../layout/Topbar";
 import MainWrapper from "../layout/MainWrapper";
 import Loader from "./Loader";
 import qs from "qs";
+import GuestPagination from "./GuestPagination";
 
 interface Props extends React.Props<GuestTable> {
   loading: boolean;
@@ -16,9 +17,40 @@ interface Props extends React.Props<GuestTable> {
   location: any;
 }
 
+interface State {
+  page: number;
+}
+
 class GuestTable extends React.Component<Props> {
+  state = {
+    page: 1
+  };
+
   async componentDidMount() {
-    Guests.fetchGuests({ page: this.getPageNumber() });
+    this.setPage(this.getPageNumber());
+  }
+
+  setPage = (page: number) => {
+    this.setState({ page }, () => {
+      Guests.fetchGuests({ page: this.state.page });
+    });
+  };
+
+  static parsePageNumber(string: string) {
+    const params = qs.parse(string.replace(/^\?/, ""));
+    if (params && params.page) return parseInt(params.page);
+    return 1;
+  }
+
+  static getDerivedStateFromProps(nextProps: Props, prevState: State) {
+    const page = GuestTable.parsePageNumber(nextProps.location.search);
+    if (page !== prevState.page) {
+      Guests.fetchGuests({ page });
+      return {
+        page
+      };
+    }
+    return null;
   }
 
   getPageNumber = () => {
@@ -30,7 +62,7 @@ class GuestTable extends React.Component<Props> {
   };
 
   render() {
-    const { loading, entries } = this.props;
+    const { loading, entries, history } = this.props;
     return (
       <>
         <Topbar title="Waiting List"></Topbar>
@@ -55,6 +87,7 @@ class GuestTable extends React.Component<Props> {
             </table>
           )}
         </MainWrapper>
+        <GuestPagination cursor={this.props.cursor} history={history} />
       </>
     );
   }
