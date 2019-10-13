@@ -20,8 +20,8 @@ export default function Sidebar(_props?: any) {
       <SidebarProfile />
       <div className="admin__sidebar__menu">
         <SidebarLink to="/">Waiting List</SidebarLink>
-        <SidebarLink to="/invited">Invited Guests</SidebarLink>
-        <SidebarLink to="/paid">Paid Reservations</SidebarLink>
+        {/* <SidebarLink to="/invited">Invited Guests</SidebarLink>
+        <SidebarLink to="/paid">Paid Reservations</SidebarLink> */}
       </div>
     </div>
   );
