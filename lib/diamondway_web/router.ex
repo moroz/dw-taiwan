@@ -55,7 +55,6 @@ defmodule DiamondwayWeb.Router do
   scope "/admin", DiamondwayWeb do
     pipe_through :admin
 
-    get "/", AdminController, :react, as: :admin_root
-    resources "/guests", GuestController, except: [:index]
+    get "/*path", AdminController, :react, as: :admin_root
   end
 end

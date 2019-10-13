@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Guest } from "../types/guests";
-import { Cursor } from "../types/common";
+import { Cursor, id } from "../types/common";
 import Guests from "../actions/Guests";
 import GuestRow from "./GuestRow";
 import Topbar from "../layout/Topbar";
@@ -9,12 +9,14 @@ import MainWrapper from "../layout/MainWrapper";
 import Loader from "./Loader";
 import qs from "qs";
 import GuestPagination from "./GuestPagination";
+import { History } from "history";
 
 interface Props extends React.Props<GuestTable> {
   loading: boolean;
   entries: Guest[];
   cursor: Cursor | null;
   location: any;
+  history: History;
 }
 
 interface State {
@@ -24,6 +26,10 @@ interface State {
 class GuestTable extends React.Component<Props> {
   state = {
     page: 1
+  };
+
+  handleNavigate = (id: id) => {
+    this.props.history.push(`/guests/${id}`);
   };
 
   async componentDidMount() {
@@ -81,7 +87,11 @@ class GuestTable extends React.Component<Props> {
               </thead>
               <tbody>
                 {entries.map(guest => (
-                  <GuestRow guest={guest} key={`guest-${guest.id}`} />
+                  <GuestRow
+                    guest={guest}
+                    key={`guest-${guest.id}`}
+                    onClick={() => this.handleNavigate(guest.id)}
+                  />
                 ))}
               </tbody>
             </table>

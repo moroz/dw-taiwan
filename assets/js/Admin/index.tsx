@@ -1,5 +1,6 @@
 import React from "react";
 import GuestTable from "./components/GuestTable";
+import DisplayGuest from "./components/DisplayGuest";
 import Sidebar from "./layout/Sidebar";
 import SidebarFooter from "./layout/SidebarFooter";
 import SidebarHeader from "./layout/SidebarHeader";
@@ -21,6 +22,7 @@ export default class MahamudraAdmin extends React.Component {
             <div className="admin__right">
               <Switch>
                 <Route exact path="/" component={GuestTable} />
+                <Route exact path="/guests/:id" component={DisplayGuest} />
               </Switch>
             </div>
           </div>
