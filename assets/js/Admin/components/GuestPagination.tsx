@@ -18,7 +18,7 @@ export default class GuestPagination extends React.Component<Props> {
   render() {
     if (!this.props.cursor) return null;
 
-    const { totalPages } = this.props.cursor;
+    const { totalPages, page: pageNumber } = this.props.cursor;
     return (
       <ReactPaginate
         containerClassName="ui pagination menu"
@@ -27,6 +27,7 @@ export default class GuestPagination extends React.Component<Props> {
         previousLinkClassName="item"
         nextLinkClassName="item"
         breakLinkClassName="item"
+        initialPage={pageNumber - 1}
         pageCount={totalPages}
         pageRangeDisplayed={15}
         onPageChange={this.handlePageChange}
