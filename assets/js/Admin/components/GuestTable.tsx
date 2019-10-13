@@ -76,7 +76,7 @@ class GuestTable extends React.Component<Props> {
           {loading ? (
             <Loader></Loader>
           ) : (
-            <table className="ui table celled guest_table">
+            <table className="ui table celled guest_table hoverable">
               <thead>
                 <tr>
                   <th className="guest_table__id">ID</th>

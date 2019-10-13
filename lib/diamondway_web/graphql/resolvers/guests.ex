@@ -6,6 +6,10 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
     {:ok, format_page(page)}
   end
 
+  def get_guest(%{id: id}, _) do
+    {:ok, Guests.get_guest(id)}
+  end
+
   defp format_page(page) do
     %{
       entries: page.entries,

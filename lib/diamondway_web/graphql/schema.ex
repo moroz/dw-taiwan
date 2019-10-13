@@ -66,5 +66,10 @@ defmodule DiamondwayWeb.GraphQL.Schema do
       arg(:params, :guest_search_params)
       resolve(&Resolvers.Guests.filter_guests/2)
     end
+
+    field :guest, :guest do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Guests.get_guest/2)
+    end
   end
 end
