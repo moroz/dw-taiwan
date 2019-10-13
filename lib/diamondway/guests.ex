@@ -12,7 +12,7 @@ defmodule Diamondway.Guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
   end
 
-  def paginate_guests(params) do
+  def filter_and_paginate_guests(params) do
     Guest
     |> order_by([g], desc: :id)
     |> preload([g], [:residence, :nationality])
@@ -29,6 +29,8 @@ defmodule Diamondway.Guests do
   end
 
   def get_guest!(id), do: Repo.get!(Guest, id)
+
+  def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
 
   def send_confirmation_email(%{email_sent: true}), do: :noop
 

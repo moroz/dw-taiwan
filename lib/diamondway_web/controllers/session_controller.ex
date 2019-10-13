@@ -18,8 +18,10 @@ defmodule DiamondwayWeb.SessionController do
   def create(conn, %{"email" => email, "password" => password}) do
     case Users.authenticate_user_by_email_password(email, password) do
       %Users.User{} = user ->
+        {:ok, token, _claims} = Diamondway.Guardian.encode_and_sign(user)
+
         conn
-        |> put_session(:user_id, user.id)
+        |> put_resp_cookie("access_token", token, secure: true)
         |> redirect(to: "/admin")
 
       nil ->
@@ -29,7 +31,9 @@ defmodule DiamondwayWeb.SessionController do
     end
   end
 
-  def delete(conn, _) do
-    conn |> clear_session() |> redirect(to: "/")
+  def delete(conn, _params) do
+    delete_resp_cookie(conn, "access_token", secure: true)
+    |> put_flash(:info, "You have been signed out.")
+    |> redirect(to: "/")
   end
 end

@@ -1,0 +1,27 @@
+.admin__sidebar
+  display: flex
+  flex-direction: column
+  flex: 1
+
+.admin__sidebar__menu
+  margin-top: 2rem
+
+.admin__sidebar__link
+  background: transparentize(white, .85)
+  border-left: 4px solid transparent
+  color: inherit
+  display: block
+  font-size: $sidebar-link-font-size
+  height: $sidebar-link-height
+  line-height: $sidebar-link-height
+  text-align: center
+  transition: .15s ease-in-out
+  &:not(:last-child)
+    margin-bottom: $sidebar-link-spacing
+
+  &:hover
+    background: transparentize(white, .7)
+    color: inherit
+
+.admin__sidebar__link--active
+  border-left: 4px solid $primary-color

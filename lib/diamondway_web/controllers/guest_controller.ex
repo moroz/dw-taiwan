@@ -7,7 +7,7 @@ defmodule DiamondwayWeb.GuestController do
   plug :put_layout, :admin
 
   def index(conn, params) do
-    page = Guests.paginate_guests(params)
+    page = Guests.filter_and_paginate_guests(params)
     privileged_count = Guest.from_asia() |> Guests.count_guests()
 
     render(conn, "index.html",

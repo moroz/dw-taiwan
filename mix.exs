@@ -48,6 +48,9 @@ defmodule Diamondway.MixProject do
       {:email_tld_validator, "~> 0.1.0"},
       {:timex, "~> 3.6"},
 
+      # Testing
+      {:ex_machina, "~> 2.3", only: :test},
+
       # Pagination
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_html, "~> 1.8"},
@@ -62,8 +65,13 @@ defmodule Diamondway.MixProject do
       {:mix_systemd, github: "cogini/mix_systemd", override: true},
       {:mix_deploy, github: "cogini/mix_deploy", override: true},
 
+      # GraphQL
+      {:absinthe, "~> 1.4"},
+      {:absinthe_plug, "~> 1.4"},
+
       # User authentication
       {:comeonin, "~> 4.1"},
+      {:guardian, "~> 1.2"},
       {:argon2_elixir, "~> 1.3"},
       {:phoenix_slime, "~> 0.12.0"}
     ]

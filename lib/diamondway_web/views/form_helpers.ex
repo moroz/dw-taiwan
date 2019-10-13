@@ -16,6 +16,17 @@ defmodule DiamondwayWeb.FormHelpers do
     end
   end
 
+  def admin_text_field(form, field, label \\ [], helper \\ []) do
+    content_tag :div, class: field_class(form, field) do
+      [
+        label(form, field, label),
+        text_input(form, field, class: "input"),
+        maybe_helper_text(helper),
+        ErrorHelpers.error_tag(form, field)
+      ]
+    end
+  end
+
   def select_group(form, field, data, label, opts \\ []) do
     content_tag :div, class: field_class(form, field) do
       [

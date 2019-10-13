@@ -14,21 +14,35 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: {
-    "./js/app.js": glob.sync("./vendor/**/*.js").concat(["./js/app.js"])
+  entry: { app: "./js/app.js", admin: "./js/admin.js" },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".sass"],
+    mainFields: ["es2015", "module", "main"],
+    alias: {
+      "../../theme.config$": path.join(__dirname, "theme.config")
+    }
   },
   output: {
-    filename: "app.js",
+    filename: "[name].js",
     path: path.resolve(__dirname, "../priv/static/js")
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader"
+        ]
       },
       {
         test: /\.(css|sass|scss)$/,
@@ -59,7 +73,7 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+    new MiniCssExtractPlugin({ filename: "../css/[name].css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
