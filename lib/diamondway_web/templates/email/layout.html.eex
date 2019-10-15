@@ -20,7 +20,7 @@
       </td>
     </tr>
     <tr>
-      <td class="container" bgcolor="#FFFFFF" style="padding: 20px; border-top: 2px solid <%= brand_color %>;">
+      <td class="container" bgcolor="#FFFFFF" style="padding: 20px; border-top: 2px solid <%= brand_color() %>;">
         <%= render @view_module, @view_template, assigns %>
       </td>
     </tr>

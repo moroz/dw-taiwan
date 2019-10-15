@@ -1,9 +1,20 @@
 defmodule Diamondway.Factory do
   use ExMachina.Ecto, repo: Diamondway.Repo
 
+  def email do
+    sequence(:email, fn i -> "guest+#{i}@example.com" end)
+  end
+
   def continent_factory do
     %Diamondway.Countries.Continent{
       name: sequence(:continent, &"Continent #{&1}")
+    }
+  end
+
+  def user_factory do
+    %Diamondway.Users.User{
+      email: email(),
+      display_name: "Jan Paweł II"
     }
   end
 
@@ -21,7 +32,7 @@ defmodule Diamondway.Factory do
       reference_email: "reference@example.com",
       reference_name: "Józef Piłsudski",
       phone: "+48555123123",
-      email: sequence(:email, fn i -> "guest+#{i}@example.com" end),
+      email: email(),
       sex: :male,
       residence: build(:country),
       nationality: build(:country)
