@@ -1,9 +1,10 @@
-import { id } from "./common"
+import { id } from "./common";
 
 export interface User {
   id: id;
   displayName: string;
   email: string;
+  avatarUrl: string | null;
 }
 
 export enum UserActionType {
@@ -11,6 +12,6 @@ export enum UserActionType {
 }
 
 export interface UserAction {
-  type: UserActionType,
+  type: UserActionType;
   payload: User;
 }

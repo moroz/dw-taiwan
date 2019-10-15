@@ -6,6 +6,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Users do
     field :id, non_null(:id)
     field :display_name, non_null(:string)
     field :email, non_null(:string)
+    field :avatar_url, :string
   end
 
   object :user_queries do

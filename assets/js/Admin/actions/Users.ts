@@ -5,7 +5,7 @@ import { UserActionType } from "../types/users";
 const FETCH_USER_QUERY = `
 {
   currentUser {
-    id email displayName
+    id email displayName avatarUrl
   }
 }
 `;
