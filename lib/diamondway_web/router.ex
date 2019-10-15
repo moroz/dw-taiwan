@@ -12,6 +12,8 @@ defmodule DiamondwayWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug DiamondwayWeb.Plugs.FetchUser
+    plug DiamondwayWeb.Plugs.RestrictAccess, :api
   end
 
   pipeline :admin do
@@ -49,6 +51,8 @@ defmodule DiamondwayWeb.Router do
   end
 
   scope "/api" do
+    pipe_through :api
+
     forward "/", Absinthe.Plug, schema: DiamondwayWeb.GraphQL.Schema
   end
 

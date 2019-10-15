@@ -4,11 +4,16 @@ import DisplayGuest from "./components/DisplayGuest";
 import Sidebar from "./layout/Sidebar";
 import SidebarFooter from "./layout/SidebarFooter";
 import SidebarHeader from "./layout/SidebarHeader";
+import Users from "./actions/Users";
 import store from "./store";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default class MahamudraAdmin extends React.Component {
+  componentDidMount() {
+    Users.fetchUser();
+  }
+
   render() {
     return (
       <Provider store={store}>
