@@ -48,10 +48,13 @@ defmodule DiamondwayWeb.Router do
     end
   end
 
+  scope "/api" do
+    forward "/", Absinthe.Plug, schema: DiamondwayWeb.GraphQL.Schema
+  end
+
   scope "/admin", DiamondwayWeb do
     pipe_through :admin
 
-    get "/", GuestController, :index, as: :admin_root
-    resources "/guests", GuestController, except: [:index]
+    get "/*path", AdminController, :react, as: :admin_root
   end
 end

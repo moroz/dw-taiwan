@@ -14,10 +14,13 @@ module.exports = (env, options) => ({
       new OptimizeCSSAssetsPlugin({})
     ]
   },
-  entry: { app: "./js/app.js", admin: "./js/admin.tsx" },
+  entry: { app: "./js/app.js", admin: "./js/admin.js" },
   resolve: {
-    extensions: [".ts", ".tsx", ".js"],
-    mainFields: ["es2015", "module", "main"]
+    extensions: [".ts", ".tsx", ".js", ".sass"],
+    mainFields: ["es2015", "module", "main"],
+    alias: {
+      "../../theme.config$": path.join(__dirname, "theme.config")
+    }
   },
   output: {
     filename: "[name].js",
@@ -31,6 +34,15 @@ module.exports = (env, options) => ({
         use: {
           loader: "babel-loader"
         }
+      },
+      {
+        test: /\.less$/,
+        use: [
+          "style-loader",
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "less-loader"
+        ]
       },
       {
         test: /\.(css|sass|scss)$/,
@@ -61,7 +73,7 @@ module.exports = (env, options) => ({
     ]
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: "../css/app.css" }),
+    new MiniCssExtractPlugin({ filename: "../css/[name].css" }),
     new CopyWebpackPlugin([{ from: "static/", to: "../" }]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,

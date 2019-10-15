@@ -1,0 +1,53 @@
+.login
+  width: 100vw
+  height: 100vh
+  background: url(../../static/images/bg-login.jpg)
+  background-size: cover
+
+.login__left,
+.login__card
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+.login__left
+  width: (1 - 0.618) * 100vw
+  height: 100vh
+  background: $body-bg
+  position: relative
+
+.login__logo
+  height: 60px
+  position: absolute
+  left: 50%
+  top: calc(50vh - 200px - 6rem)
+  transform: translateX(-50%)
+
+.login__card
+  background: #fff
+  width: 320px
+  height: 400px
+  text-align: center
+  box-shadow: 0 0 15px transparentize(#bbb, .5)
+
+  .ui.form .field
+    width: 260px
+    margin-bottom: 1rem
+    text-align: left
+
+    label
+      font-weight: bold
+
+  .button
+    align-self: center
+    width: 180px
+    margin-top: 1rem
+
+.login__card__header
+  font-size: 2.25rem
+  color: #222
+
+  span.lighter
+    font-size: inherit
+    color: #666
