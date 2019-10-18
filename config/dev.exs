@@ -9,6 +9,8 @@ config :diamondway, Diamondway.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
+port = System.get_env("PORT", "3000") |> String.to_integer()
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -16,9 +18,9 @@ config :diamondway, Diamondway.Repo,
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :diamondway, DiamondwayWeb.Endpoint,
-  http: [ip: {0, 0, 0, 0}, port: 3000],
+  http: [ip: {0, 0, 0, 0}, port: port],
   https: [
-    port: 3001,
+    port: port + 1,
     cipher_suite: :strong,
     certfile: "priv/cert/selfsigned.pem",
     keyfile: "priv/cert/selfsigned_key.pem"
