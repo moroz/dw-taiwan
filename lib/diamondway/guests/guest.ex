@@ -23,6 +23,7 @@ defmodule Diamondway.Guests.Guest do
     belongs_to :nationality, Diamondway.Countries.Country
     belongs_to :residence, Diamondway.Countries.Country
     has_one :continent, through: [:residence, :continent]
+    has_many :audits, Diamondway.Audits.Audit
 
     field :single_person_registration, :boolean, virtual: true
     field :travel_insurance, :boolean, virtual: true

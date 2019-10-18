@@ -29,4 +29,28 @@ defmodule Diamondway.AuditsTest do
       assert_raise Ecto.NoResultsError, fn -> Audits.get_audit!(audit.id) end
     end
   end
+
+  describe "list_guest_audits" do
+    test "lists all audits of a Guest from newest to oldest" do
+      guest = insert(:guest)
+      user = insert(:user)
+      insert(:audit, user: user, guest: guest, description: "Older audit")
+      insert(:audit, user: user, guest: guest, description: "Newer audit")
+
+      actual = Audits.list_guest_audits(guest)
+      descriptions = Enum.map(actual, & &1.description)
+      assert descriptions == ["Newer audit", "Older audit"]
+    end
+  end
+
+  describe "create_guest_audit" do
+    test "creates an audit with the given guest, user, description" do
+      guest = insert(:guest)
+      user = insert(:user)
+      {:ok, audit} = Audits.create_guest_audit(guest, user, "Security Clearance")
+      assert audit.description == "Security Clearance"
+      assert audit.guest_id == guest.id
+      assert audit.user_id == user.id
+    end
+  end
 end
