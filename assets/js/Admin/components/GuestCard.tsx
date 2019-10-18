@@ -2,20 +2,12 @@ import React from "react";
 import { Guest } from "../types/guests";
 import CardSection from "./CardSection";
 import ColumnData from "./ColumnData";
+import Notes from "./Notes";
 
 interface Props {
   guest: Guest | null;
   goBack(e: any): void;
 }
-
-const Row = ({ title, content }: any) => {
-  return (
-    <tr>
-      <th scope="row">{title}</th>
-      <td>{content}</td>
-    </tr>
-  );
-};
 
 export default ({ guest, goBack }: Props) => {
   if (!guest) return null;
@@ -24,12 +16,14 @@ export default ({ guest, goBack }: Props) => {
       <CardSection padded>
         <a onClick={goBack}>&lt;&lt; Back to list</a>
         <h1>
-          {guest.firstName} {guest.lastName}
+          {guest.firstName} {guest.lastName}, {guest.residence} (#{guest.id})
         </h1>
       </CardSection>
 
       <CardSection columnData>
-        <ColumnData label="Email:">{guest.email}</ColumnData>
+        <ColumnData label="Email:" customClass="monospace">
+          {guest.email}
+        </ColumnData>
         <ColumnData label="Nationality:">{guest.nationality}</ColumnData>
         <ColumnData label="Living in:">
           {guest.city}, {guest.residence}
@@ -39,20 +33,11 @@ export default ({ guest, goBack }: Props) => {
           <span className="monospace">&lt;{guest.referenceEmail}&gt;</span>
         </ColumnData>
       </CardSection>
-      <table className="ui table celled">
-        <tbody>
-          {guest.notes ? (
-            <>
-              <tr>
-                <td colSpan={2}>Notes:</td>
-              </tr>
-              <tr>
-                <td colSpan={2}>{guest.notes}</td>
-              </tr>
-            </>
-          ) : null}
-        </tbody>
-      </table>
+      {guest.notes ? (
+        <CardSection padded>
+          <Notes>{guest.notes}</Notes>
+        </CardSection>
+      ) : null}
     </div>
   );
 };

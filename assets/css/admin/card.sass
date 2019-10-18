@@ -3,3 +3,17 @@
 
 .card h1
   margin-top: .5rem
+
+.order-data-field
+  display: block
+  strong
+    font-weight: 600
+  &:not(:first-child)
+    margin-top: 0.6em
+
+.label-with-border
+  +uppercase-label
+  border-bottom: $cell-border
+  padding-bottom: 0.3em
+  margin-bottom: 0.2em
+
