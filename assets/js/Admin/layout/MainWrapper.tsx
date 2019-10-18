@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-  children: string | JSX.Element | JSX.Element[];
+  children: string | JSX.Element | JSX.Element[] | null;
 }
 
 export default ({ children }: Props) => (

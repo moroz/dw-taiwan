@@ -1,6 +1,11 @@
 import { id } from "./common";
 
 export interface Guest {
+  email: string;
+  nationality: string;
+  referenceName: string;
+  referenceEmail: string;
+  notes: string;
   firstName: string;
   lastName: string;
   residence: string;

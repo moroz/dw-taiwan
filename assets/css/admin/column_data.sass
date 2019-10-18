@@ -1,0 +1,30 @@
+=uppercase-label
+  text-transform: uppercase
+  color: #888
+  font-weight: 600
+  font-size: 0.8rem
+
+.column-data
+  background: #f8f8f8
+  border-right: $cell-border
+  display: flex
+  flex: 1
+  flex-direction: column
+  justify-content: space-evenly
+  padding: 1rem
+
+.column-data__label
+  +uppercase-label
+  margin-bottom: 0
+
+.column-data__content
+  font-weight: 500
+
+.column-data-wrapper
+  display: flex
+
+  &:not(.no-border)
+    border-top: $cell-border
+
+  &:not(:last-child)
+    border-bottom: $cell-border
