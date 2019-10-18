@@ -22,6 +22,7 @@ defmodule Diamondway.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Diamondway.DataCase
+      import Diamondway.Factory
     end
   end
 
@@ -35,6 +36,10 @@ defmodule Diamondway.DataCase do
     Diamondway.TestSeeds.run()
 
     :ok
+  end
+
+  def reload(%schema{id: id}) do
+    Diamondway.Repo.get(schema, id)
   end
 
   @doc """

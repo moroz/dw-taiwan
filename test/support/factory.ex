@@ -5,6 +5,14 @@ defmodule Diamondway.Factory do
     sequence(:email, fn i -> "guest+#{i}@example.com" end)
   end
 
+  def audit_factory do
+    %Diamondway.Audits.Audit{
+      guest: build(:guest),
+      user: build(:user),
+      description: "Marked as confirmed"
+    }
+  end
+
   def continent_factory do
     %Diamondway.Countries.Continent{
       name: sequence(:continent, &"Continent #{&1}")
