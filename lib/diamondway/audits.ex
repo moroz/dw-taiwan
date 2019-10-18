@@ -25,6 +25,14 @@ defmodule Diamondway.Audits do
     Audit
     |> where([a], a.guest_id == ^guest_id)
     |> order_by([a], desc: :id)
+    |> join(:inner, [a], u in assoc(a, :user))
+    |> join(:inner, [a], g in assoc(a, :guest))
+    |> select([a, u, g], %{
+      timestamp: a.timestamp,
+      description: a.description,
+      guest_name: fragment("? || ' ' || ?", g.first_name, g.last_name),
+      user_name: u.display_name
+    })
     |> Repo.all()
   end
 

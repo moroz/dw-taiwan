@@ -10,6 +10,9 @@ defmodule DiamondwayWeb.GraphQL.GuestsTest do
       entries {
         id firstName lastName phone email city
         residence nationality
+        audits {
+          guestName userName description timestamp
+        }
       }
     }
   }

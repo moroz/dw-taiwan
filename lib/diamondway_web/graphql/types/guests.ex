@@ -1,6 +1,7 @@
 defmodule DiamondwayWeb.GraphQL.Types.Guests do
   use Absinthe.Schema.Notation
   alias DiamondwayWeb.GraphQL.Resolvers
+  alias Diamondway.Audits
 
   object :guest_queries do
     field :guests, non_null(:guest_page) do
@@ -31,6 +32,12 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :notes, :string
     field :inserted_at, :datetime
     field :updated_at, :datetime
+
+    field :audits, non_null(list_of(non_null(:audit))) do
+      resolve(fn guest, _, _ ->
+        {:ok, Audits.list_guest_audits(guest)}
+      end)
+    end
 
     field :nationality, non_null(:string) do
       resolve(fn

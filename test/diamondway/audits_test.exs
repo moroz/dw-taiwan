@@ -32,14 +32,17 @@ defmodule Diamondway.AuditsTest do
 
   describe "list_guest_audits" do
     test "lists all audits of a Guest from newest to oldest" do
-      guest = insert(:guest)
-      user = insert(:user)
+      guest = insert(:guest, first_name: "Janusz", last_name: "Korwin-Mikke")
+      user = insert(:user, display_name: "Zbigniew Stonoga")
       insert(:audit, user: user, guest: guest, description: "Older audit")
       insert(:audit, user: user, guest: guest, description: "Newer audit")
 
       actual = Audits.list_guest_audits(guest)
       descriptions = Enum.map(actual, & &1.description)
       assert descriptions == ["Newer audit", "Older audit"]
+      [newer, _older] = actual
+      assert newer.user_name == "Zbigniew Stonoga"
+      assert newer.guest_name == "Janusz Korwin-Mikke"
     end
   end
 

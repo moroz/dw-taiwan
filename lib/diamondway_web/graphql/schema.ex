@@ -6,6 +6,7 @@ defmodule DiamondwayWeb.GraphQL.Schema do
   import_types(Absinthe.Type.Custom)
   import_types(Types.Guests)
   import_types(Types.Users)
+  import_types(Types.Audits)
 
   object :cursor do
     field :page, non_null(:integer)
