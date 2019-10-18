@@ -5,5 +5,7 @@ interface Props {
 }
 
 export default ({ children }: Props) => (
-  <main className="admin__main">{children}</main>
+  <main className="admin__main" id="mainWrapper">
+    {children}
+  </main>
 );

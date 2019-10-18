@@ -25,6 +25,8 @@ export default class Guests {
         type: GuestActionType.Fetch,
         payload: guests
       });
+      const wrapper = document.getElementById("mainWrapper");
+      wrapper && wrapper.scroll(0, 0);
     } catch (e) {
       console.error(e);
     }
