@@ -39,8 +39,8 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :reference_name, :string
     field :phone, :string
     field :notes, :string
-    field :inserted_at, :datetime
-    field :updated_at, :datetime
+    field :inserted_at, :naive_datetime
+    field :updated_at, :naive_datetime
     field :sex, non_null(:gender)
     field :status, non_null(:guest_status)
 

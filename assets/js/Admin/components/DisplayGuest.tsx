@@ -16,7 +16,7 @@ query guest($id: ID!) {
   guest(id: $id) {
     id firstName lastName city residence nationality
     notes email referenceName referenceEmail sex
-    status
+    status insertedAt
     audits {
       userName description timestamp
     }

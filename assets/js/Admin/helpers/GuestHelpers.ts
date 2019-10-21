@@ -12,6 +12,10 @@ export default class GuestHelpers {
       .replace(/\n/g, "<br/>");
   }
 
+  static displayName(guest: Guest) {
+    return `${guest.firstName} ${guest.lastName}`;
+  }
+
   static status(guest: Guest) {
     switch (guest.status) {
       case GuestStatus.Unverified:

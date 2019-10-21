@@ -1,4 +1,5 @@
 import { id } from "./common";
+import { Audit } from "./audits";
 
 export interface Guest {
   email: string;
@@ -12,6 +13,8 @@ export interface Guest {
   city: string;
   sex: Gender;
   status: GuestStatus;
+  audits: Audit[];
+  insertedAt: string;
   id: id;
 }
 

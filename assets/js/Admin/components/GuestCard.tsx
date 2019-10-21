@@ -5,6 +5,7 @@ import ColumnData from "./ColumnData";
 import Notes from "./Notes";
 import GuestDataField from "./GuestDataField";
 import GuestHelpers from "../helpers/GuestHelpers";
+import GuestHistory from "../components/GuestHistory";
 
 interface Props {
   guest: Guest | null;
@@ -43,6 +44,7 @@ export default ({ guest, goBack }: Props) => {
         </div>
         <div>
           <Notes>{guest.notes}</Notes>
+          <GuestHistory guest={guest} audits={guest.audits} />
         </div>
       </CardSection>
     </div>
