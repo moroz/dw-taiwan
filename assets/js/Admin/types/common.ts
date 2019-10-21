@@ -4,4 +4,5 @@ export interface Cursor {
   page: number;
   totalEntries: number;
   totalPages: number;
+  pageSize: number;
 }

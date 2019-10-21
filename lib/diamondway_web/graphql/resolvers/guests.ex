@@ -16,7 +16,8 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
       cursor: %{
         page: page.page_number,
         total_pages: page.total_pages,
-        total_entries: page.total_entries
+        total_entries: page.total_entries,
+        page_size: page.page_size
       }
     }
   end

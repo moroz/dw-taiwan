@@ -12,6 +12,7 @@ defmodule DiamondwayWeb.GraphQL.Schema do
     field :page, non_null(:integer)
     field :total_pages, non_null(:integer)
     field :total_entries, non_null(:integer)
+    field :page_size, non_null(:integer)
   end
 
   query do

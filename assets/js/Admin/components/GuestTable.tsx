@@ -9,6 +9,7 @@ import MainWrapper from "../layout/MainWrapper";
 import Loader from "./Loader";
 import qs from "qs";
 import GuestPagination from "./GuestPagination";
+import PageDescription from "./PageDescription";
 import { History } from "history";
 
 interface Props extends React.Props<GuestTable> {
@@ -68,7 +69,7 @@ class GuestTable extends React.Component<Props> {
   };
 
   render() {
-    const { loading, entries, history } = this.props;
+    const { loading, entries, history, cursor } = this.props;
     return (
       <>
         <Topbar title="Waiting List"></Topbar>
@@ -76,25 +77,28 @@ class GuestTable extends React.Component<Props> {
           {loading ? (
             <Loader></Loader>
           ) : (
-            <table className="ui table celled guest_table hoverable">
-              <thead>
-                <tr>
-                  <th className="guest_table__id">ID</th>
-                  <th>Name</th>
-                  <th>Country</th>
-                  <th>Sangha</th>
-                </tr>
-              </thead>
-              <tbody>
-                {entries.map(guest => (
-                  <GuestRow
-                    guest={guest}
-                    key={`guest-${guest.id}`}
-                    onClick={() => this.handleNavigate(guest.id)}
-                  />
-                ))}
-              </tbody>
-            </table>
+            <>
+              <PageDescription cursor={cursor} />
+              <table className="ui table celled guest_table hoverable">
+                <thead>
+                  <tr>
+                    <th className="guest_table__id">ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Sangha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entries.map(guest => (
+                    <GuestRow
+                      guest={guest}
+                      key={`guest-${guest.id}`}
+                      onClick={() => this.handleNavigate(guest.id)}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </>
           )}
         </MainWrapper>
         <GuestPagination cursor={this.props.cursor} history={history} />
