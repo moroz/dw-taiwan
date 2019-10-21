@@ -20,6 +20,15 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     value(:female)
   end
 
+  enum :guest_status do
+    value(:unverified)
+    value(:verified)
+    value(:invited)
+    value(:backup)
+    value(:canceled)
+    value(:paid)
+  end
+
   object :guest do
     field :id, non_null(:id)
     field :first_name, non_null(:string)
@@ -33,6 +42,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :inserted_at, :datetime
     field :updated_at, :datetime
     field :sex, non_null(:gender)
+    field :status, non_null(:guest_status)
 
     field :audits, non_null(list_of(non_null(:audit))) do
       resolve(fn guest, _, _ ->

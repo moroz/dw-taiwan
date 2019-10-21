@@ -18,7 +18,8 @@ defmodule Diamondway.Guests.Guest do
     field :phone, :string
     field :email_sent, :boolean
 
-    field :sex, GuestSex
+    field :sex, Diamondway.Enums.GuestSex
+    field :status, Diamondway.Enums.GuestStatus
 
     belongs_to :nationality, Diamondway.Countries.Country
     belongs_to :residence, Diamondway.Countries.Country

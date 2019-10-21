@@ -11,6 +11,7 @@ export interface Guest {
   residence: string;
   city: string;
   sex: Gender;
+  status: GuestStatus;
   id: id;
 }
 
@@ -21,6 +22,15 @@ export enum GuestActionType {
 export enum Gender {
   Male = "MALE",
   Female = "FEMALE"
+}
+
+export enum GuestStatus {
+  Unverified = "UNVERIFIED",
+  Verified = "VERIFIED",
+  Invited = "INVITED",
+  Backup = "BACKUP",
+  Canceled = "CANCELED",
+  Paid = "PAID"
 }
 
 export type GuestAction = {

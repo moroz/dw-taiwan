@@ -26,7 +26,7 @@ export default ({ guest, goBack }: Props) => {
         <ColumnData label="Email:" customClass="monospace">
           {guest.email}
         </ColumnData>
-        <ColumnData label="Status:">Not verified</ColumnData>
+        <ColumnData label="Status:">{GuestHelpers.status(guest)}</ColumnData>
         <ColumnData label="Nationality:">{guest.nationality}</ColumnData>
         <ColumnData label="Living in:">
           {guest.city}, {guest.residence}
