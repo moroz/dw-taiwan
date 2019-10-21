@@ -6,16 +6,19 @@ interface Props {
   bordered?: boolean;
   className?: string;
   columnData?: boolean;
+  twoColumns?: boolean;
 }
 
 function getClassNames(
   bordered?: boolean,
   padded?: boolean,
   className?: string,
-  columnData?: boolean
+  columnData?: boolean,
+  twoColumns?: boolean
 ) {
   let result = "card__section ";
   if (columnData) result += "column-data-wrapper ";
+  if (twoColumns) result += "card__section--two-columns ";
   if (!bordered) result += "card__section--no-border ";
   if (padded) result += "card__section--padded ";
   if (className) result += className;
@@ -27,8 +30,15 @@ export default function CardSection({
   bordered,
   padded,
   className,
-  columnData
+  columnData,
+  twoColumns
 }: Props) {
-  const classNames = getClassNames(bordered, padded, className, columnData);
+  const classNames = getClassNames(
+    bordered,
+    padded,
+    className,
+    columnData,
+    twoColumns
+  );
   return <section className={classNames}>{children}</section>;
 }

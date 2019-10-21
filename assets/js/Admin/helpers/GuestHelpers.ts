@@ -1,3 +1,5 @@
+import { Guest, Gender } from "../types/guests";
+
 export default class GuestHelpers {
   static formatUnsafeNotes(unsafe: string): string {
     return unsafe
@@ -8,5 +10,16 @@ export default class GuestHelpers {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;")
       .replace(/\n/g, "<br/>");
+  }
+
+  static sex(guest: Guest) {
+    switch (guest.sex) {
+      case Gender.Female:
+        return "Female";
+      case Gender.Male:
+        return "Male";
+      default:
+        return "Apache Helicopter";
+    }
   }
 }

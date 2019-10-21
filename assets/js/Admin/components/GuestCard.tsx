@@ -3,6 +3,8 @@ import { Guest } from "../types/guests";
 import CardSection from "./CardSection";
 import ColumnData from "./ColumnData";
 import Notes from "./Notes";
+import GuestDataField from "./GuestDataField";
+import GuestHelpers from "../helpers/GuestHelpers";
 
 interface Props {
   guest: Guest | null;
@@ -24,20 +26,25 @@ export default ({ guest, goBack }: Props) => {
         <ColumnData label="Email:" customClass="monospace">
           {guest.email}
         </ColumnData>
+        <ColumnData label="Status:">Not verified</ColumnData>
         <ColumnData label="Nationality:">{guest.nationality}</ColumnData>
         <ColumnData label="Living in:">
           {guest.city}, {guest.residence}
         </ColumnData>
-        <ColumnData label="Reference:">
-          {guest.referenceName}{" "}
-          <span className="monospace">&lt;{guest.referenceEmail}&gt;</span>
-        </ColumnData>
       </CardSection>
-      {guest.notes ? (
-        <CardSection padded>
+      <CardSection twoColumns padded>
+        <div>
+          <GuestDataField label="Sex">{GuestHelpers.sex(guest)}</GuestDataField>
+          <GuestDataField label="Reference:">
+            {guest.referenceName}
+            <br />
+            <span className="monospace">&lt;{guest.referenceEmail}&gt;</span>
+          </GuestDataField>
+        </div>
+        <div>
           <Notes>{guest.notes}</Notes>
-        </CardSection>
-      ) : null}
+        </div>
+      </CardSection>
     </div>
   );
 };

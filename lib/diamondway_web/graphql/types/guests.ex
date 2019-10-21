@@ -32,6 +32,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :notes, :string
     field :inserted_at, :datetime
     field :updated_at, :datetime
+    field :sex, non_null(:gender)
 
     field :audits, non_null(list_of(non_null(:audit))) do
       resolve(fn guest, _, _ ->

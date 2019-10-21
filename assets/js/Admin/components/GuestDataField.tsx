@@ -1,8 +1,10 @@
 import React from "react";
 
+type child = JSX.Element | string;
+
 interface Props {
   customClass?: string;
-  children: JSX.Element | string | null;
+  children: child | child[] | null;
   label: string;
 }
 

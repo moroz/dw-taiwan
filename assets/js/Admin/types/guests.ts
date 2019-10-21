@@ -10,11 +10,17 @@ export interface Guest {
   lastName: string;
   residence: string;
   city: string;
+  sex: Gender;
   id: id;
 }
 
 export enum GuestActionType {
   Fetch = "FETCH_GUESTS"
+}
+
+export enum Gender {
+  Male = "MALE",
+  Female = "FEMALE"
 }
 
 export type GuestAction = {

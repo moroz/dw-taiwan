@@ -1,16 +1,17 @@
 import React from "react";
 import GuestHelpers from "../helpers/GuestHelpers";
+import CardSection from "../components/CardSection";
+import GuestDataField from "./GuestDataField";
 
 export default function({ children }: { children: string | null }) {
   if (!children) return null;
   return (
-    <div className="display_guest__data_field">
-      <p className="label-with-border">Notes</p>
-      <p
+    <GuestDataField label="Notes">
+      <span
         dangerouslySetInnerHTML={{
           __html: GuestHelpers.formatUnsafeNotes(children)
         }}
       />
-    </div>
+    </GuestDataField>
   );
 }
