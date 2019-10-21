@@ -2,10 +2,11 @@ import React from "react";
 import SidebarProfile from "./SidebarProfile";
 import { NavLink } from "react-router-dom";
 
-function SidebarLink({ to, children }: any) {
+function SidebarLink({ to, exact, children }: any) {
   return (
     <NavLink
       to={to}
+      exact={exact}
       className="admin__sidebar__link"
       activeClassName="admin__sidebar__link--active"
     >
@@ -19,7 +20,12 @@ export default function Sidebar(_props?: any) {
     <div className="admin__sidebar">
       <SidebarProfile />
       <div className="admin__sidebar__menu">
-        <SidebarLink to="/">Waiting List</SidebarLink>
+        <SidebarLink exact to="/">
+          Waiting List
+        </SidebarLink>
+        <SidebarLink exact to="/help">
+          Read This First
+        </SidebarLink>
         <a href="/" className="admin__sidebar__link">
           Back to Website
         </a>

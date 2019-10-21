@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from "react";
 import { History } from "history";
 import Topbar from "../layout/Topbar";
 import MainWrapper from "../layout/MainWrapper";
-import GuestCard from "./GuestCard";
+import GuestCard from "../components/GuestCard";
 import { match } from "react-router";
 import Guests from "../actions/Guests";
 

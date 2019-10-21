@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { Guest } from "../types/guests";
 import { Cursor, id } from "../types/common";
 import Guests from "../actions/Guests";
-import GuestRow from "./GuestRow";
+import GuestRow from "../components/GuestRow";
 import Topbar from "../layout/Topbar";
 import MainWrapper from "../layout/MainWrapper";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 import qs from "qs";
-import GuestPagination from "./GuestPagination";
-import PageDescription from "./PageDescription";
+import GuestPagination from "../components/GuestPagination";
+import PageDescription from "../components/PageDescription";
 import { History } from "history";
 
 interface Props extends React.Props<GuestTable> {
