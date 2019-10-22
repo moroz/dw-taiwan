@@ -10,10 +10,10 @@
   .registration_page__form_wrapper
 
     = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
-      p
-        | Please fill in your details in the form below. All fields in the form are required.<br/> We will reach out to you once your registration is successfully processed.
-      p
-        | As usual, the whole course is organised by a tiny group of unpaid volunteers.<br/>This website, too, is still heavily under construction.
+      p.notification.is-warning
+        | The waiting list is already full. We kindly ask you not to register if you are not already registered and confirmed for the New Zealand tour. As the venue can only fit 300 people, we will have to ruthlessly reject anyone above that number. Thank you for understanding.<br/>
+        | <strong>Все места уже заполнены! Пожалуйста не регистрируйтесь если вы не едете вместе с ламой Оле в Новую Зеландию. Большое спасибо!</strong>
+
       h3 Personal data
       = if @changeset.action do
         .notification.is-warning
