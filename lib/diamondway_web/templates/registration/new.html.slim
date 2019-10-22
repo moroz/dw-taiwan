@@ -11,8 +11,8 @@
 
     = form_for @changeset, Routes.registration_path(@conn, :create), [class: "registration_form"], fn f ->
       div.notification.is-warning style="margin: 0"
-        p The waiting list is already full. We kindly ask you not to register if you are not already registered and confirmed for the New Zealand tour. As the venue can only fit 300 people, we will have to ruthlessly reject anyone above that number. Thank you for understanding.
-        <p style="margin: 0"> Вакантных мест нет. Просим вас не регистрироваться, если вы не едете вместе с ламой Оле в Новую Зеландию после курса в Тайбэй. Так как зал для встречи рассчитан на 300 человек, мы вынуждены безжалостно отменить регистрации, превышающих это количество. Спасибо за понимание!</p>
+        p The waiting list is already full. We kindly ask you not to register if you are not already registered and confirmed for the New Zealand tour. As the venue can only fit 300 people, we will have to reject anyone above that number. Thank you for understanding.
+        <p style="margin: 0">Вакантных мест нет. Просим вас не регистрироваться, если вы не едете вместе с ламой Оле в Новую Зеландию после курса в Тайбэй. Так как зал для встречи рассчитан на 300 человек, мы вынуждены отменить регистрации, превышающих это количество. Спасибо за понимание!</p>
 
       h3 Personal data
       = if @changeset.action do

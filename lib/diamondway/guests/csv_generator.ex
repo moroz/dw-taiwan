@@ -8,11 +8,9 @@ defmodule Diamondway.Guests.CSVGenerator do
     "First name",
     "Last Name",
     "SEX",
-    "Status",
     "Nationality",
     "Living in",
     "E-mail",
-    "Reference",
     "Notes"
   ]
   @bom "\xEF\xBB\xBF"
@@ -35,11 +33,12 @@ defmodule Diamondway.Guests.CSVGenerator do
         g.first_name,
         g.last_name,
         g.sex,
-        g.status,
+        # g.status,
         n.name,
-        fragment("? || ', ' || ?", g.city, r.name),
+        # fragment("? || ', ' || ?", g.city, r.name),
+        r.name,
         fragment("lower(?)", g.email),
-        fragment("? || ' <' || lower(?) || '>'", g.reference_name, g.reference_email),
+        # fragment("? || ' <' || lower(?) || '>'", g.reference_name, g.reference_email),
         g.notes
       ]
     )
