@@ -59,6 +59,7 @@ defmodule DiamondwayWeb.Router do
   scope "/admin", DiamondwayWeb do
     pipe_through :admin
 
+    get "/csv_export", AdminController, :csv_export
     get "/*path", AdminController, :react, as: :admin_root
   end
 end

@@ -51,6 +51,9 @@ defmodule Diamondway.MixProject do
       # Testing
       {:ex_machina, "~> 2.3", only: :test},
 
+      # CSV generation
+      {:nimble_csv, "~> 0.6.0"},
+
       # Pagination
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_html, "~> 1.8"},
