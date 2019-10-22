@@ -16,6 +16,7 @@
     "@types/react-paginate": "^6.2.1",
     "@types/react-router-dom": "^5.1.0",
     "bulma": "^0.7.5",
+    "dayjs": "^1.8.16",
     "file-loader": "^4.0.0",
     "graphql": "^14.5.8",
     "image-webpack-loader": "^5.0.0",
