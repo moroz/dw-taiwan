@@ -32,6 +32,10 @@ defmodule Diamondway.Guests do
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
 
+  def transition_state(%Guest{} = guest, to_state) do
+    true
+  end
+
   def send_confirmation_email(%{email_sent: true}), do: :noop
 
   def send_confirmation_email(guest) do

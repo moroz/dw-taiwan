@@ -10,6 +10,11 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
     {:ok, Guests.get_guest(id)}
   end
 
+  def transition_state(%{id: guest_id, to_state: to_state}, _) do
+    guest = Guests.get_guest!(guest_id)
+    {:ok, Guests.transition_state(guest, to_state)}
+  end
+
   defp format_page(page) do
     %{
       entries: page.entries,
