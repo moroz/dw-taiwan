@@ -1,7 +1,7 @@
 defmodule DiamondwayWeb.PageController do
   use DiamondwayWeb, :controller
 
-  @pages [:register, :venue, :faq, :contact]
+  @pages [:venue, :faq, :ticketing]
 
   plug DiamondwayWeb.Plugs.SetBodyClass, "opaque-header" when action != :index
 

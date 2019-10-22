@@ -21,7 +21,7 @@ defmodule DiamondwayWeb.Router do
     plug DiamondwayWeb.Plugs.RestrictAccess
   end
 
-  pages = [:venue, :faq, :contact]
+  pages = [:venue, :faq, :ticketing]
 
   scope "/", DiamondwayWeb do
     pipe_through :browser

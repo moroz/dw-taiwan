@@ -28,18 +28,26 @@
   display: block
 
 .landing__hero__cta
-  @extend .button
   position: absolute
-  font-size: rem-calc(20)
-  line-height: 2.5
-  height: 2.5em
-  width: 10em
   bottom: 3rem
   left: 50%
   transform: translateX(-50%)
-  color: $blue
-  transition: .15s ease-in-out
 
+.landing__hero__cta__button
+  @extend .button
+  color: $blue
+  width: 10em
+  transition: .15s ease-in-out
+  font-size: rem-calc(20)
+  line-height: 2.5
+  height: 2.5em
+  +mobile-only
+    &:not(:last-child)
+      margin-bottom: 1rem
+  +gt-mobile
+    margin-bottom: 0
+    &:not(:last-child)
+      margin-right: 1rem
   &:hover
     background: $blue
     border-color: lighten($blue, 10%)
