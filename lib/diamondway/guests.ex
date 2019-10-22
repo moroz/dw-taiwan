@@ -4,9 +4,11 @@ defmodule Diamondway.Guests do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
   alias Diamondway.Repo
-
+  alias Diamondway.Audits
   alias Diamondway.Guests.Guest
+  alias Diamondway.Users.User
 
   def list_guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
@@ -31,10 +33,6 @@ defmodule Diamondway.Guests do
   def get_guest!(id), do: Repo.get!(Guest, id)
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
-
-  def transition_state(%Guest{} = guest, to_state) do
-    true
-  end
 
   def send_confirmation_email(%{email_sent: true}), do: :noop
 

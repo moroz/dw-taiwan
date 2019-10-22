@@ -15,7 +15,7 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
   end
 
   object :guest_mutations do
-    field :transition, :boolean do
+    field :transition, :guest_transition_response do
       arg(:id, non_null(:id))
       arg(:to_state, non_null(:guest_status))
       resolve(&Resolvers.Guests.transition_state/2)

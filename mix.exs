@@ -43,10 +43,14 @@ defmodule Diamondway.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
+      {:cowboy, "~> 2.6.3", override: true},
       {:plug_cowboy, "~> 2.0"},
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
       {:timex, "~> 3.6"},
+
+      # State machines
+      {:machinery, github: "joaomdmoura/machinery"},
 
       # Testing
       {:ex_machina, "~> 2.3", only: :test},

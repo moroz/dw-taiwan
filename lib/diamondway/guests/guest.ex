@@ -3,6 +3,7 @@ defmodule Diamondway.Guests.Guest do
   import Ecto.Changeset
   import Ecto.Query
   import EmailTldValidator.Ecto
+  alias Diamondway.Guests.GuestStateMachine, as: StateMachine
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++
@@ -19,7 +20,7 @@ defmodule Diamondway.Guests.Guest do
     field :email_sent, :boolean
 
     field :sex, Diamondway.Enums.GuestSex
-    field :status, Diamondway.Enums.GuestStatus
+    field :status, Diamondway.Enums.GuestStatus, default: :unverified
 
     belongs_to :nationality, Diamondway.Countries.Country
     belongs_to :residence, Diamondway.Countries.Country
@@ -43,6 +44,16 @@ defmodule Diamondway.Guests.Guest do
     |> validate_email()
     |> validate_email(:reference_email)
     |> validate_different_emails()
+  end
+
+  def put_status(guest, new_state) do
+    with {:ok, _} <- Machinery.transition_to(guest, StateMachine, new_state) do
+      changeset =
+        change(guest)
+        |> put_change(:status, new_state)
+
+      {:ok, changeset}
+    end
   end
 
   def from_asia(query \\ __MODULE__) do
