@@ -5,4 +5,5 @@
   <title>Mahamudra Taipei 2020</title>
   <link rel="stylesheet" href="https://use.typekit.net/eip2xub.css">
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <link rel="icon" href="<%= Routes.static_path(@conn, "/images/logo-solo.svg") %>" type="image/svg+xml"/>
 </head>
