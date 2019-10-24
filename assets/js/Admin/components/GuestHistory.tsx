@@ -35,6 +35,9 @@ function GuestCreated({ guest }: { guest: Guest }) {
 export default function({ audits, guest }: Props) {
   return (
     <GuestDataField label="History">
+      {audits.map((audit, i) => (
+        <AuditRow {...audit} key={`audit-${i}`} />
+      ))}
       <GuestCreated guest={guest} />
       <p className="guest_history__tz_info">
         All timestamps are in {DateHelpers.tzname()} timezone.

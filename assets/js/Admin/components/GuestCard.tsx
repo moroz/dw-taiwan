@@ -6,6 +6,7 @@ import Notes from "./Notes";
 import GuestDataField from "./GuestDataField";
 import GuestHelpers from "../helpers/GuestHelpers";
 import GuestHistory from "../components/GuestHistory";
+import GuestActionButtons from "./GuestActionButtons";
 
 interface Props {
   guest: Guest | null;
@@ -16,11 +17,14 @@ export default ({ guest, goBack }: Props) => {
   if (!guest) return null;
   return (
     <div className="card ui display_guest">
-      <CardSection padded>
-        <a onClick={goBack}>&lt;&lt; Back to list</a>
-        <h1>
-          {guest.firstName} {guest.lastName}, {guest.residence} (#{guest.id})
-        </h1>
+      <CardSection padded className="display_guest__header">
+        <div>
+          <a onClick={goBack}>&lt;&lt; Back to list</a>
+          <h1>
+            {guest.firstName} {guest.lastName}, {guest.residence} (#{guest.id})
+          </h1>
+        </div>
+        <GuestActionButtons />
       </CardSection>
 
       <CardSection columnData>

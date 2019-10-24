@@ -17,7 +17,7 @@ defmodule Diamondway.Transitions do
       message = message(guest.status, new_state)
       guest = transition_state(guest, new_state)
       {:ok, _audit} = Audits.create_guest_audit(guest, user, message)
-      guest
+      Guests.preload_countries(guest)
     end)
   end
 

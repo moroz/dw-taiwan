@@ -1,19 +1,38 @@
 import store from "../store";
 import client from "../graphql/client";
-import { GuestActionType, IGuestSearchParams } from "../types/guests";
+import {
+  GuestActionType,
+  IGuestSearchParams,
+  GuestStatus
+} from "../types/guests";
 import { id } from "../types/common";
 
+const GUEST_DETAILS = `
+fragment GuestDetails on Guest {
+  id firstName lastName city residence nationality
+  notes email referenceName referenceEmail sex
+  status insertedAt
+  audits {
+    userName description timestamp
+  }
+}
+`;
+
 const SINGLE_GUEST_QUERY = `
+${GUEST_DETAILS}
 query guest($id: ID!) {
-  guest(id: $id) {
-    id firstName lastName city residence nationality
-    notes email referenceName referenceEmail sex
-    status insertedAt
-    audits {
-      userName description timestamp
+  guest(id: $id) { ...GuestDetails }
+}`;
+
+const CHANGE_GUEST_STATUS = `
+${GUEST_DETAILS}
+  mutation transitionGuestState($id: ID!, $toState: GuestStatus!) {
+    transition(id: $id, toState: $toState) {
+      success message
+      guest { ...GuestDetails }
     }
   }
-}`;
+`;
 
 const GUEST_LIST_QUERY = `
 query guests($params: GuestSearchParams) {
@@ -46,9 +65,30 @@ export default class Guests {
     }
   }
 
+  static async transitionGuest(id: id, toState: GuestStatus) {
+    try {
+      const { transition } = await client.query(CHANGE_GUEST_STATUS, {
+        id,
+        toState
+      });
+      store.dispatch({
+        type: transition.success
+          ? GuestActionType.Mutation
+          : GuestActionType.MutationFailed,
+        payload: transition
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   static async fetchGuest(id: id) {
     try {
-      return client.query(SINGLE_GUEST_QUERY, { id });
+      const { guest } = await client.query(SINGLE_GUEST_QUERY, { id });
+      store.dispatch({
+        type: GuestActionType.FetchOne,
+        payload: guest
+      });
     } catch (e) {
       console.error(e);
     }

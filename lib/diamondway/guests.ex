@@ -4,11 +4,8 @@ defmodule Diamondway.Guests do
   """
 
   import Ecto.Query, warn: false
-  import Ecto.Changeset
   alias Diamondway.Repo
-  alias Diamondway.Audits
   alias Diamondway.Guests.Guest
-  alias Diamondway.Users.User
 
   def list_guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])

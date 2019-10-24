@@ -1,6 +1,6 @@
 import React from "react";
 
-type child = JSX.Element | string;
+type child = JSX.Element | JSX.Element[] | string;
 
 interface Props {
   customClass?: string;

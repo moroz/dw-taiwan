@@ -4,36 +4,30 @@ import Topbar from "../layout/Topbar";
 import MainWrapper from "../layout/MainWrapper";
 import GuestCard from "../components/GuestCard";
 import { match } from "react-router";
+import { Guest } from "../types/guests";
 import Guests from "../actions/Guests";
+import { connect } from "react-redux";
 
 interface Props extends React.Props<DisplayGuest> {
   history: History;
   match: match;
+  guest: Guest | null;
+  loading: boolean;
 }
 
-export default class DisplayGuest extends React.Component<Props> {
-  state = {
-    guest: null,
-    loading: true
-  };
-
+class DisplayGuest extends React.Component<Props> {
   goBack = (e: SyntheticEvent) => {
     e.preventDefault();
     this.props.history.goBack();
   };
 
   async componentDidMount() {
-    try {
-      const id = this.props.match.params.id;
-      const { guest } = await Guests.fetchGuest(id);
-      this.setState({ guest, loading: false });
-    } catch (e) {
-      console.error(e);
-    }
+    const id = this.props.match.params.id;
+    await Guests.fetchGuest(id);
   }
 
   render() {
-    const { guest }: any = this.state;
+    const { guest } = this.props;
     const title = guest
       ? `Guest: ${guest.firstName} ${guest.lastName}`
       : "Loading Guest";
@@ -47,3 +41,12 @@ export default class DisplayGuest extends React.Component<Props> {
     );
   }
 }
+
+function mapState(state: any) {
+  return {
+    guest: state.guests.entry,
+    loading: state.guests.loading
+  };
+}
+
+export default connect(mapState)(DisplayGuest);

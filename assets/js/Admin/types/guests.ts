@@ -19,7 +19,10 @@ export interface Guest {
 }
 
 export enum GuestActionType {
-  Fetch = "FETCH_GUESTS"
+  Fetch = "FETCH_GUESTS",
+  FetchOne = "FETCH_SINGLE_GUEST",
+  Mutation = "GUEST_MUTATION_SUCCESS",
+  MutationFailed = "GUEST_MUTATION_FAILED"
 }
 
 export enum Gender {
