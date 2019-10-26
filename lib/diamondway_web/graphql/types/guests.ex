@@ -1,6 +1,7 @@
 defmodule DiamondwayWeb.GraphQL.Types.Guests do
   use Absinthe.Schema.Notation
   alias Diamondway.Audits
+  alias Diamondway.Notes
 
   enum :gender do
     value(:male)
@@ -40,6 +41,12 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :audits, non_null(list_of(non_null(:audit))) do
       resolve(fn guest, _, _ ->
         {:ok, Audits.list_guest_audits(guest)}
+      end)
+    end
+
+    field :admin_notes, non_null(list_of(non_null(:note))) do
+      resolve(fn guest, _, _ ->
+        {:ok, Notes.list_guest_notes(guest)}
       end)
     end
 

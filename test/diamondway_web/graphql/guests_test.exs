@@ -13,6 +13,9 @@ defmodule DiamondwayWeb.GraphQL.GuestsTest do
         audits {
           guestName userName description timestamp
         }
+        adminNotes {
+          guestName userName body timestamp
+        }
       }
     }
   }

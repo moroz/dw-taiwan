@@ -19,6 +19,14 @@ defmodule Diamondway.Factory do
     }
   end
 
+  def note_factory do
+    %Diamondway.Notes.Note{
+      user: build(:user),
+      guest: build(:guest),
+      body: sequence(:note_text, &"Note text #{&1}")
+    }
+  end
+
   def user_factory do
     %Diamondway.Users.User{
       email: email(),

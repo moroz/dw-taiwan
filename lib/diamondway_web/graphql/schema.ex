@@ -8,6 +8,7 @@ defmodule DiamondwayWeb.GraphQL.Schema do
   import_types(Types.Guests)
   import_types(Types.Users)
   import_types(Types.Audits)
+  import_types(Types.Notes)
   import_types(Actions.Guests)
 
   object :cursor do

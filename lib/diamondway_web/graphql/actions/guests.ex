@@ -20,5 +20,11 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
       arg(:to_state, non_null(:guest_status))
       resolve(&Resolvers.Guests.transition_state/2)
     end
+
+    field :add_note, :guest_transition_response do
+      arg(:id, non_null(:id))
+      arg(:body, non_null(:string))
+      resolve(&Resolvers.Guests.add_note/2)
+    end
   end
 end

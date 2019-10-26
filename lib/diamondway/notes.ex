@@ -6,99 +6,33 @@ defmodule Diamondway.Notes do
   import Ecto.Query, warn: false
   alias Diamondway.Repo
 
+  alias Diamondway.Users.User
+  alias Diamondway.Guests.Guest
   alias Diamondway.Notes.Note
 
-  @doc """
-  Returns the list of notes.
-
-  ## Examples
-
-      iex> list_notes()
-      [%Note{}, ...]
-
-  """
-  def list_notes do
-    Repo.all(Note)
+  def list_guest_notes(%Guest{} = guest) do
+    from(g in Guest, where: g.id == ^guest.id)
+    |> join(:inner, [g], n in assoc(g, :admin_notes))
+    |> join(:inner, [g, n], u in assoc(n, :user))
+    |> order_by([g, n], desc: :inserted_at)
+    |> select([g, n, u], %{
+      timestamp: n.inserted_at,
+      body: n.body,
+      user_name: u.display_name,
+      guest_name: fragment("? || ' ' || ?", g.first_name, g.last_name)
+    })
+    |> Repo.all()
   end
 
-  @doc """
-  Gets a single note.
-
-  Raises `Ecto.NoResultsError` if the Note does not exist.
-
-  ## Examples
-
-      iex> get_note!(123)
-      %Note{}
-
-      iex> get_note!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_note!(id), do: Repo.get!(Note, id)
-
-  @doc """
-  Creates a note.
-
-  ## Examples
-
-      iex> create_note(%{field: value})
-      {:ok, %Note{}}
-
-      iex> create_note(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_note(attrs \\ %{}) do
+  def create_guest_note(%Guest{id: guest_id}, %User{id: user_id}, body) do
     %Note{}
-    |> Note.changeset(attrs)
+    |> Note.changeset(%{guest_id: guest_id, user_id: user_id, body: body})
     |> Repo.insert()
   end
 
-  @doc """
-  Updates a note.
+  def get_note!(id), do: Repo.get!(Note, id)
 
-  ## Examples
-
-      iex> update_note(note, %{field: new_value})
-      {:ok, %Note{}}
-
-      iex> update_note(note, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_note(%Note{} = note, attrs) do
-    note
-    |> Note.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a Note.
-
-  ## Examples
-
-      iex> delete_note(note)
-      {:ok, %Note{}}
-
-      iex> delete_note(note)
-      {:error, %Ecto.Changeset{}}
-
-  """
   def delete_note(%Note{} = note) do
     Repo.delete(note)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking note changes.
-
-  ## Examples
-
-      iex> change_note(note)
-      %Ecto.Changeset{source: %Note{}}
-
-  """
-  def change_note(%Note{} = note) do
-    Note.changeset(note, %{})
   end
 end
