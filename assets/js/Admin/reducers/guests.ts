@@ -39,6 +39,8 @@ export default function(
         ...state,
         loading: false,
         entry: null,
+        mutationMsg: null,
+        mutationSuccess: null,
         ...action.payload
       };
 
@@ -46,6 +48,8 @@ export default function(
       return {
         ...state,
         loading: false,
+        mutationMsg: null,
+        mutationSuccess: null,
         entry: action.payload
       };
 
