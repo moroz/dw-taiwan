@@ -18,9 +18,12 @@ select case
        else r."name" || ' (' || n."name" || ')'
            end "Living in/From",
        g.city "City",
+       to_char(g.inserted_at at time zone 'utc' at time zone 'Asia/Taipei', 'YYYY-MM-DD HH24:MI') as "Registered at",
        null as "Your remarks"
   from guests g
          join countries n on g.nationality_id = n.id
          join countries r on g.residence_id = r.id
          left join nz_ids ni on ni.id = g.id
- order by 2, 1, 3) ss) to '/Users/karol/Desktop/20191025_Taipei_guests.csv' csv header;
+         left join guests dg on (g.first_name || ' ' || g.last_name)::citext = (dg.first_name || ' ' || dg.last_name) and dg.id > g.id
+         where g.status != 4 and dg.id is null
+ order by 2, 1, 3) ss) to '/Users/karol/Desktop/20191027_Taipei_guests.csv' csv header;
