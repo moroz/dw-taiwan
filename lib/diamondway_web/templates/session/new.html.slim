@@ -7,7 +7,7 @@
       p Please sign in to your account.
       = render_flash @conn
       = form_for @conn, Routes.session_path(@conn, :create), [method: :post, class: "ui form"], fn f ->
-        = admin_text_field f, :email, "Email:"
+        = admin_text_field f, :email, label: "Email:", input_opts: [autofocus: true]
 
         .field
           label.label Password:

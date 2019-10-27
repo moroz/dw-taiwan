@@ -21,15 +21,24 @@ export default class GuestHelpers {
       case GuestStatus.Unverified:
         return "Not verified";
       case GuestStatus.Verified:
-        return "Identity verified";
+        return "Verified";
       case GuestStatus.Invited:
         return "Invited";
       case GuestStatus.Backup:
-        return "Backup List";
+        return "Backup";
       case GuestStatus.Canceled:
-        return "Rejected or canceled";
+        return "Canceled";
       case GuestStatus.Paid:
         return "Paid";
+    }
+  }
+
+  static statusClass(guest: Guest) {
+    switch (guest.status) {
+      case GuestStatus.Verified:
+        return "positive";
+      case GuestStatus.Canceled:
+        return "negative";
     }
   }
 

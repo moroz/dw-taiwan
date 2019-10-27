@@ -83,6 +83,7 @@ class GuestTable extends React.Component<Props> {
                 <thead>
                   <tr>
                     <th className="guest_table__id">ID</th>
+                    <th className="guest_table__status">Status</th>
                     <th>Name</th>
                     <th>Country</th>
                     <th>Sangha</th>

@@ -52,7 +52,7 @@ const GUEST_LIST_QUERY = `
 query guests($params: GuestSearchParams) {
   guests(params: $params) {
     entries {
-      firstName lastName id
+      firstName lastName id status
       residence nationality city
     }
     cursor {

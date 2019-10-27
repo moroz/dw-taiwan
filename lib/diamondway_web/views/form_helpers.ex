@@ -16,11 +16,15 @@ defmodule DiamondwayWeb.FormHelpers do
     end
   end
 
-  def admin_text_field(form, field, label \\ [], helper \\ []) do
+  def admin_text_field(form, field, opts \\ []) do
+    label = Keyword.get(opts, :label, [])
+    helper = Keyword.get(opts, :helper, [])
+    input_opts = Keyword.get(opts, :input_opts, [])
+
     content_tag :div, class: field_class(form, field) do
       [
         label(form, field, label),
-        text_input(form, field, class: "input"),
+        text_input(form, field, [class: "input"] ++ input_opts),
         maybe_helper_text(helper),
         ErrorHelpers.error_tag(form, field)
       ]
