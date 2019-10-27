@@ -50,7 +50,6 @@ class GuestActionButtons extends React.Component<Props> {
         );
     }
 
-    if (!buttons) return null;
     return (
       <div className="display_guest__actions">
         {buttons}
