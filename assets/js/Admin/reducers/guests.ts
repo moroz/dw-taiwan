@@ -52,7 +52,7 @@ export default function(
     case GuestActionType.Mutation:
       return {
         ...state,
-        mutationSuccess: true,
+        mutationSuccess: action.payload.success,
         mutationMsg: action.payload.message,
         entry: action.payload.guest || state.entry
       };

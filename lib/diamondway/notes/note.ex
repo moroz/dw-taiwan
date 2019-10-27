@@ -17,5 +17,9 @@ defmodule Diamondway.Notes.Note do
     note
     |> cast(attrs, @required)
     |> validate_required(@required)
+    |> unique_constraint(:body,
+      name: :notes_guest_id_body_index,
+      message: "There exists a note with the same content on this record."
+    )
   end
 end

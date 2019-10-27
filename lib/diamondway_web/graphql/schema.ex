@@ -28,4 +28,10 @@ defmodule DiamondwayWeb.GraphQL.Schema do
     import_fields(:guest_mutations)
     import_fields(:notes_mutations)
   end
+
+  def middleware(middleware, _field, %{identifier: :mutation}) do
+    middleware ++ [DiamondwayWeb.GraphQL.Middleware.TransformErrors]
+  end
+
+  def middleware(middleware, _field, _object), do: middleware
 end
