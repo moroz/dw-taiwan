@@ -17,7 +17,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     value(:paid)
   end
 
-  object :guest_transition_response do
+  object :guest_mutation_response do
     field :guest, :guest
     field :success, non_null(:boolean)
     field :message, :string

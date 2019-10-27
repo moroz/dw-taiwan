@@ -27,6 +27,17 @@ query guest($id: ID!) {
   guest(id: $id) { ...GuestDetails }
 }`;
 
+const ADD_GUEST_NOTE = `
+${GUEST_DETAILS}
+mutation createNote($guestId: ID!, $body: String!) {
+  createNote(guestId: $guestId, body: $body) {
+    success
+    guest { ...GuestDetails }
+    message
+  }
+}
+`;
+
 const CHANGE_GUEST_STATUS = `
 ${GUEST_DETAILS}
   mutation transitionGuestState($id: ID!, $toState: GuestStatus!) {
@@ -68,6 +79,13 @@ export default class Guests {
     }
   }
 
+  static handleError(e: Error) {
+    store.dispatch({
+      type: GuestActionType.MutationFailed,
+      payload: { message: `An error occurred: ${e.message}` }
+    });
+  }
+
   static async transitionGuest(id: id, toState: GuestStatus) {
     try {
       const { transition } = await client.query(CHANGE_GUEST_STATUS, {
@@ -79,6 +97,31 @@ export default class Guests {
           ? GuestActionType.Mutation
           : GuestActionType.MutationFailed,
         payload: transition
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  static async addNote(id: id) {
+    try {
+      const note = prompt("Please enter your remark and press [Enter].");
+      if (!note) {
+        store.dispatch({
+          type: GuestActionType.MutationFailed,
+          payload: {
+            message: "No text was entered."
+          }
+        });
+        return;
+      }
+      const { createNote } = await client.query(ADD_GUEST_NOTE, {
+        guestId: id,
+        body: note
+      });
+      store.dispatch({
+        type: GuestActionType.Mutation,
+        payload: createNote
       });
     } catch (e) {
       console.error(e);

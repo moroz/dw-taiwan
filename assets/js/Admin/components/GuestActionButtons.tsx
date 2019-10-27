@@ -25,6 +25,14 @@ function GuestButton({ toState, guest, className, label }: any) {
   );
 }
 
+function AddNoteButton({ guest }: any) {
+  return (
+    <button className="ui button teal" onClick={() => Guests.addNote(guest.id)}>
+      Add note
+    </button>
+  );
+}
+
 class GuestActionButtons extends React.Component<Props> {
   render() {
     const { guest } = this.props;
@@ -43,7 +51,12 @@ class GuestActionButtons extends React.Component<Props> {
     }
 
     if (!buttons) return null;
-    return <div className="display_guest__actions">{buttons}</div>;
+    return (
+      <div className="display_guest__actions">
+        {buttons}
+        <AddNoteButton guest={guest} />
+      </div>
+    );
   }
 }
 

@@ -4,7 +4,6 @@ import { Guest } from "../types/guests";
 import GuestDataField from "../components/GuestDataField";
 import GuestHelpers from "../helpers/GuestHelpers";
 import DateHelpers from "../helpers/DateHelpers";
-import DisplayGuest from "../views/DisplayGuest";
 
 interface Props {
   audits: Audit[];

@@ -15,13 +15,13 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
   end
 
   object :guest_mutations do
-    field :transition, :guest_transition_response do
+    field :transition, :guest_mutation_response do
       arg(:id, non_null(:id))
       arg(:to_state, non_null(:guest_status))
       resolve(&Resolvers.Guests.transition_state/2)
     end
 
-    field :add_note, :guest_transition_response do
+    field :add_note, :guest_mutation_response do
       arg(:id, non_null(:id))
       arg(:body, non_null(:string))
       resolve(&Resolvers.Guests.add_note/2)

@@ -55,7 +55,7 @@ export default function(
         ...state,
         mutationSuccess: action.payload.success,
         mutationMsg: action.payload.message,
-        entry: action.payload.guest
+        entry: action.payload.guest || state.entry
       };
 
     default:
