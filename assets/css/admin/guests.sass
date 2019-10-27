@@ -17,10 +17,18 @@
 p.audit
   margin: 0
 
-.guest_history__tz_info
+.guest_history__tz_info, p.admin_note__metadata
   color: #555
   font-size: .9em
   margin-top: .35em
+
+p.admin_note__metadata
+  margin-bottom: 0
+
+.admin_note
+  &:not(:last-child)
+    padding-bottom: .35em
+    border-bottom: $cell-border
 
 .display_guest__header
   display: flex

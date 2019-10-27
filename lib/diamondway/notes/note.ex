@@ -9,7 +9,7 @@ defmodule Diamondway.Notes.Note do
     belongs_to :user, Diamondway.Users.User
     belongs_to :guest, Diamondway.Guests.Guest
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   @doc false

@@ -1,5 +1,6 @@
 import { id } from "./common";
 import { Audit } from "./audits";
+import { AdminNote } from "./notes";
 
 export interface Guest {
   email: string;
@@ -14,6 +15,7 @@ export interface Guest {
   sex: Gender;
   status: GuestStatus;
   audits: Audit[];
+  adminNotes: AdminNote[];
   insertedAt: string;
   id: id;
 }

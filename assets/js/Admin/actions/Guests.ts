@@ -15,6 +15,9 @@ fragment GuestDetails on Guest {
   audits {
     userName description timestamp
   }
+  adminNotes {
+    userName body timestamp
+  }
 }
 `;
 

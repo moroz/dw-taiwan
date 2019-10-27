@@ -7,6 +7,7 @@ import GuestDataField from "./GuestDataField";
 import GuestHelpers from "../helpers/GuestHelpers";
 import GuestHistory from "../components/GuestHistory";
 import GuestActionButtons from "./GuestActionButtons";
+import AdminNotes from "./AdminNotes";
 
 interface Props {
   guest: Guest | null;
@@ -39,6 +40,7 @@ export default ({ guest, goBack }: Props) => {
       </CardSection>
       <CardSection twoColumns padded>
         <div>
+          <AdminNotes notes={guest.adminNotes} />
           <GuestDataField label="Sex">{GuestHelpers.sex(guest)}</GuestDataField>
           <GuestDataField label="Reference:">
             {guest.referenceName}

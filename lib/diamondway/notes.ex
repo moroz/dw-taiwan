@@ -14,7 +14,7 @@ defmodule Diamondway.Notes do
     from(g in Guest, where: g.id == ^guest.id)
     |> join(:inner, [g], n in assoc(g, :admin_notes))
     |> join(:inner, [g, n], u in assoc(n, :user))
-    |> order_by([g, n], desc: :inserted_at)
+    |> order_by([g, n], desc: n.inserted_at)
     |> select([g, n, u], %{
       timestamp: n.inserted_at,
       body: n.body,
