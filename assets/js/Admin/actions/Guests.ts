@@ -75,7 +75,7 @@ export default class Guests {
       const wrapper = document.getElementById("mainWrapper");
       wrapper && wrapper.scroll(0, 0);
     } catch (e) {
-      console.error(e);
+      this.handleError(e);
     }
   }
 
@@ -99,7 +99,7 @@ export default class Guests {
         payload: transition
       });
     } catch (e) {
-      console.error(e);
+      this.handleError(e);
     }
   }
 
@@ -124,7 +124,7 @@ export default class Guests {
         payload: createNote
       });
     } catch (e) {
-      console.error(e);
+      this.handleError(e);
     }
   }
 
@@ -136,7 +136,7 @@ export default class Guests {
         payload: guest
       });
     } catch (e) {
-      console.error(e);
+      this.handleError(e);
     }
   }
 }

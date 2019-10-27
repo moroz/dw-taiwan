@@ -50,10 +50,17 @@ export default function(
       };
 
     case GuestActionType.Mutation:
+      return {
+        ...state,
+        mutationSuccess: true,
+        mutationMsg: action.payload.message,
+        entry: action.payload.guest || state.entry
+      };
+
     case GuestActionType.MutationFailed:
       return {
         ...state,
-        mutationSuccess: action.payload.success,
+        mutationSuccess: false,
         mutationMsg: action.payload.message,
         entry: action.payload.guest || state.entry
       };
