@@ -36,6 +36,8 @@ export default class GuestHelpers {
   static statusClass(guest: Guest) {
     switch (guest.status) {
       case GuestStatus.Verified:
+      case GuestStatus.Invited:
+      case GuestStatus.Paid:
         return "positive";
       case GuestStatus.Canceled:
         return "negative";
