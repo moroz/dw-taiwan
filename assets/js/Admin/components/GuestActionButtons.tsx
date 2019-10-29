@@ -86,6 +86,17 @@ function guestButtons(guest: Guest) {
         </>
       );
 
+    case GuestStatus.Invited:
+      return (
+        <GuestButton
+          guest={guest}
+          className="negative"
+          label="Cancel registration"
+          toState={GuestStatus.Canceled}
+          confirm="Are you sure you want to cancel this registration?"
+        />
+      );
+
     case GuestStatus.Backup:
       return (
         <GuestButton
@@ -94,6 +105,17 @@ function guestButtons(guest: Guest) {
           toState={GuestStatus.Invited}
           confirm="Are you sure you want to invite this person?"
           label="Invite!"
+        />
+      );
+
+    case GuestStatus.Canceled:
+      return (
+        <GuestButton
+          guest={guest}
+          label="Revert cancelation"
+          className="positive"
+          confirm="Are you sure you want to revert cancelation?"
+          toState={GuestStatus.Verified}
         />
       );
   }

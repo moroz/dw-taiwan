@@ -23,7 +23,8 @@ defmodule Diamondway.Transitions do
 
   def message(old_state, new_state)
   def message(:unverified, :verified), do: "marked as verified"
-  def message(_, :invited), do: "invited to the course."
+  def message(:canceled, :verified), do: "reverted cancelation."
   def message(:verified, :backup), do: "moved them to the backup list."
+  def message(_, :invited), do: "invited to the course."
   def message(_, :canceled), do: "canceled the registration."
 end

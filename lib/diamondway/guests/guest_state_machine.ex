@@ -6,6 +6,7 @@ defmodule Diamondway.Guests.GuestStateMachine do
       invited: [:canceled, :paid],
       verified: [:backup, :invited, :canceled],
       backup: [:invited, :canceled],
-      paid: [:canceled]
+      paid: [:canceled],
+      canceled: [:verified]
     }
 end
