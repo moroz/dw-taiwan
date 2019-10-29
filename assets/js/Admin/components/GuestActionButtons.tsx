@@ -15,8 +15,15 @@ type ButtonColor =
   | "red"
   | "green";
 
-function GuestButton({ toState, guest, className, label }: any) {
-  const handler = () => Guests.transitionGuest(guest.id, toState);
+function GuestButton({ toState, guest, className, label, confirm }: any) {
+  const handler = () => {
+    if (confirm) {
+      if (!window.confirm(confirm)) {
+        return;
+      }
+    }
+    Guests.transitionGuest(guest.id, toState);
+  };
 
   return (
     <button className={`ui button ${className}`} onClick={handler}>
@@ -33,26 +40,72 @@ function AddNoteButton({ guest }: any) {
   );
 }
 
-class GuestActionButtons extends React.Component<Props> {
-  render() {
-    const { guest } = this.props;
-    if (!guest) return null;
-    let buttons = null;
-    switch (guest.status) {
-      case GuestStatus.Unverified:
-        buttons = (
+function guestButtons(guest: Guest) {
+  switch (guest.status) {
+    case GuestStatus.Unverified:
+      return (
+        <>
           <GuestButton
             guest={guest}
             className="positive"
             toState={GuestStatus.Verified}
             label="Mark verified"
           />
-        );
-    }
+          <GuestButton
+            guest={guest}
+            className="negative"
+            label="Cancel registration"
+            toState={GuestStatus.Canceled}
+            confirm="Are you sure you want to cancel this registration?"
+          />
+        </>
+      );
 
+    case GuestStatus.Verified:
+      return (
+        <>
+          <GuestButton
+            guest={guest}
+            className="blue"
+            toState={GuestStatus.Invited}
+            label="Invite!"
+          />
+          <GuestButton
+            guest={guest}
+            className="yellow"
+            toState={GuestStatus.Backup}
+            label="To backup list"
+          />
+          <GuestButton
+            guest={guest}
+            className="negative"
+            label="Cancel registration"
+            toState={GuestStatus.Canceled}
+            confirm="Are you sure you want to cancel this registration?"
+          />
+        </>
+      );
+
+    case GuestStatus.Backup:
+      return (
+        <GuestButton
+          guest={guest}
+          className="yellow"
+          toState={GuestStatus.Invited}
+          confirm="Are you sure you want to invite this person?"
+          label="Invite!"
+        />
+      );
+  }
+}
+
+class GuestActionButtons extends React.Component<Props> {
+  render() {
+    const { guest } = this.props;
+    if (!guest) return null;
     return (
       <div className="display_guest__actions">
-        {buttons}
+        {guestButtons(guest)}
         <AddNoteButton guest={guest} />
       </div>
     );
