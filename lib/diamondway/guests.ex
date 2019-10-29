@@ -15,8 +15,19 @@ defmodule Diamondway.Guests do
     Guest
     |> order_by([g], desc: :id)
     |> preload([g], [:residence, :nationality])
+    |> filter_by_params(params)
     |> Repo.paginate(params)
   end
+
+  defp filter_by_params(query, params) do
+    Enum.reduce(params, query, &do_filter_params/2)
+  end
+
+  defp do_filter_params({:status, status}, query) when not is_nil(status) do
+    from(g in query, where: g.status == ^status)
+  end
+
+  defp do_filter_params(_, query), do: query
 
   def count_guests(query \\ Guest) do
     from(g in query, select: count(g))
