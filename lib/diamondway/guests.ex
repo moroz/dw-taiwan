@@ -58,17 +58,22 @@ defmodule Diamondway.Guests do
   def send_confirmation_email(%{email_sent: true}), do: :noop
 
   def send_confirmation_email(guest) do
-    {:ok, _ref} =
-      guest
-      |> DiamondwayWeb.RegistrationEmail.confirmation()
-      |> DiamondwayWeb.Mailer.deliver()
+    user = Repo.get!(User, 3)
 
-    Repo.transaction(fn ->
-      user = Repo.get!(User, 3)
-      {:ok, updated} = mark_email_sent(guest)
-      Audits.create_guest_audit(guest, user, "sent out confirmation e-mail.")
-      updated
-    end)
+    guest
+    |> DiamondwayWeb.RegistrationEmail.confirmation()
+    |> DiamondwayWeb.Mailer.deliver()
+    |> case do
+      {:ok, _ref} ->
+        Repo.transaction(fn ->
+          {:ok, updated} = mark_email_sent(guest)
+          Audits.create_guest_audit(guest, user, "sent out confirmation e-mail.")
+          updated
+        end)
+
+      _ ->
+        Audits.create_guest_audit(guest, user, "email delivery failed.")
+    end
   end
 
   def mark_email_sent(%{email_sent: true} = guest), do: {:ok, guest}
