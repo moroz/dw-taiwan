@@ -88,13 +88,21 @@ function guestButtons(guest: Guest) {
 
     case GuestStatus.Invited:
       return (
-        <GuestButton
-          guest={guest}
-          className="negative"
-          label="Cancel registration"
-          toState={GuestStatus.Canceled}
-          confirm="Are you sure you want to cancel this registration?"
-        />
+        <>
+          <GuestButton
+            guest={guest}
+            className="yellow"
+            toState={GuestStatus.Backup}
+            label="To backup list"
+          />
+          <GuestButton
+            guest={guest}
+            className="negative"
+            label="Cancel registration"
+            toState={GuestStatus.Canceled}
+            confirm="Are you sure you want to cancel this registration?"
+          />
+        </>
       );
 
     case GuestStatus.Backup:

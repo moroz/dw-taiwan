@@ -3,7 +3,7 @@ defmodule Diamondway.Guests.GuestStateMachine do
     states: ~w(unverified verified invited backup canceled paid)a,
     transitions: %{
       unverified: [:verified, :invited, :backup, :canceled],
-      invited: [:canceled, :paid],
+      invited: [:canceled, :paid, :backup],
       verified: [:backup, :invited, :canceled],
       backup: [:invited, :canceled],
       paid: [:canceled],
