@@ -5,7 +5,9 @@ defmodule Diamondway.Guests do
 
   import Ecto.Query, warn: false
   alias Diamondway.Repo
+  alias Diamondway.Audits
   alias Diamondway.Guests.Guest
+  alias Diamondway.Users.User
 
   def list_guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
@@ -42,6 +44,17 @@ defmodule Diamondway.Guests do
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
 
+  def send_registration_email(%{email_sent: true}), do: :noop
+
+  def send_registration_email(guest) do
+    {:ok, _ref} =
+      guest
+      |> DiamondwayWeb.RegistrationEmail.registration()
+      |> DiamondwayWeb.Mailer.deliver()
+
+    mark_email_sent(guest)
+  end
+
   def send_confirmation_email(%{email_sent: true}), do: :noop
 
   def send_confirmation_email(guest) do
@@ -50,10 +63,15 @@ defmodule Diamondway.Guests do
       |> DiamondwayWeb.RegistrationEmail.confirmation()
       |> DiamondwayWeb.Mailer.deliver()
 
-    mark_email_sent(guest)
+    Repo.transaction(fn ->
+      user = Repo.get!(User, 3)
+      {:ok, updated} = mark_email_sent(guest)
+      Audits.create_guest_audit(guest, user, "sent out confirmation e-mail.")
+      updated
+    end)
   end
 
-  def mark_email_sent(%{email_sent: true}), do: :noop
+  def mark_email_sent(%{email_sent: true} = guest), do: {:ok, guest}
 
   def mark_email_sent(guest) do
     guest
@@ -70,7 +88,7 @@ defmodule Diamondway.Guests do
   def create_guest_and_send_email(attrs \\ %{}) do
     with {:ok, guest} <- create_guest(attrs) do
       Task.start(fn ->
-        send_confirmation_email(guest)
+        send_registration_email(guest)
       end)
 
       {:ok, guest}
