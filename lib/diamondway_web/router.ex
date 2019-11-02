@@ -45,6 +45,7 @@ defmodule DiamondwayWeb.Router do
       pipe_through :browser
 
       get "/email/registration", DiamondwayWeb.EmailController, :registration
+      get "/email/confirmation", DiamondwayWeb.EmailController, :confirmation
 
       forward("/mailbox", Plug.Swoosh.MailboxPreview, base_path: "/dev/mailbox")
     end

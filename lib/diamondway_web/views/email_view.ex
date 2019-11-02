@@ -4,6 +4,11 @@ defmodule DiamondwayWeb.EmailView do
 
   def brand_color, do: "#cd2030"
 
+  def letter_date do
+    Timex.now("Asia/Taipei")
+    |> Timex.format!("Taipei, {D} {Mfull} {YYYY}")
+  end
+
   def format_date(%module{} = date) when module in [NaiveDateTime, DateTime, Date] do
     date
     |> Timex.Timezone.convert("Asia/Taipei")
