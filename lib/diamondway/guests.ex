@@ -8,6 +8,8 @@ defmodule Diamondway.Guests do
   alias Diamondway.Audits
   alias Diamondway.Guests.Guest
   alias Diamondway.Users.User
+  alias DiamondwayWeb.RegistrationEmail
+  alias DiamondwayWeb.Mailer
 
   def list_guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
@@ -44,44 +46,46 @@ defmodule Diamondway.Guests do
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
 
-  def send_registration_email(%{email_sent: true}), do: :noop
-
-  def send_registration_email(guest) do
-    {:ok, _ref} =
-      guest
-      |> DiamondwayWeb.RegistrationEmail.registration()
-      |> DiamondwayWeb.Mailer.deliver()
-
-    mark_email_sent(guest)
-  end
-
-  def send_confirmation_email(%{email_sent: true}), do: :noop
-
-  def send_confirmation_email(guest) do
-    user = Repo.get!(User, 3)
-
-    guest
-    |> DiamondwayWeb.RegistrationEmail.confirmation()
-    |> DiamondwayWeb.Mailer.deliver()
-    |> case do
-      {:ok, _ref} ->
-        Repo.transaction(fn ->
-          {:ok, updated} = mark_email_sent(guest)
-          Audits.create_guest_audit(guest, user, "sent out confirmation e-mail.")
-          updated
-        end)
-
-      _ ->
-        Audits.create_guest_audit(guest, user, "email delivery failed.")
+  @email_types ~w(registration payment confirmation)a
+  def send_email(type, guest, user, force) when type in @email_types do
+    if email_sent?(guest, type) || force do
+      do_send_email(type, guest, user)
     end
   end
 
-  def mark_email_sent(%{email_sent: true} = guest), do: {:ok, guest}
+  defp do_send_email(type, guest, user) do
+    Repo.transaction(fn ->
+      email = RegistrationEmail.render_email(type, guest)
 
-  def mark_email_sent(guest) do
-    guest
-    |> Guest.changeset(%{email_sent: true})
-    |> Repo.update()
+      case Mailer.deliver_and_catch(email) do
+        {:ok, _ref} ->
+          {:ok, updated} = mark_email_sent(guest, type)
+          Audits.create_guest_audit(guest, user, "sent out #{type} e-mail.")
+          preload_countries(updated)
+
+        error ->
+          Audits.create_guest_audit(guest, user, "#{type} email delivery failed.")
+          error
+      end
+    end)
+  end
+
+  defp email_sent?(guest, email_type) when email_type in @email_types do
+    field = :"#{email_type}_sent"
+    Map.get(guest, field)
+  end
+
+  def mark_email_sent(guest, email_type) do
+    case email_sent?(guest, email_type) do
+      true ->
+        {:ok, guest}
+
+      _ ->
+        attrs = Map.new([{"#{email_type}_sent", true}])
+
+        Guest.changeset(guest, attrs)
+        |> Repo.update()
+    end
   end
 
   def create_guest(attrs \\ %{}) do
@@ -93,7 +97,7 @@ defmodule Diamondway.Guests do
   def create_guest_and_send_email(attrs \\ %{}) do
     with {:ok, guest} <- create_guest(attrs) do
       Task.start(fn ->
-        send_registration_email(guest)
+        do_send_email(:registration, guest, 1)
       end)
 
       {:ok, guest}

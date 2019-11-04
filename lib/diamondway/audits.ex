@@ -17,7 +17,11 @@ defmodule Diamondway.Audits do
   def get_audit!(id), do: Repo.get!(Audit, id)
 
   def create_guest_audit(%Guest{} = guest, %User{} = user, description) do
-    %{guest_id: guest.id, user_id: user.id, description: description}
+    create_guest_audit(guest, user.id, description)
+  end
+
+  def create_guest_audit(%Guest{} = guest, user_id, description) when is_integer(user_id) do
+    %{guest_id: guest.id, user_id: user_id, description: description}
     |> create_audit()
   end
 

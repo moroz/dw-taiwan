@@ -26,5 +26,12 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
       arg(:body, non_null(:string))
       resolve(&Resolvers.Guests.add_note/2)
     end
+
+    field :send_confirmation_email, :guest_mutation_response do
+      arg(:id, non_null(:id))
+      arg(:force, non_null(:boolean), default_value: false)
+      arg(:type, non_null(:email_type))
+      resolve(&Resolvers.Guests.send_confirmation_email/2)
+    end
   end
 end
