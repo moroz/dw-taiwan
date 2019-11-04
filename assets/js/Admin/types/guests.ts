@@ -27,6 +27,12 @@ export enum GuestActionType {
   MutationFailed = "GUEST_MUTATION_FAILED"
 }
 
+export enum EmailType {
+  Registration = "REGISTRATION",
+  Confirmation = "CONFIRMATION",
+  Payment = "PAYMENT"
+}
+
 export enum Gender {
   Male = "MALE",
   Female = "FEMALE"

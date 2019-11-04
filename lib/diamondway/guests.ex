@@ -46,10 +46,20 @@ defmodule Diamondway.Guests do
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
 
+  defp email_allowed?(type, guest)
+  defp email_allowed?(:registration, _), do: true
+  defp email_allowed?(_, guest), do: guest.status == :invited
+
   @email_types ~w(registration payment confirmation)a
   def send_email(type, guest, user, force) when type in @email_types do
     if email_sent?(guest, type) || force do
-      do_send_email(type, guest, user)
+      case email_allowed?(type, guest) do
+        true ->
+          do_send_email(type, guest, user)
+
+        _ ->
+          {:error, :illegal_email_type}
+      end
     end
   end
 
@@ -76,15 +86,13 @@ defmodule Diamondway.Guests do
   end
 
   def mark_email_sent(guest, email_type) do
-    case email_sent?(guest, email_type) do
-      true ->
-        {:ok, guest}
+    if email_sent?(guest, email_type) do
+      {:ok, guest}
+    else
+      attrs = Map.new([{"#{email_type}_sent", true}])
 
-      _ ->
-        attrs = Map.new([{"#{email_type}_sent", true}])
-
-        Guest.changeset(guest, attrs)
-        |> Repo.update()
+      Guest.changeset(guest, attrs)
+      |> Repo.update()
     end
   end
 
