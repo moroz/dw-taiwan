@@ -1,4 +1,4 @@
-import { Guest, Gender, GuestStatus } from "../types/guests";
+import { Guest, Gender, GuestStatus, EmailType } from "../types/guests";
 
 export default class GuestHelpers {
   static formatUnsafeNotes(unsafe: string): string {
@@ -10,6 +10,11 @@ export default class GuestHelpers {
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;")
       .replace(/\n/g, "<br/>");
+  }
+
+  static emailSent(guest: Guest, type: EmailType) {
+    const key = `${type.toLowerCase()}Sent` as keyof Guest;
+    return guest[key] as boolean;
   }
 
   static displayName(guest: Guest) {

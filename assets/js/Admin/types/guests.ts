@@ -7,6 +7,9 @@ export interface Guest {
   nationality: string;
   referenceName: string;
   referenceEmail: string;
+  registrationSent: boolean;
+  confirmationSent: boolean;
+  paymentSent: boolean;
   notes: string;
   firstName: string;
   lastName: string;
@@ -24,7 +27,10 @@ export enum GuestActionType {
   Fetch = "FETCH_GUESTS",
   FetchOne = "FETCH_SINGLE_GUEST",
   Mutation = "GUEST_MUTATION_SUCCESS",
-  MutationFailed = "GUEST_MUTATION_FAILED"
+  MutationFailed = "GUEST_MUTATION_FAILED",
+  TriggerEmailSend = "GUEST_TRIGGER_EMAIL_SENDING",
+  EmailSent = "GUEST_EMAIL_SENT",
+  EmailFailed = "GUEST_EMAIL_SENDING_FAILED"
 }
 
 export enum EmailType {

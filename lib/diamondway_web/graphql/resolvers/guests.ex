@@ -12,19 +12,6 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
     {:ok, Guests.get_guest(id)}
   end
 
-  def send_email(%{id: guest_id, force: force, type: type}, %{context: %{current_user: user}}) do
-    guest = Guests.get_guest!(guest_id)
-
-    case Guests.send_email(type, guest, user, force) do
-      {:ok, updated} ->
-        guest = Guests.preload_assocs(updated)
-        {:ok, %{success: true, guest: guest}}
-
-      {_, _, reason} ->
-        {:ok, %{success: false, message: reason, guest: guest}}
-    end
-  end
-
   def add_note(%{id: guest_id, body: body}, %{context: %{current_user: user}}) do
     guest = Guests.get_guest!(guest_id)
 

@@ -1,7 +1,13 @@
 import React from "react";
 import Guests from "../actions/Guests";
-import { Guest, GuestStatus } from "../types/guests";
+import {
+  Guest,
+  GuestStatus,
+  GuestActionType,
+  EmailType
+} from "../types/guests";
 import { connect } from "react-redux";
+import SendEmailButton from "./SendEmailButton";
 
 interface Props extends React.Props<GuestActionButtons> {
   guest: Guest | null;
@@ -102,6 +108,7 @@ function guestButtons(guest: Guest) {
             toState={GuestStatus.Canceled}
             confirm="Are you sure you want to cancel this registration?"
           />
+          <SendEmailButton emailType={EmailType.Confirmation} />
         </>
       );
 

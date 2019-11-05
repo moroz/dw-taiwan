@@ -6,60 +6,12 @@ import {
   GuestStatus
 } from "../types/guests";
 import { id } from "../types/common";
-
-const GUEST_DETAILS = `
-fragment GuestDetails on Guest {
-  id firstName lastName city residence nationality
-  notes email referenceName referenceEmail sex
-  status insertedAt
-  audits {
-    userName description timestamp
-  }
-  adminNotes {
-    userName body timestamp
-  }
-}
-`;
-
-const SINGLE_GUEST_QUERY = `
-${GUEST_DETAILS}
-query guest($id: ID!) {
-  guest(id: $id) { ...GuestDetails }
-}`;
-
-const ADD_GUEST_NOTE = `
-${GUEST_DETAILS}
-mutation createNote($guestId: ID!, $body: String!) {
-  createNote(guestId: $guestId, body: $body) {
-    success
-    guest { ...GuestDetails }
-    message
-  }
-}
-`;
-
-const CHANGE_GUEST_STATUS = `
-${GUEST_DETAILS}
-  mutation transitionGuestState($id: ID!, $toState: GuestStatus!) {
-    transition(id: $id, toState: $toState) {
-      success message
-      guest { ...GuestDetails }
-    }
-  }
-`;
-
-const GUEST_LIST_QUERY = `
-query guests($params: GuestSearchParams) {
-  guests(params: $params) {
-    entries {
-      firstName lastName id status
-      residence nationality city
-    }
-    cursor {
-      totalEntries totalPages page pageSize
-    }
-  }
-}`;
+import {
+  ADD_GUEST_NOTE,
+  CHANGE_GUEST_STATUS,
+  GUEST_LIST_QUERY,
+  SINGLE_GUEST_QUERY
+} from "../graphql/queries/guestQueries";
 
 export default class Guests {
   static async fetchGuests(params?: IGuestSearchParams) {

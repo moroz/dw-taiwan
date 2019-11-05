@@ -7,6 +7,7 @@ interface IGuestReducerState {
   cursor: Cursor | null;
   loading: boolean;
   params: IGuestSearchParams;
+  emailSending: boolean;
   mutationSuccess: boolean | null;
   mutationMsg: string | null;
 }
@@ -21,6 +22,7 @@ const initialState: IGuestReducerState = {
   entry: null,
   cursor: null,
   loading: true,
+  emailSending: false,
   mutationMsg: null,
   mutationSuccess: null,
   params: {
@@ -41,6 +43,7 @@ export default function(
         entry: null,
         mutationMsg: null,
         mutationSuccess: null,
+        emailSending: false,
         ...action.payload
       };
 
@@ -50,23 +53,34 @@ export default function(
         loading: false,
         mutationMsg: null,
         mutationSuccess: null,
+        emailSending: false,
         entry: action.payload
       };
 
     case GuestActionType.Mutation:
+    case GuestActionType.EmailSent:
       return {
         ...state,
         mutationSuccess: action.payload.success,
         mutationMsg: action.payload.message,
+        emailSending: false,
         entry: action.payload.guest || state.entry
       };
 
     case GuestActionType.MutationFailed:
+    case GuestActionType.EmailFailed:
       return {
         ...state,
         mutationSuccess: false,
         mutationMsg: action.payload.message,
-        entry: action.payload.guest || state.entry
+        entry: action.payload.guest || state.entry,
+        emailSending: false
+      };
+
+    case GuestActionType.TriggerEmailSend:
+      return {
+        ...state,
+        emailSending: true
       };
 
     default:
