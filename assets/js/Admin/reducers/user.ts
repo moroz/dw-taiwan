@@ -1,6 +1,6 @@
 import { User, UserActionType, UserAction } from "../types/users";
 
-interface IUserReducerState {
+export interface IUserReducerState {
   user: User | null;
 }
 

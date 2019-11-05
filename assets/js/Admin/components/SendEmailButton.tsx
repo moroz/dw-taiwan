@@ -3,6 +3,7 @@ import { Guest, EmailType, GuestStatus } from "../types/guests";
 import Emails from "../actions/Emails";
 import { connect } from "react-redux";
 import GuestHelpers from "../helpers/GuestHelpers";
+import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<SendEmailButton> {
   guest: Guest | null;
@@ -50,7 +51,7 @@ class SendEmailButton extends React.Component<Props> {
   }
 }
 
-function mapState(state) {
+function mapState(state: IReduxState) {
   return {
     guest: state.guests.entry,
     sending: state.guests.emailSending

@@ -8,6 +8,7 @@ import {
 } from "../types/guests";
 import { connect } from "react-redux";
 import SendEmailButton from "./SendEmailButton";
+import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<GuestActionButtons> {
   guest: Guest | null;
@@ -149,7 +150,7 @@ class GuestActionButtons extends React.Component<Props> {
   }
 }
 
-function mapState(state: any) {
+function mapState(state: IReduxState) {
   return {
     guest: state.guests.entry
   };

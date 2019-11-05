@@ -8,6 +8,7 @@ import { Guest } from "../types/guests";
 import Guests from "../actions/Guests";
 import { connect } from "react-redux";
 import Message, { LogLevel } from "../components/Message";
+import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<DisplayGuest> {
   history: History;
@@ -49,7 +50,7 @@ class DisplayGuest extends React.Component<Props> {
   }
 }
 
-function mapState(state: any) {
+function mapState(state: IReduxState) {
   return {
     guest: state.guests.entry,
     loading: state.guests.loading,

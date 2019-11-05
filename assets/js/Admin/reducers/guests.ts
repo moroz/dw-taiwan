@@ -1,14 +1,14 @@
 import { Guest, GuestAction, GuestActionType } from "../types/guests";
 import { Cursor } from "../types/common";
 
-interface IGuestReducerState {
+export interface IGuestReducerState {
   entries: Guest[];
   entry: Guest | null;
   cursor: Cursor | null;
   loading: boolean;
   params: IGuestSearchParams;
   emailSending: boolean;
-  mutationSuccess: boolean | null;
+  mutationSuccess: boolean;
   mutationMsg: string | null;
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { User } from "../types/users";
+import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<SidebarProfile> {
   user: User | null;
@@ -29,7 +30,7 @@ class SidebarProfile extends React.Component<Props> {
   };
 }
 
-function mapState(state: any) {
+function mapState(state: IReduxState) {
   return {
     user: state.user.user
   };
