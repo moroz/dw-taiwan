@@ -44,8 +44,9 @@ defmodule DiamondwayWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      get "/email/registration", DiamondwayWeb.EmailController, :registration
-      get "/email/confirmation", DiamondwayWeb.EmailController, :confirmation
+      for email <- ~w(registration confirmation backup)a do
+        get "/email/#{email}", DiamondwayWeb.EmailController, email
+      end
 
       forward("/mailbox", Plug.Swoosh.MailboxPreview, base_path: "/dev/mailbox")
     end

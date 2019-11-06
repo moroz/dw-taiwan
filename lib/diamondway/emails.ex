@@ -6,11 +6,14 @@ defmodule Diamondway.Emails do
   alias DiamondwayWeb.RegistrationEmail
   alias DiamondwayWeb.Mailer
 
+  email_types = Application.get_env(:diamondway, Diamondway.Emails) |> Keyword.get(:email_types)
+  @email_types email_types
+
   defp email_allowed?(type, guest)
   defp email_allowed?(:registration, _), do: true
+  defp email_allowed?(:backup, guest), do: guest.status == :backup
   defp email_allowed?(_, guest), do: guest.status == :invited
 
-  @email_types ~w(registration payment confirmation)a
   def send_email(type, guest, user, force) when type in @email_types do
     if !email_sent?(guest, type) || force do
       case email_allowed?(type, guest) do

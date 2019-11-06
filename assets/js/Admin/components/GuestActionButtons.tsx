@@ -115,13 +115,16 @@ function guestButtons(guest: Guest) {
 
     case GuestStatus.Backup:
       return (
-        <GuestButton
-          guest={guest}
-          className="yellow"
-          toState={GuestStatus.Invited}
-          confirm="Are you sure you want to invite this person?"
-          label="Invite!"
-        />
+        <>
+          <GuestButton
+            guest={guest}
+            className="yellow"
+            toState={GuestStatus.Invited}
+            confirm="Are you sure you want to invite this person?"
+            label="Invite!"
+          />
+          <SendEmailButton emailType={EmailType.Backup} />
+        </>
       );
 
     case GuestStatus.Canceled:

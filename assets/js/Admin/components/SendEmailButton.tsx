@@ -38,7 +38,7 @@ class SendEmailButton extends React.Component<Props> {
 
   render() {
     const { guest, sending } = this.props;
-    if (!guest || guest.status !== GuestStatus.Invited) return null;
+    if (!guest) return null;
     return (
       <button
         className={this.colorClass()}

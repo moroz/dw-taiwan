@@ -20,8 +20,7 @@ defmodule DiamondwayWeb.EmailView do
       align: "center",
       style:
         "background-color: #fde3e4; color: #af0e14; text-align: center; padding: 12px; margin-top: 0;" do
-      {:safe,
-       "This message has been sent automatically.<br/>Please don&rsquo;t answer it directly."}
+      {:safe, "This message has been sent automatically."}
     end
   end
 

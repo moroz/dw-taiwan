@@ -12,6 +12,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     value(:registration)
     value(:confirmation)
     value(:payment)
+    value(:backup)
   end
 
   enum :guest_status do
@@ -47,6 +48,7 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
     field :registration_sent, non_null(:boolean)
     field :confirmation_sent, non_null(:boolean)
     field :payment_sent, non_null(:boolean)
+    field :backup_sent, non_null(:boolean)
 
     field :audits, non_null(list_of(non_null(:audit))) do
       resolve(fn guest, _, _ ->

@@ -2,7 +2,7 @@ export const GUEST_DETAILS = `
 fragment GuestDetails on Guest {
   id firstName lastName city residence nationality
   notes email referenceName referenceEmail sex
-  status insertedAt confirmationSent
+  status insertedAt confirmationSent backupSent
   audits {
     userName description timestamp
   }

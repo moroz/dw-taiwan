@@ -7,6 +7,7 @@ export interface Guest {
   nationality: string;
   referenceName: string;
   referenceEmail: string;
+  backupSent: boolean;
   registrationSent: boolean;
   confirmationSent: boolean;
   paymentSent: boolean;
@@ -34,6 +35,7 @@ export enum GuestActionType {
 }
 
 export enum EmailType {
+  Backup = "BACKUP",
   Registration = "REGISTRATION",
   Confirmation = "CONFIRMATION",
   Payment = "PAYMENT"

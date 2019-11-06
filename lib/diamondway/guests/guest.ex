@@ -7,7 +7,7 @@ defmodule Diamondway.Guests.Guest do
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++
-         ~w(single_person_registration travel_insurance visa_requirements notes registration_sent confirmation_sent payment_sent)a
+         ~w(single_person_registration travel_insurance visa_requirements notes registration_sent confirmation_sent payment_sent backup_sent)a
 
   schema "guests" do
     field :city, :string
@@ -19,6 +19,7 @@ defmodule Diamondway.Guests.Guest do
     field :phone, :string
     field :registration_sent, :boolean
     field :confirmation_sent, :boolean
+    field :backup_sent, :boolean
     field :payment_sent, :boolean
 
     field :sex, Diamondway.Enums.GuestSex
