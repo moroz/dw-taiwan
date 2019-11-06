@@ -66,6 +66,7 @@ defmodule Diamondway.MixProject do
       {:swoosh, "~> 0.23"},
       {:gen_smtp, "~> 0.14"},
       {:phoenix_swoosh, "~> 0.2"},
+      {:sweet_xml, "~> 0.6.6"},
 
       # Deployment
       {:distillery, "~> 2.1"},
