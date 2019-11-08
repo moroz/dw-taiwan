@@ -1,7 +1,11 @@
 .ui.guest_table
   table-layout: fixed
   max-width: $normal-content-width + 200px
-  margin: .5rem 1rem 1rem 0
+  margin: .5rem 1rem 3rem 0
+
+@-moz-document url-prefix()
+  .ui.guest_table
+    margin-bottom: 4rem
 
 .ui.table .guest_table__id
   text-align: center

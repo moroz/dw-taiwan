@@ -1,7 +1,9 @@
 .admin
   height: 100vh
   width: 100vw
-  display: flex
+  display: grid
+  grid-template-columns: $side-width 1fr
+  grid-template-rows: $top-height 1fr
   overflow: hidden
 
 .admin__left,
@@ -17,10 +19,6 @@
 .admin__main
   flex: 1
   width: 100%
-
-@-moz-document url-prefix()
-  .admin__main > :last-child
-    margin-bottom: 1rem !important
 
 .admin__main
   overflow-y: auto

@@ -28,11 +28,13 @@ export default class MahamudraAdmin extends React.Component {
             </div>
             <div className="admin__right">
               <Topbar title="Waiting List"></Topbar>
-              <Switch>
-                <Route exact path="/" component={GuestTable} />
-                <Route exact path="/help" component={Help} />
-                <Route exact path="/guests/:id" component={DisplayGuest} />
-              </Switch>
+              <main className="admin__main" id="mainWrapper">
+                <Switch>
+                  <Route exact path="/" component={GuestTable} />
+                  <Route exact path="/help" component={Help} />
+                  <Route exact path="/guests/:id" component={DisplayGuest} />
+                </Switch>
+              </main>
             </div>
           </div>
         </Router>

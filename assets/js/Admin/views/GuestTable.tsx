@@ -72,36 +72,34 @@ class GuestTable extends React.Component<Props> {
     const { loading, entries, history, cursor } = this.props;
     return (
       <>
-        <MainWrapper>
-          {loading ? (
-            <Loader></Loader>
-          ) : (
-            <>
-              <h2>Guest List</h2>
-              <PageDescription cursor={cursor} />
-              <table className="ui table celled guest_table hoverable">
-                <thead>
-                  <tr>
-                    <th className="guest_table__id">ID</th>
-                    <th className="guest_table__status">Status</th>
-                    <th>Name</th>
-                    <th>Country</th>
-                    <th>Sangha</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {entries.map(guest => (
-                    <GuestRow
-                      guest={guest}
-                      key={`guest-${guest.id}`}
-                      onClick={() => this.handleNavigate(guest.id)}
-                    />
-                  ))}
-                </tbody>
-              </table>
-            </>
-          )}
-        </MainWrapper>
+        {loading ? (
+          <Loader></Loader>
+        ) : (
+          <>
+            <h2>Guest List</h2>
+            <PageDescription cursor={cursor} />
+            <table className="ui table celled guest_table hoverable">
+              <thead>
+                <tr>
+                  <th className="guest_table__id">ID</th>
+                  <th className="guest_table__status">Status</th>
+                  <th>Name</th>
+                  <th>Country</th>
+                  <th>Sangha</th>
+                </tr>
+              </thead>
+              <tbody>
+                {entries.map(guest => (
+                  <GuestRow
+                    guest={guest}
+                    key={`guest-${guest.id}`}
+                    onClick={() => this.handleNavigate(guest.id)}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
         <GuestPagination cursor={this.props.cursor} history={history} />
       </>
     );

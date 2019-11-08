@@ -40,9 +40,7 @@ class DisplayGuest extends React.Component<Props> {
           message={message}
           level={success ? LogLevel.Success : LogLevel.Error}
         />
-        <MainWrapper>
-          <GuestCard guest={guest} goBack={this.goBack} />
-        </MainWrapper>
+        <GuestCard guest={guest} goBack={this.goBack} />
       </>
     );
   }
