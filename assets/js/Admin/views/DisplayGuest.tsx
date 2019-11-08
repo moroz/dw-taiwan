@@ -1,6 +1,5 @@
 import React, { SyntheticEvent } from "react";
 import { History } from "history";
-import Topbar from "../layout/Topbar";
 import MainWrapper from "../layout/MainWrapper";
 import GuestCard from "../components/GuestCard";
 import { match } from "react-router";
@@ -37,7 +36,6 @@ class DisplayGuest extends React.Component<Props> {
       : "Loading Guest";
     return (
       <>
-        <Topbar title={title} />
         <Message
           message={message}
           level={success ? LogLevel.Success : LogLevel.Error}

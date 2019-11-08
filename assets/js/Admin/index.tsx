@@ -9,6 +9,7 @@ import store from "./store";
 import Help from "./views/Help";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Topbar from "./layout/Topbar";
 
 export default class MahamudraAdmin extends React.Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ export default class MahamudraAdmin extends React.Component {
               <SidebarFooter />
             </div>
             <div className="admin__right">
+              <Topbar title="Waiting List"></Topbar>
               <Switch>
                 <Route exact path="/" component={GuestTable} />
                 <Route exact path="/help" component={Help} />

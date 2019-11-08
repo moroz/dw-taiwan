@@ -6,7 +6,6 @@ import CardSection from "../components/CardSection";
 export default function(_props: any) {
   return (
     <>
-      <Topbar title="Read This First" />
       <MainWrapper>
         <div className="card ui help card--normal-size">
           <CardSection padded>

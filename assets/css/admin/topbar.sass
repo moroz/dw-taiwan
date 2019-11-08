@@ -1,0 +1,43 @@
+$search-blurred-alpha: .5
+$search-focus-alpha: 1
+
+.admin__topbar
+  height: $top-height
+  background: $admin-bars-bg
+  padding: 0
+
+.topbar__search
+  display: grid
+  height: $top-height
+  align-items: center
+  align-content: center
+  grid-template-columns: 65px 1fr
+
+.topbar__search__input
+  border: none
+  height: $top-height
+  font-weight: 300
+  font-size: 1.5rem
+  vertical-align: baseline
+  background: transparent
+  color: #fff
+  grid-row: 1
+  grid-column: 2
+
+  &:focus + .topbar__search__icon
+    opacity: $search-focus-alpha
+
+  + .topbar__search__icon
+    opacity: $search-blurred-alpha
+
+  &::placeholder
+    color: white
+    opacity: $search-blurred-alpha
+
+.topbar__search__icon
+  width: 25px
+  grid-column: 1
+  justify-self: center
+  grid-row: 1
+  grid-column: 1
+  transition: .2s ease-in-out

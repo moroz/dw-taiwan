@@ -72,12 +72,12 @@ class GuestTable extends React.Component<Props> {
     const { loading, entries, history, cursor } = this.props;
     return (
       <>
-        <Topbar title="Waiting List"></Topbar>
         <MainWrapper>
           {loading ? (
             <Loader></Loader>
           ) : (
             <>
+              <h2>Guest List</h2>
               <PageDescription cursor={cursor} />
               <table className="ui table celled guest_table hoverable">
                 <thead>
