@@ -30,8 +30,8 @@ defmodule Diamondway.Guests do
     query
     |> where(
       [g],
-      ilike(fragment("? || ' ' || ?", g.first_name, g.last_name), ^phrase) or
-        ilike(g.city, ^phrase) or ilike(g.email, ^phrase)
+      fragment("unaccent(? || ' ' || ?) ilike unaccent(?)", g.first_name, g.last_name, ^phrase) or
+        fragment("unaccent(?) ilike unaccent(?)", g.city, ^phrase) or ilike(g.email, ^phrase)
     )
   end
 
