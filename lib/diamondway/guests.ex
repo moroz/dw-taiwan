@@ -26,7 +26,13 @@ defmodule Diamondway.Guests do
 
   defp do_filter_params({:term, term}, query) when term != "" and is_binary(term) do
     phrase = "%#{term}%"
-    from(g in query, where: ilike(fragment("? || ' ' || ?", g.first_name, g.last_name), ^phrase))
+
+    query
+    |> where(
+      [g],
+      ilike(fragment("? || ' ' || ?", g.first_name, g.last_name), ^phrase) or
+        ilike(g.city, ^phrase) or ilike(g.email, ^phrase)
+    )
   end
 
   defp do_filter_params({:status, status}, query) when not is_nil(status) do
