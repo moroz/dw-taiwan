@@ -8,6 +8,8 @@ interface Props {
 export default function({ cursor }: Props) {
   if (!cursor) return null;
   const { page, totalEntries, pageSize } = cursor;
+  if (!totalEntries)
+    return <p className="page_description">No entries found.</p>;
   const lastNumber =
     page * pageSize > totalEntries ? totalEntries : page * pageSize;
   return (

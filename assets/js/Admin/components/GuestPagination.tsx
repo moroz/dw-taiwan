@@ -2,6 +2,7 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import { Cursor } from "../types/common";
 import { History } from "history";
+import Search from "../actions/Search";
 
 interface Props extends React.Props<GuestPagination> {
   cursor: Cursor | null;
@@ -12,7 +13,7 @@ export default class GuestPagination extends React.Component<Props> {
   handlePageChange = (data: any) => {
     let page = data.selected;
     if (typeof page !== "number") page = 0;
-    this.props.history.push(`/?page=${page + 1}`);
+    Search.setSearchParams({ page: page + 1 }, this.props.history);
   };
 
   render() {
@@ -26,6 +27,7 @@ export default class GuestPagination extends React.Component<Props> {
         activeLinkClassName="active"
         previousLinkClassName="item"
         nextLinkClassName="item"
+        forcePage={pageNumber - 1}
         breakLinkClassName="item"
         initialPage={pageNumber - 1}
         pageCount={totalPages}

@@ -8,6 +8,8 @@ import GuestHelpers from "../helpers/GuestHelpers";
 import GuestHistory from "../components/GuestHistory";
 import GuestActionButtons from "./GuestActionButtons";
 import AdminNotes from "./AdminNotes";
+import { Link } from "react-router-dom";
+import Search from "../actions/Search";
 
 interface Props {
   guest: Guest | null;
@@ -20,7 +22,7 @@ export default ({ guest, goBack }: Props) => {
     <div className="card ui display_guest">
       <CardSection padded className="display_guest__header">
         <div>
-          <a onClick={goBack}>&lt;&lt; Back to list</a>
+          <Link to={Search.paramsToUrl()}>&lt;&lt; Back to list</Link>
           <h1>
             {guest.firstName} {guest.lastName}, {guest.residence} (#{guest.id})
           </h1>

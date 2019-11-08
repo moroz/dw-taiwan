@@ -11,9 +11,15 @@
     border-radius: 0 !important
     border: 1px solid #eee
 
+    &:focus
+      outline: none
+
 .page_description
   font-size: 1.2em
   margin-bottom: 0
 
   strong
     font-size: 1em
+
+.ui.pagination.menu .active.item
+  background: transparentize($blue, .75)

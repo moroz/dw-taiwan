@@ -5,7 +5,6 @@ defmodule Diamondway.Guests do
 
   import Ecto.Query, warn: false
   alias Diamondway.Repo
-  alias Diamondway.Audits
   alias Diamondway.Guests.Guest
   alias Diamondway.Emails
 
@@ -23,6 +22,11 @@ defmodule Diamondway.Guests do
 
   defp filter_by_params(query, params) do
     Enum.reduce(params, query, &do_filter_params/2)
+  end
+
+  defp do_filter_params({:term, term}, query) when term != "" and is_binary(term) do
+    phrase = "%#{term}%"
+    from(g in query, where: ilike(fragment("? || ' ' || ?", g.first_name, g.last_name), ^phrase))
   end
 
   defp do_filter_params({:status, status}, query) when not is_nil(status) do

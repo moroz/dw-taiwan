@@ -6,15 +6,13 @@ export interface IGuestReducerState {
   entry: Guest | null;
   cursor: Cursor | null;
   loading: boolean;
-  params: IGuestSearchParams;
   emailSending: boolean;
-  mutationSuccess: boolean;
-  mutationMsg: string | null;
+  params: SearchParams;
 }
 
-interface IGuestSearchParams {
-  name?: string;
-  page?: number | string;
+export interface SearchParams {
+  term?: string;
+  page?: number;
 }
 
 const initialState: IGuestReducerState = {
@@ -23,11 +21,9 @@ const initialState: IGuestReducerState = {
   cursor: null,
   loading: true,
   emailSending: false,
-  mutationMsg: null,
-  mutationSuccess: null,
   params: {
-    name: "",
-    page: ""
+    term: "",
+    page: 1
   }
 };
 
@@ -41,18 +37,21 @@ export default function(
         ...state,
         loading: false,
         entry: null,
-        mutationMsg: null,
-        mutationSuccess: null,
         emailSending: false,
         ...action.payload
+      };
+
+    case GuestActionType.SetParams:
+      return {
+        ...state,
+        params: action.payload,
+        loading: true
       };
 
     case GuestActionType.FetchOne:
       return {
         ...state,
         loading: false,
-        mutationMsg: null,
-        mutationSuccess: null,
         emailSending: false,
         entry: action.payload
       };
@@ -61,8 +60,6 @@ export default function(
     case GuestActionType.EmailSent:
       return {
         ...state,
-        mutationSuccess: action.payload.success,
-        mutationMsg: action.payload.message,
         emailSending: false,
         entry: action.payload.guest || state.entry
       };
@@ -71,8 +68,6 @@ export default function(
     case GuestActionType.EmailFailed:
       return {
         ...state,
-        mutationSuccess: false,
-        mutationMsg: action.payload.message,
         entry: action.payload.guest || state.entry,
         emailSending: false
       };

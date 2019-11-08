@@ -11,7 +11,7 @@ interface Props extends React.Props<FlashMessages> {
 class FlashMessages extends React.Component<Props> {
   render() {
     const { message, success } = this.props;
-    if (!message) return;
+    if (!message) return null;
     const level = success ? LogLevel.Success : LogLevel.Error;
     return <Message message={message} level={level} />;
   }

@@ -89,8 +89,8 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
   end
 
   input_object :guest_search_params do
-    field :name, :string
-    field :page, :integer
+    field :term, :string
+    field :page, :id
     field :status, :guest_status
   end
 end

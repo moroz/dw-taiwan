@@ -17,7 +17,14 @@ export default function(
     case GuestActionType.MutationFailed:
     case GuestActionType.EmailFailed:
       return { ...state, success: false, message: action.payload.message };
+    case GuestActionType.Mutation:
+    case GuestActionType.EmailSent:
+      return {
+        ...state,
+        success: action.payload.success,
+        message: action.payload.message || "Success!"
+      };
     default:
-      return state;
+      return initialState; // sic
   }
 }

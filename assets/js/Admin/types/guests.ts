@@ -31,7 +31,8 @@ export enum GuestActionType {
   MutationFailed = "GUEST_MUTATION_FAILED",
   TriggerEmailSend = "GUEST_TRIGGER_EMAIL_SENDING",
   EmailSent = "GUEST_EMAIL_SENT",
-  EmailFailed = "GUEST_EMAIL_SENDING_FAILED"
+  EmailFailed = "GUEST_EMAIL_SENDING_FAILED",
+  SetParams = "CHANGE_GUEST_SEARCH_PARAMS"
 }
 
 export enum EmailType {
@@ -61,6 +62,6 @@ export type GuestAction = {
 };
 
 export interface IGuestSearchParams {
-  name?: string;
+  term?: string;
   page?: number | string;
 }
