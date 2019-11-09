@@ -9,8 +9,7 @@ defmodule DiamondwayWeb.RegistrationEmail do
     guest = Guests.preload_countries(guest)
 
     new()
-    |> from({"Diamond Way Group Taipei", "no-reply@mahamudra.taipei"})
-    |> reply_to({"Diamond Way Group Taipei", "info@mahamudra.taipei"})
+    |> from({"Diamond Way Buddhism Taipei", "info@mahamudra.taipei"})
     |> to({"#{guest.first_name} #{guest.last_name}", guest.email})
   end
 

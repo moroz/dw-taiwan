@@ -3,6 +3,7 @@ defmodule DiamondwayWeb.EmailView do
   import DiamondwayWeb.GuestHelpers
 
   def brand_color, do: "#cd2030"
+  def body_bg, do: "#F8F8F8"
 
   def letter_date do
     Timex.now("Asia/Taipei")
@@ -20,7 +21,14 @@ defmodule DiamondwayWeb.EmailView do
       align: "center",
       style:
         "background-color: #fde3e4; color: #af0e14; text-align: center; padding: 12px; margin-top: 0;" do
-      {:safe, "This message has been sent automatically."}
+      {:safe, "Note: This message has been sent automatically."}
+    end
+  end
+
+  def disclaimer do
+    content_tag :p, align: "center", style: "font-size: .85em; margin-top: 2.5em; color: #555" do
+      {:safe,
+       "You are receiving this email because you have registered for the 2020 Mahamudra Course with Lama Ole Nydahl in Taipei, Taiwan. If you would like to be removed from the database, please <a href=\"mailto:info@mahamudra.taipei\">let us know</a>."}
     end
   end
 
@@ -33,7 +41,7 @@ defmodule DiamondwayWeb.EmailView do
   end
 
   def font(:sans) do
-    "-apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;"
+    "'Open Sans', 'Source Sans Pro', 'Myriad Pro', -apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;"
   end
 
   def font(:serif) do

@@ -1,11 +1,10 @@
 = header("Application Rejected")
-<%= auto_msg_warning() %>
 div style="line-height: 1.6; padding: 0 8px"
   p style="text-align: right; margin-bottom: 0; margin-right: 2em"
     = letter_date()
 
   p style="text-indent: 2em; margin-bottom: 0; margin-top: 1em"
-    | Dear #{@guest.first_name},
+    | Dear #{title(@guest)} #{full_name(@guest)},
 
   p style="text-indent: 2em; margin-top: .5em"
     | Due to the fact that the we already have more friends on the guest list that we can possibly fit in our lecture hall, we are afraid we have to reject your application for the <strong>Mahamudra Course with Lama Ole Nydahl</strong> in Taipei.

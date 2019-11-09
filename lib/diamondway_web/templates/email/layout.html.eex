@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= @email.subject %></title>
 </head>
-<body style="margin: 0; padding: 0; background: #f1f4f5;" bgcolor="#F1F4F5">
-  <table bgcolor="#F1F4F5" border="0" width="100%" style="width: 100%; background-color: #f1f4f5; border: none;">
+<body style="margin: 0; padding: 0; background: <%= body_bg() %>;" bgcolor="<%= body_bg() %>">
+  <table bgcolor="<%= body_bg() %>" border="0" width="100%" style="width: 100%; background-color: <%= body_bg() %>; border: none;">
     <tr>
       <td>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="#F1F4F5" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 18px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="<%= body_bg() %>" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 18px;">
           <tr>
             <td class="spacer" style="height: 30px;"></td>
           </tr>
@@ -21,7 +21,9 @@
     </tr>
     <tr>
       <td class="container" bgcolor="#FFFFFF" style="padding: 20px; border-top: 2px solid <%= brand_color() %>;">
+        <%= auto_msg_warning() %>
         <%= render @view_module, @view_template, assigns %>
+        <%= disclaimer() %>
       </td>
     </tr>
     <tr>
