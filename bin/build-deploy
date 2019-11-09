@@ -1,11 +1,14 @@
+#!/bin/sh
+
+export MIX_ENV="${MIX_ENV:-prod}"
+
 set -e
 
 BUILD_DIR="$HOME/build/diamondway"
 
 cd $BUILD_DIR
 
-git pull
 bin/build
 bin/deploy-release
-bin/deploy-migrate
+
 sudo bin/deploy-restart
