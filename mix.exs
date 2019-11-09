@@ -47,7 +47,7 @@ defmodule Diamondway.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
-      {:timex, "~> 3.6"},
+      {:timex, "~> 3.6", override: true},
 
       # State machines
       {:machinery, github: "joaomdmoura/machinery"},
@@ -67,6 +67,9 @@ defmodule Diamondway.MixProject do
       {:gen_smtp, "~> 0.14"},
       {:phoenix_swoosh, "~> 0.2"},
       {:sweet_xml, "~> 0.6.6"},
+
+      # Payment
+      {:ecpay, "~> 1.0"},
 
       # Deployment
       {:distillery, "~> 2.1"},

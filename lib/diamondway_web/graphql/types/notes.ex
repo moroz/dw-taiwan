@@ -1,6 +1,5 @@
 defmodule DiamondwayWeb.GraphQL.Types.Notes do
   use Absinthe.Schema.Notation
-  alias DiamondwayWeb.GraphQL.Resolvers
 
   object :note do
     field :timestamp, non_null(:datetime)
