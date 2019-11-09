@@ -6,8 +6,7 @@
       | with Lama Ole Nydahl
     h3.landing__hero__subheader Taipei, Taiwan<br/> 6-8 March, 2020
     .landing__hero__cta
-      = link "Register now", to: Routes.registration_path(@conn, :new), class: "landing__hero__cta__button"
-      = link "Ticketing", to: Routes.page_path(@conn, :ticketing), class: "landing__hero__cta__button"
+      = link "Didn't get your email?", to: Routes.registration_path(@conn, :check_status_form), class: "landing__hero__cta__button"
 
   section.landing__section.landing__section--responsive
     header.landing__section__header

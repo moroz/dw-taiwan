@@ -11,6 +11,15 @@ defmodule DiamondwayWeb.RegistrationController do
     assign(conn, :body_class, class)
   end
 
+  def check_status_form(conn, _params) do
+    render(conn, "check_status_form.html")
+  end
+
+  def check_status(conn, %{"email" => email}) do
+    guest = Guests.get_guest_by_email(email)
+    render(conn, "check_status.html", guest: guest)
+  end
+
   def new(conn, _params) do
     changeset = Guests.change_guest(%Guest{})
     countries = Countries.list_countries_for_select()

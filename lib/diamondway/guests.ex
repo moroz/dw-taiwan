@@ -50,6 +50,11 @@ defmodule Diamondway.Guests do
     Repo.preload(guest, [:residence, :nationality])
   end
 
+  def get_guest_by_email(email) do
+    normalized = String.trim(email)
+    Repo.get_by(Guest, email: email)
+  end
+
   def get_guest!(id), do: Repo.get!(Guest, id)
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()

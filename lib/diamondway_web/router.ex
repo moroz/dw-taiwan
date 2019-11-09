@@ -31,6 +31,9 @@ defmodule DiamondwayWeb.Router do
     post "/registration", RegistrationController, :create
     get "/registration/success", RegistrationController, :success
 
+    get "/check", RegistrationController, :check_status_form
+    post "/check", RegistrationController, :check_status
+
     for page <- pages do
       get "/#{page}", PageController, page
     end

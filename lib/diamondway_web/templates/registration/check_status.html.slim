@@ -1,0 +1,14 @@
+.check_status_form.container
+
+  = case @guest.status do
+    - :invited ->
+      h3.title.is-3 Hooray, you're going!
+      p
+        | Your e-mail address, <span class="monospace"><%= @guest.email %></span>, is on list of approved guests. You can safely book your plane tickets and stay put until we're ready to launch our payment system.
+      = link "Please send me a confirmation letter", to: "#", class: "button is-primary"
+      br/
+      = link "<< Back to homepage", to: "/"
+    - :backup ->
+      h3.title.is-3 You are on the waiting list.
+    - _ ->
+      h3.title.is-3 Nope!

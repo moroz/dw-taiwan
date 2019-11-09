@@ -1,0 +1,8 @@
+.check_status_form.container
+  h3.title.is-3 Didn't get your email?
+  p
+    | All your friends are busy buying sunglasses and swimsuits for the Taipei course but you still haven't got your confirmation email? If you couldn't find anything in the SPAM folder, try typing your e-mail in the field below to see if you are on the list.
+  = form_for @conn, Routes.registration_path(@conn, :check_status), [method: :post], fn f ->
+    = text_field f, :email, dgettext("registration", "This is my e-mail:")
+
+    = submit "Let's go!", class: "button is-primary"
