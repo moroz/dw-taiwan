@@ -43,7 +43,7 @@ defmodule DiamondwayWeb.Router do
     get "/admin/logout", SessionController, :delete
   end
 
-  if Mix.env() == :dev do
+  if Mix.env() in [:dev, :staging] do
     scope "/dev" do
       pipe_through :browser
 
