@@ -8,7 +8,7 @@ defmodule Diamondway.MixProject do
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: Mix.env() == :prod,
+      start_permanent: Mix.env() in [:prod, :staging],
       aliases: aliases(),
       deps: deps(),
       releases: releases()
