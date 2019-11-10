@@ -17,7 +17,8 @@ defmodule DiamondwayWeb.RegistrationController do
 
   def check_status(conn, %{"email" => email}) do
     guest = Guests.get_guest_by_email(email)
-    render(conn, "check_status.html", guest: guest)
+    waiting_list_no = Guests.get_waiting_list_number(guest)
+    render(conn, "check_status.html", guest: guest, waiting_list_no: waiting_list_no)
   end
 
   def new(conn, _params) do

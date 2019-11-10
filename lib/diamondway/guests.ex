@@ -55,6 +55,15 @@ defmodule Diamondway.Guests do
     Repo.get_by(Guest, email: email)
   end
 
+  def get_waiting_list_number(%Guest{status: :backup} = guest) do
+    from(g in Guest, where: g.id < ^guest.id)
+    |> where([g], g.status == ^:backup)
+    |> select([g], count(g) + 1)
+    |> Repo.one()
+  end
+
+  def get_waiting_list_number(_), do: nil
+
   def get_guest!(id), do: Repo.get!(Guest, id)
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()
