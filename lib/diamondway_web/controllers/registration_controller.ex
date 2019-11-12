@@ -33,7 +33,7 @@ defmodule DiamondwayWeb.RegistrationController do
 
   def create(conn, %{"guest" => guest_params}) do
     case Guests.create_guest_and_send_email(guest_params) do
-      {:ok, guest} ->
+      {:ok, _guest} ->
         redirect(conn, to: Routes.registration_path(conn, :success))
 
       {:error, %Ecto.Changeset{} = changeset} ->

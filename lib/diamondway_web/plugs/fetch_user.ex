@@ -1,8 +1,6 @@
 defmodule DiamondwayWeb.Plugs.FetchUser do
   import Plug.Conn
 
-  alias Diamondway.Users
-
   def init(default), do: default
 
   def call(conn, _) do

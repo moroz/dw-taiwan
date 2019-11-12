@@ -51,8 +51,7 @@ defmodule Diamondway.Guests do
   end
 
   def get_guest_by_email(email) do
-    normalized = String.trim(email)
-    Repo.get_by(Guest, email: email)
+    Repo.get_by(Guest, email: String.trim(email))
   end
 
   def get_waiting_list_number(%Guest{status: :backup} = guest) do
