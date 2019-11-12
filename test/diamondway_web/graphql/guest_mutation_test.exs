@@ -29,13 +29,13 @@ defmodule DiamondwayWeb.GraphQL.GuestMutationTest do
     assert Audits.list_guest_audits(guest) == []
 
     %{"transition" => %{"success" => true, "guest" => res}} =
-      run_with_user(@mutation, user, %{id: guest.id, to_state: :verified})
+      run_with_user(@mutation, user, %{id: guest.id, to_state: :invited})
 
-    assert res["status"] == "VERIFIED"
+    assert res["status"] == "INVITED"
     actual = reload(guest)
-    assert actual.status == :verified
+    assert actual.status == :invited
     [audit] = res["audits"]
     assert audit["userName"] == user.display_name
-    assert audit["description"] =~ ~r/marked as verified/
+    assert audit["description"] =~ ~r/invited to the course/
   end
 end

@@ -7,7 +7,7 @@ defmodule Diamondway.Guests.Guest do
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++
-         ~w(single_person_registration travel_insurance visa_requirements notes registration_sent confirmation_sent payment_sent backup_sent payment_token ecpay_token paid_at)a
+         ~w(single_person_registration travel_insurance visa_requirements notes registration_sent confirmation_sent payment_sent backup_sent payment_token paid_at)a
 
   schema "guests" do
     field :city, :string
@@ -25,7 +25,6 @@ defmodule Diamondway.Guests.Guest do
     field :sex, Diamondway.Enums.GuestSex
     field :status, Diamondway.Enums.GuestStatus, default: :unverified
     field :payment_token, :string
-    field :ecpay_token, :string
     field :paid_at, :utc_datetime
 
     belongs_to :nationality, Diamondway.Countries.Country

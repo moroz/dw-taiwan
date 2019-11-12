@@ -4,7 +4,7 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
 
   object :guest_queries do
     field :guests, non_null(:guest_page) do
-      arg(:params, :guest_search_params)
+      arg(:params, :guest_search_params, default_value: [])
       resolve(&Resolvers.Guests.filter_guests/2)
     end
 
