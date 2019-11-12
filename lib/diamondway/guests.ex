@@ -51,7 +51,13 @@ defmodule Diamondway.Guests do
   end
 
   def get_guest_by_email(email) do
-    Repo.get_by(Guest, email: String.trim(email))
+    trimmed = String.trim(email)
+
+    if EmailTldValidator.email_valid?(trimmed) do
+      Repo.get_by(Guest, email: trimmed)
+    else
+      nil
+    end
   end
 
   def get_waiting_list_number(%Guest{status: :backup} = guest) do

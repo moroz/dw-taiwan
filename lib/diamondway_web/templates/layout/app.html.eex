@@ -8,6 +8,7 @@
   <% end %>
     <%= render "_header.html", assigns %>
     <main role="main">
+      <%= render "_flash.html", assigns %>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <%= render "_footer.html", assigns %>

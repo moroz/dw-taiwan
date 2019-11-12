@@ -2,6 +2,7 @@ defmodule DiamondwayWeb.RegistrationController do
   use DiamondwayWeb, :controller
 
   alias Diamondway.Guests
+  alias Diamondway.Emails
   alias Diamondway.Countries
   alias Diamondway.Guests.Guest
 
@@ -16,9 +17,27 @@ defmodule DiamondwayWeb.RegistrationController do
   end
 
   def check_status(conn, %{"email" => email}) do
-    guest = Guests.get_guest_by_email(email)
-    waiting_list_no = Guests.get_waiting_list_number(guest)
-    render(conn, "check_status.html", guest: guest, waiting_list_no: waiting_list_no)
+    case Guests.get_guest_by_email(email) do
+      nil ->
+        conn
+        |> put_flash(:error, "E-mail not found.")
+        |> render("check_status_form.html")
+
+      %Guest{} = guest ->
+        waiting_list_no = Guests.get_waiting_list_number(guest)
+        render(conn, "check_status.html", guest: guest, waiting_list_no: waiting_list_no)
+    end
+  end
+
+  def resend_email(conn, %{"email" => email}) do
+    case Guests.get_guest_by_email(email) do
+      %Guest{status: :invited} = guest ->
+        Emails.request_email_resend(guest, conn.remote_ip)
+        render(conn, "email_resent.html", guest: guest, success: true)
+
+      _ ->
+        render(conn, "email_resent.html", success: false)
+    end
   end
 
   def new(conn, _params) do
