@@ -50,7 +50,6 @@ export enum Gender {
 
 export enum GuestStatus {
   Unverified = "UNVERIFIED",
-  Verified = "VERIFIED",
   Invited = "INVITED",
   Backup = "BACKUP",
   Canceled = "CANCELED",

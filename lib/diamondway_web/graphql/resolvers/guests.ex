@@ -32,11 +32,11 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Guests do
 
     res =
       case Transitions.transition_state_with_user(guest, user, to_state) do
+        {:error, reason} ->
+          %{success: false, guest: guest, message: "Error: #{reason}"}
+
         {:ok, guest} ->
           %{success: true, guest: guest}
-
-        {:error, reason} ->
-          %{success: false, guest: guest, message: reason}
       end
 
     {:ok, res}
