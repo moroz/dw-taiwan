@@ -1,6 +1,8 @@
 import React from "react";
 import Loader from "../components/Loader";
 import client from "../graphql/client";
+import { GuestStatus } from "../types/guests";
+import { Link } from "react-router-dom";
 
 interface State {
   counts: {
@@ -22,12 +24,21 @@ const DASHBOARD_QUERY = `
   }
 }`;
 
-function Statistic({ label, children, className }: any) {
+interface StatisticProps {
+  label: string;
+  children: number;
+  className?: string;
+  status: GuestStatus | null;
+}
+
+function Statistic({ label, children, className, status }: StatisticProps) {
+  const statusClass = status ? status.toLowerCase() : "";
+  const href = status ? `/guests?status=${status}` : "/guests";
   return (
-    <div className={`statistic ui card ${className || ""}`}>
+    <Link className={`statistic ${className || ""} ${statusClass}`} to={href}>
       <div className="value">{children}</div>
       <div className="label">{label}</div>
-    </div>
+    </Link>
   );
 }
 
@@ -56,12 +67,25 @@ class Dashboard extends React.Component<any, State> {
       <div className="dashboard">
         <h1>Dashboard</h1>
         <div className="statistics">
-          <Statistic label="Invited, not paid">{counts.invitedCount}</Statistic>
-          <Statistic label="Tickets sold">{counts.paidCount}</Statistic>
-          <Statistic label="Waiting list">{counts.backupCount}</Statistic>
-          <Statistic label="Unrevieved">{counts.unverifiedCount}</Statistic>
-          <Statistic label="Total guests">{counts.totalCount}</Statistic>
-          <Statistic label="Canceled reservations">
+          <Statistic label="Invited, not paid" status={GuestStatus.Invited}>
+            {counts.invitedCount}
+          </Statistic>
+          <Statistic label="Tickets sold" status={GuestStatus.Paid}>
+            {counts.paidCount}
+          </Statistic>
+          <Statistic label="Waiting list" status={GuestStatus.Backup}>
+            {counts.backupCount}
+          </Statistic>
+          <Statistic label="Unrevieved" status={GuestStatus.Unverified}>
+            {counts.unverifiedCount}
+          </Statistic>
+          <Statistic label="Total guests" status={null} className="total">
+            {counts.totalCount}
+          </Statistic>
+          <Statistic
+            label="Canceled reservations"
+            status={GuestStatus.Canceled}
+          >
             {counts.canceledCount}
           </Statistic>
         </div>

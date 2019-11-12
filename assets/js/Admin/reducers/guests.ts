@@ -1,4 +1,9 @@
-import { Guest, GuestAction, GuestActionType } from "../types/guests";
+import {
+  Guest,
+  GuestAction,
+  GuestActionType,
+  GuestStatus
+} from "../types/guests";
 import { Cursor } from "../types/common";
 
 export interface IGuestReducerState {
@@ -13,6 +18,7 @@ export interface IGuestReducerState {
 export interface SearchParams {
   term?: string;
   page?: number;
+  status?: GuestStatus | null;
 }
 
 const initialState: IGuestReducerState = {
@@ -21,10 +27,7 @@ const initialState: IGuestReducerState = {
   cursor: null,
   loading: true,
   emailSending: false,
-  params: {
-    term: "",
-    page: 1
-  }
+  params: { term: "" }
 };
 
 export default function(
@@ -51,7 +54,15 @@ export default function(
       return {
         ...state,
         params: action.payload,
-        loading: true
+        loading: true,
+        entries: []
+      };
+
+    case GuestActionType.ResetParams:
+      return {
+        ...state,
+        params: initialState.params,
+        entries: []
       };
 
     case GuestActionType.FetchOne:
@@ -59,7 +70,8 @@ export default function(
         ...state,
         loading: false,
         emailSending: false,
-        entry: action.payload
+        entry: action.payload,
+        entries: []
       };
 
     case GuestActionType.Mutation:

@@ -8,21 +8,18 @@ import GuestPagination from "../components/GuestPagination";
 import PageDescription from "../components/PageDescription";
 import { History } from "history";
 import Search from "../actions/Search";
+import { SearchParams } from "../reducers/guests";
 
 interface Props extends React.Props<GuestTable> {
   loading: boolean;
   entries: Guest[];
   cursor: Cursor | null;
+  params: SearchParams;
   location: any;
   history: History;
 }
 
 class GuestTable extends React.Component<Props> {
-  state = {
-    term: "",
-    page: 1
-  };
-
   handleNavigate = (id: id) => {
     this.props.history.push(`/guests/${id}`);
   };
@@ -32,7 +29,7 @@ class GuestTable extends React.Component<Props> {
   }
 
   render() {
-    const { loading, entries, history, cursor } = this.props;
+    const { loading, entries, history, cursor, params } = this.props;
     return (
       <>
         {loading ? (
@@ -40,7 +37,7 @@ class GuestTable extends React.Component<Props> {
         ) : (
           <>
             <h2>Guest List</h2>
-            <PageDescription cursor={cursor} />
+            <PageDescription cursor={cursor} params={params} />
             {entries.length ? (
               <table className="ui table celled guest_table hoverable">
                 <thead>
@@ -75,7 +72,8 @@ function mapState(state: any) {
   return {
     entries: state.guests.entries,
     loading: state.guests.loading,
-    cursor: state.guests.cursor
+    cursor: state.guests.cursor,
+    params: state.guests.params
   };
 }
 

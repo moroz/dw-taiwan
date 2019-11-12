@@ -10,12 +10,14 @@
       display: flex
       flex-direction: column
       align-items: center
-      min-height: 150px
+      min-height: 160px
       justify-content: center
-      border-radius: 5px
+      border-radius: 8px
       background: white
-      border: $cell-border
+      border: none
       font-size: 1.2em
+      cursor: pointer
+      transition: .2s ease-in-out
 
       .value
         font-size: 3em
@@ -26,3 +28,12 @@
         margin-top: .6rem
         text-transform: uppercase
         line-height: 0
+
+$statistics-palette: ("backup": $red, "paid": $green, "invited": $teal, "unverified": $grey, "total": $blue, "canceled": $yellow)
+@each $status, $color in $statistics-palette
+  .dashboard .statistic.#{$status}
+    background-color: transparentize($color, .9)
+    color: darken($color, 15%)
+
+    &:hover
+      background: transparentize($color, .78)

@@ -5,10 +5,7 @@ import Guests from "../actions/Guests";
 import qs from "qs";
 import { History } from "history";
 
-const initialParams = {
-  term: "",
-  page: 1
-};
+const initialParams = {};
 
 export default class Search {
   static getInitialParams(location: any) {
@@ -18,10 +15,14 @@ export default class Search {
       qs.parse(location.search.replace(/^\?/, ""));
     if (!params) return initialParams;
     return {
-      term: "",
       ...params,
       page: parseInt(params.page)
     };
+  }
+
+  static async resetSearchParams() {
+    store.dispatch({ type: GuestActionType.ResetParams });
+    Guests.fetchGuests(store.getState().guests.params);
   }
 
   static setInitialParams(location: any, history: History) {
@@ -39,25 +40,28 @@ export default class Search {
 
   static async setSearchParams(newParams: SearchParams, history?: History) {
     const { params, loading } = store.getState().guests;
-    let newPage = params.page,
-      newTerm = params.term,
+    let merged = { ...params },
       changed = false;
     if (newParams.page && newParams.page != params.page) {
-      newPage = newParams.page;
+      merged.page = parseInt(newParams.page as any);
       changed = true;
     }
     if (typeof newParams.term === "string" && newParams.term !== params.term) {
-      newTerm = newParams.term;
-      newPage = 1;
+      merged.term = newParams.term;
+      merged.page = 1;
+      changed = true;
+    }
+    if (
+      typeof newParams.status === "string" &&
+      newParams.status !== params.status
+    ) {
+      merged.status = newParams.status;
+      merged.page = 1;
       changed = true;
     }
     if (!changed && !loading) {
       return Guests.fetchGuests(params);
     }
-    const merged = {
-      term: newTerm,
-      page: newPage
-    };
     console.log(merged);
     if (changed) {
       store.dispatch({
