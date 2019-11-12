@@ -2,12 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Guest } from "../types/guests";
 import { Cursor, id } from "../types/common";
-import Guests from "../actions/Guests";
 import GuestRow from "../components/GuestRow";
-import Topbar from "../layout/Topbar";
-import MainWrapper from "../layout/MainWrapper";
 import Loader from "../components/Loader";
-import qs from "qs";
 import GuestPagination from "../components/GuestPagination";
 import PageDescription from "../components/PageDescription";
 import { History } from "history";
@@ -39,39 +35,37 @@ class GuestTable extends React.Component<Props> {
     const { loading, entries, history, cursor } = this.props;
     return (
       <>
-        <>
-          <h2>Guest List</h2>
-          {loading ? (
-            <Loader />
-          ) : (
-            <>
-              <PageDescription cursor={cursor} />
-              {entries.length ? (
-                <table className="ui table celled guest_table hoverable">
-                  <thead>
-                    <tr>
-                      <th className="guest_table__id">ID</th>
-                      <th className="guest_table__status">Status</th>
-                      <th>Name</th>
-                      <th>Country</th>
-                      <th>Sangha</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {entries.map(guest => (
-                      <GuestRow
-                        guest={guest}
-                        key={`guest-${guest.id}`}
-                        onClick={() => this.handleNavigate(guest.id)}
-                      />
-                    ))}
-                  </tbody>
-                </table>
-              ) : null}
-            </>
-          )}
-        </>
-        <GuestPagination cursor={this.props.cursor} history={history} />
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <h2>Guest List</h2>
+            <PageDescription cursor={cursor} />
+            {entries.length ? (
+              <table className="ui table celled guest_table hoverable">
+                <thead>
+                  <tr>
+                    <th className="guest_table__id">ID</th>
+                    <th className="guest_table__status">Status</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Sangha</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {entries.map(guest => (
+                    <GuestRow
+                      guest={guest}
+                      key={`guest-${guest.id}`}
+                      onClick={() => this.handleNavigate(guest.id)}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            ) : null}
+            <GuestPagination cursor={this.props.cursor} history={history} />
+          </>
+        )}
       </>
     );
   }

@@ -32,6 +32,12 @@ export default function(
   action: GuestAction
 ) {
   switch (action.type) {
+    case GuestActionType.Loading:
+      return {
+        ...state,
+        loading: true
+      };
+
     case GuestActionType.Fetch:
       return {
         ...state,

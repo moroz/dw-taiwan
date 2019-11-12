@@ -25,6 +25,7 @@ export interface Guest {
 }
 
 export enum GuestActionType {
+  Loading = "LOADING",
   Fetch = "FETCH_GUESTS",
   FetchOne = "FETCH_SINGLE_GUEST",
   Mutation = "GUEST_MUTATION_SUCCESS",

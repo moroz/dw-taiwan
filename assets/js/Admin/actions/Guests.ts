@@ -12,6 +12,7 @@ import {
   GUEST_LIST_QUERY,
   SINGLE_GUEST_QUERY
 } from "../graphql/queries/guestQueries";
+import GuestActionButtons from "../components/GuestActionButtons";
 
 export default class Guests {
   static async fetchGuests(params?: IGuestSearchParams) {
@@ -82,6 +83,9 @@ export default class Guests {
 
   static async fetchGuest(id: id) {
     try {
+      store.dispatch({
+        type: GuestActionType.Loading
+      });
       const { guest } = await client.query(SINGLE_GUEST_QUERY, { id });
       store.dispatch({
         type: GuestActionType.FetchOne,
