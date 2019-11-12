@@ -8,17 +8,20 @@ defmodule DiamondwayWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug DiamondwayWeb.Plugs.FetchUser
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pipeline :api do
     plug :accepts, ["json"]
     plug DiamondwayWeb.Plugs.FetchUser
     plug DiamondwayWeb.Plugs.RestrictAccess, :api
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pipeline :admin do
     plug :browser
     plug DiamondwayWeb.Plugs.RestrictAccess
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pages = [:venue, :faq, :ticketing]
