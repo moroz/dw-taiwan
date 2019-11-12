@@ -3,7 +3,7 @@ defmodule Diamondway.Dashboard do
   alias Diamondway.Enums.GuestStatus
 
   @query "select status, count(*) from guests group by rollup(status)"
-  @keys ~w(paid_count invited_count backup_count canceled_count)a
+  @keys ~w(paid_count invited_count backup_count canceled_count unverified_count)a
 
   def get_dashboard_data do
     %{rows: rows} = Repo.query!(@query)
