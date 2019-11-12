@@ -1,7 +1,5 @@
 #!/bin/sh
 
-export MIX_ENV="${MIX_ENV:-prod}"
-
 set -e
 
 BUILD_DIR="$HOME/build/diamondway"
@@ -10,5 +8,5 @@ cd $BUILD_DIR
 
 bin/build
 bin/deploy-release
-
+mix ecto.migrate
 sudo bin/deploy-restart
