@@ -2,6 +2,8 @@ import React from "react";
 
 export default () => (
   <div className="admin__header">
-    <img src="/images/logo-admin.svg" />
+    <a href="/">
+      <img src="/images/logo-admin.svg" />
+    </a>
   </div>
 );

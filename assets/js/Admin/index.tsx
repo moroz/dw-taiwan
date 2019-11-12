@@ -1,6 +1,7 @@
 import React from "react";
 import GuestTable from "./views/GuestTable";
 import DisplayGuest from "./views/DisplayGuest";
+import Dashboard from "./views/Dashboard";
 import Sidebar from "./layout/Sidebar";
 import SidebarFooter from "./layout/SidebarFooter";
 import SidebarHeader from "./layout/SidebarHeader";
@@ -32,7 +33,8 @@ export default class MahamudraAdmin extends React.Component {
               <FlashMessages />
               <main className="admin__main" id="mainWrapper">
                 <Switch>
-                  <Route exact path="/" component={GuestTable} />
+                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/guests" component={GuestTable} />
                   <Route exact path="/help" component={Help} />
                   <Route exact path="/guests/:id" component={DisplayGuest} />
                 </Switch>

@@ -22,12 +22,15 @@ export default function Sidebar(_props?: any) {
     <div className="admin__sidebar">
       <SidebarProfile />
       <div className="admin__sidebar__menu">
+        <SidebarLink exact to="/">
+          Dashboard
+        </SidebarLink>
         <SidebarLink
           exact
-          to="/"
+          to="/guests"
           onClick={() => Search.setSearchParams({ page: 1, term: "" })}
         >
-          Waiting List
+          Guest list
         </SidebarLink>
         <SidebarLink exact to="/help">
           Read This First

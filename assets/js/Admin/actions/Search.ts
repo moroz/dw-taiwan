@@ -34,7 +34,7 @@ export default class Search {
       if (!state || !state.guests) return "";
       params = state.guests.params;
     }
-    return `/?${qs.stringify(params)}`;
+    return `/guests?${qs.stringify(params)}`;
   }
 
   static async setSearchParams(newParams: SearchParams, history?: History) {

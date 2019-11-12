@@ -9,8 +9,10 @@ defmodule DiamondwayWeb.GraphQL.Schema do
   import_types(Types.Users)
   import_types(Types.Audits)
   import_types(Types.Notes)
+  import_types(Types.Dashboard)
   import_types(Actions.Guests)
   import_types(Actions.Notes)
+  import_types(Actions.Dashboard)
 
   object :cursor do
     field :page, non_null(:integer)
@@ -22,6 +24,7 @@ defmodule DiamondwayWeb.GraphQL.Schema do
   query do
     import_fields(:guest_queries)
     import_fields(:user_queries)
+    import_fields(:dashboard_queries)
   end
 
   mutation do
