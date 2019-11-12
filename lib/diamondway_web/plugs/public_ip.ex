@@ -1,7 +1,7 @@
 defmodule DiamondwayWeb.Plugs.PublicIp do
   @moduledoc "Get public IP address of request from x-forwarded-for header"
   @behaviour Plug
-  @app :my_app
+  @app :diamondway
 
   def init(opts), do: opts
 
@@ -55,8 +55,8 @@ defmodule DiamondwayWeb.Plugs.PublicIp do
 
   @spec get_peer_ip(Plug.Conn.t()) :: :inet.ip_address()
   defp get_peer_ip(conn) do
-    {ip, _port} = conn.peer
-    ip
+    %{address: address} = Plug.Conn.get_peer_data(conn)
+    address
   end
 
   @spec parse_address(String.t()) :: :inet.ip_address()
