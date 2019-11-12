@@ -1,11 +1,12 @@
+#!/bin/sh
+
 set -e
 
 BUILD_DIR="$HOME/build/diamondway"
 
 cd $BUILD_DIR
 
-git pull
 bin/build
 bin/deploy-release
-bin/deploy-migrate
+mix ecto.migrate
 sudo bin/deploy-restart

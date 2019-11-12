@@ -32,13 +32,6 @@ export default function Sidebar(_props?: any) {
         <SidebarLink exact to="/help">
           Read This First
         </SidebarLink>
-        <a
-          href="/admin/csv_export"
-          className="admin__sidebar__link"
-          target="_blank"
-        >
-          CSV Export
-        </a>
         <a href="/" className="admin__sidebar__link">
           Back to Website
         </a>

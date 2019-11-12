@@ -69,3 +69,17 @@ h1, h2, h3, h4, h5, h6
 
 .notification
   padding: 1em
+
+.notification.flash
+  top: $navbar-height + 1rem
+  left: 50%
+  z-index: 100
+  position: absolute
+  transform: translateX(-50%)
+  margin: 0
+  min-width: 500px
+  text-align: center
+  max-width: $container-width
+
+.monospace
+  font-family: monospace, monospace

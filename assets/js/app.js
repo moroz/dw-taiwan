@@ -10,6 +10,7 @@ import css from "../css/app/app.sass";
 // Import dependencies
 //
 import "phoenix_html";
+import disableSubmit from "./disableSubmit";
 
 function setNavbarOpacityClass() {
   const navigation = document.getElementById("navbar");
@@ -48,3 +49,4 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("scroll", setNavbarOpacityClass);
 document.addEventListener("DOMContentLoaded", setNavbarOpacityClass);
 document.addEventListener("DOMContentLoaded", initClickableTable);
+document.addEventListener("DOMContentLoaded", disableSubmit);

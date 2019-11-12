@@ -9,6 +9,7 @@
       <%= link "Register", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
       <a class="navbar__item" href="/faq">Travel information</a>
       <a class="navbar__item" href="/ticketing">Ticketing</a>
+      <a class="navbar__item" href="/check">Check your status</a>
     </div>
     <a href="/" class="navbar__sitename">mahamudra.taipei</a>
     <div class="navbar__right">

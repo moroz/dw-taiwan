@@ -16,12 +16,15 @@ defmodule Diamondway.Audits do
 
   def get_audit!(id), do: Repo.get!(Audit, id)
 
-  def create_guest_audit(%Guest{} = guest, %User{} = user, description) do
-    create_guest_audit(guest, user.id, description)
+  def create_guest_audit(guest, user, description, ip \\ nil)
+
+  def create_guest_audit(%Guest{} = guest, %User{} = user, description, ip) do
+    create_guest_audit(guest, user.id, description, ip)
   end
 
-  def create_guest_audit(%Guest{} = guest, user_id, description) when is_integer(user_id) do
-    %{guest_id: guest.id, user_id: user_id, description: description}
+  def create_guest_audit(%Guest{} = guest, user_id, description, ip)
+      when is_integer(user_id) do
+    %{guest_id: guest.id, user_id: user_id, description: description, ip: ip}
     |> create_audit()
   end
 
@@ -35,7 +38,8 @@ defmodule Diamondway.Audits do
       timestamp: a.timestamp,
       description: a.description,
       guest_name: fragment("? || ' ' || ?", g.first_name, g.last_name),
-      user_name: u.display_name
+      user_name: u.display_name,
+      ip: fragment("case when ? is not null then host(?) end", a.ip, a.ip)
     })
     |> Repo.all()
   end

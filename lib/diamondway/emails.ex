@@ -61,6 +61,13 @@ defmodule Diamondway.Emails do
     Map.get(guest, field)
   end
 
+  def request_email_resend(%Guest{status: :invited} = guest, ip) do
+    Repo.transaction(fn ->
+      Audits.create_guest_audit(guest, 1, "requested e-mail resend.", ip)
+      do_send_email(:confirmation, guest, 1)
+    end)
+  end
+
   def mark_email_sent(guest, email_type) do
     if email_sent?(guest, email_type) do
       {:ok, guest}

@@ -7,7 +7,7 @@ export default function(_props: any) {
   return (
     <div className="card ui help card--normal-size">
       <CardSection padded>
-        <h1>Help (updated 2019-10-21)</h1>
+        <h1>Help (updated 2019-11-12)</h1>
         <p>
           This page covers the basic informations that you may find useful when
           using the Taipei Mahamudra Management System.
@@ -32,11 +32,6 @@ export default function(_props: any) {
           <strong>Unverified (0)</strong> &mdash; this is the default value for
           the status field. It means that as of now, no action whatsoever has
           been performed on this record.
-        </p>
-        <p>
-          <strong>Verified (1)</strong> &mdash; the identity of a potential
-          guest has been successfully verified, but they have not yet been
-          approved for ticketing.
         </p>
         <p>
           <strong>Invited (2)</strong> &mdash; the identitif of a potential

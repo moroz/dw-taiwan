@@ -1,0 +1,30 @@
+.check_status_form.container
+
+  = case @guest.status do
+    - :invited ->
+      h3.title.is-3 Hooray, you're going!
+      p
+        | Your e-mail address, <%= guest_email(@guest) %>, is on the list of approved guests. You can safely book your plane tickets and stay put until we're ready to launch our payment system. This should happen around the end of November.
+      = form_for @conn, Routes.registration_path(@conn, :resend_email), [method: :post], fn f ->
+        = hidden_input f, :email, value: @guest.email
+        = submit "Please send me a confirmation letter", class: "button is-primary"
+
+    - :backup ->
+      h3.title.is-3 You are ##{@waiting_list_no} on the waiting list.
+      p
+        | We are sorry, but you have not been approved to the course as yet. It is Lama Ole's wish that at least half of the attendants comes from the Asian, Australian, and Pacific sangha, and that the others represent as many countries as possible. Therefore we give priority to friends from under-represented countries. For everyone else, we go by the rule of thumb &ldquo;First Come, First Serve&rdquo;.
+
+    - :unverified ->
+      h3.title.is-3 Your application has not been reviewed yet.
+      p
+        | It seems that nobody has reviewed your registration as yet. We will send you an email when ready.
+
+    - :canceled ->
+      h3.title.is-3 Registration canceled.
+      p
+        | This registration with the address <%= guest_email(@guest) %> has been marked as canceled. If you have any doubts as to why that happened, please drop us a line at <a href="mailto:info@mahamudra.taipei">info@mahamudra.taipei</a>.
+
+    - _ ->
+      h3.title.is-3 Nope!
+
+  = link "<< Back to homepage", to: "/", class: "check_status_form__go_back"

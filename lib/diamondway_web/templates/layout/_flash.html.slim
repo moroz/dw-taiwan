@@ -1,0 +1,3 @@
+= for {_key, msg} <- get_flash(@conn) do
+  .notification.flash.is-warning
+    = msg

@@ -1,3 +1,8 @@
 import React from "react";
+import Loader from "react-loader-spinner";
 
-export default () => <h1>Loading...</h1>;
+export default () => (
+  <div className="loader">
+    <Loader type="Plane" color="#ffd700" height={300} width={300} />
+  </div>
+);

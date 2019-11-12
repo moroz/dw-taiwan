@@ -8,7 +8,7 @@ defmodule Diamondway.MixProject do
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: Mix.env() == :prod,
+      start_permanent: Mix.env() in [:prod, :staging],
       aliases: aliases(),
       deps: deps(),
       releases: releases()
@@ -21,7 +21,7 @@ defmodule Diamondway.MixProject do
   def application do
     [
       mod: {Diamondway.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :xmerl]
     ]
   end
 
@@ -48,6 +48,7 @@ defmodule Diamondway.MixProject do
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
       {:timex, "~> 3.6", override: true},
+      {:ecto_network, "~> 1.2.0"},
 
       # State machines
       {:machinery, github: "joaomdmoura/machinery"},
@@ -66,7 +67,6 @@ defmodule Diamondway.MixProject do
       {:swoosh, "~> 0.23"},
       {:gen_smtp, "~> 0.14"},
       {:phoenix_swoosh, "~> 0.2"},
-      {:sweet_xml, "~> 0.6.6"},
 
       # Payment
       {:ecpay, "~> 1.0"},

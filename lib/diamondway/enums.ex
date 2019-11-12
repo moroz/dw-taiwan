@@ -14,7 +14,6 @@ defenum(Diamondway.Enums.GuestSex, male: 1, female: 2)
 # Paid: Invited and have purchased a ticket
 defenum(Diamondway.Enums.GuestStatus,
   unverified: 0,
-  verified: 1,
   invited: 2,
   backup: 3,
   canceled: 4,

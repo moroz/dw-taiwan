@@ -25,6 +25,7 @@ export interface Guest {
 }
 
 export enum GuestActionType {
+  Loading = "LOADING",
   Fetch = "FETCH_GUESTS",
   FetchOne = "FETCH_SINGLE_GUEST",
   Mutation = "GUEST_MUTATION_SUCCESS",
@@ -49,7 +50,6 @@ export enum Gender {
 
 export enum GuestStatus {
   Unverified = "UNVERIFIED",
-  Verified = "VERIFIED",
   Invited = "INVITED",
   Backup = "BACKUP",
   Canceled = "CANCELED",

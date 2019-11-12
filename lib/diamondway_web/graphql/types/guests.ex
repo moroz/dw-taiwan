@@ -17,7 +17,6 @@ defmodule DiamondwayWeb.GraphQL.Types.Guests do
 
   enum :guest_status do
     value(:unverified)
-    value(:verified)
     value(:invited)
     value(:backup)
     value(:canceled)

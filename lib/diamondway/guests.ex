@@ -50,6 +50,25 @@ defmodule Diamondway.Guests do
     Repo.preload(guest, [:residence, :nationality])
   end
 
+  def get_guest_by_email(email) do
+    trimmed = String.trim(email)
+
+    if EmailTldValidator.email_valid?(trimmed) do
+      Repo.get_by(Guest, email: trimmed)
+    else
+      nil
+    end
+  end
+
+  def get_waiting_list_number(%Guest{status: :backup} = guest) do
+    from(g in Guest, where: g.id < ^guest.id)
+    |> where([g], g.status == ^:backup)
+    |> select([g], count(g) + 1)
+    |> Repo.one()
+  end
+
+  def get_waiting_list_number(_), do: nil
+
   def get_guest!(id), do: Repo.get!(Guest, id)
 
   def get_guest(id), do: Repo.get(Guest, id) |> preload_countries()

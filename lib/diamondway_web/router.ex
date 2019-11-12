@@ -8,17 +8,20 @@ defmodule DiamondwayWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug DiamondwayWeb.Plugs.FetchUser
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pipeline :api do
     plug :accepts, ["json"]
     plug DiamondwayWeb.Plugs.FetchUser
     plug DiamondwayWeb.Plugs.RestrictAccess, :api
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pipeline :admin do
     plug :browser
     plug DiamondwayWeb.Plugs.RestrictAccess
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pages = [:venue, :faq, :ticketing]
@@ -31,6 +34,10 @@ defmodule DiamondwayWeb.Router do
     post "/registration", RegistrationController, :create
     get "/registration/success", RegistrationController, :success
 
+    get "/check", RegistrationController, :check_status_form
+    post "/check", RegistrationController, :check_status
+    post "/resend_email", RegistrationController, :resend_email
+
     for page <- pages do
       get "/#{page}", PageController, page
     end
@@ -40,7 +47,7 @@ defmodule DiamondwayWeb.Router do
     get "/admin/logout", SessionController, :delete
   end
 
-  if Mix.env() == :dev do
+  if Mix.env() in [:dev, :staging] do
     scope "/dev" do
       pipe_through :browser
 
@@ -61,7 +68,6 @@ defmodule DiamondwayWeb.Router do
   scope "/admin", DiamondwayWeb do
     pipe_through :admin
 
-    get "/csv_export", AdminController, :csv_export
     get "/*path", AdminController, :react, as: :admin_root
   end
 end

@@ -10,11 +10,11 @@ interface Props {
   guest: Guest;
 }
 
-function AuditRow({ timestamp, userName, description }: Audit) {
+function AuditRow({ timestamp, userName, description, ip }: Audit) {
   return (
     <p className="audit">
       <strong className="audit__timestamp">
-        {DateHelpers.timestamp(timestamp)}
+        {DateHelpers.timestamp(timestamp)}{ip ? `, ${ip}` : ""}
       </strong>{" "}
       <span className="audit__username">{userName}</span> {description}
     </p>

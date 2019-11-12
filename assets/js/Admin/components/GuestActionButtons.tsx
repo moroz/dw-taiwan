@@ -14,14 +14,6 @@ interface Props extends React.Props<GuestActionButtons> {
   guest: Guest | null;
 }
 
-type ButtonColor =
-  | "primary"
-  | "secondary"
-  | "positive"
-  | "negative"
-  | "red"
-  | "green";
-
 function GuestButton({ toState, guest, className, label, confirm }: any) {
   const handler = () => {
     if (confirm) {
@@ -54,28 +46,9 @@ function guestButtons(guest: Guest) {
         <>
           <GuestButton
             guest={guest}
-            className="positive"
-            toState={GuestStatus.Verified}
-            label="Mark verified"
-          />
-          <GuestButton
-            guest={guest}
-            className="negative"
-            label="Cancel registration"
-            toState={GuestStatus.Canceled}
-            confirm="Are you sure you want to cancel this registration?"
-          />
-        </>
-      );
-
-    case GuestStatus.Verified:
-      return (
-        <>
-          <GuestButton
-            guest={guest}
             className="blue"
             toState={GuestStatus.Invited}
-            label="Invite!"
+            label="Invite"
           />
           <GuestButton
             guest={guest}
@@ -134,7 +107,7 @@ function guestButtons(guest: Guest) {
           label="Revert cancelation"
           className="positive"
           confirm="Are you sure you want to revert cancelation?"
-          toState={GuestStatus.Verified}
+          toState={GuestStatus.Unverified}
         />
       );
   }

@@ -51,7 +51,9 @@ export default class Search {
       newPage = 1;
       changed = true;
     }
-    if (!changed && !loading) return;
+    if (!changed && !loading) {
+      return Guests.fetchGuests(params);
+    }
     const merged = {
       term: newTerm,
       page: newPage

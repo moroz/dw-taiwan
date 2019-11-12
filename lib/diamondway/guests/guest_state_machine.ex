@@ -1,12 +1,11 @@
 defmodule Diamondway.Guests.GuestStateMachine do
   use Machinery,
-    states: ~w(unverified verified invited backup canceled paid)a,
+    states: ~w(unverified invited backup canceled paid)a,
     transitions: %{
-      unverified: [:verified, :invited, :backup, :canceled],
-      invited: [:canceled, :paid, :backup],
-      verified: [:backup, :invited, :canceled],
-      backup: [:invited, :canceled],
-      paid: [:canceled],
-      canceled: [:verified]
+      "*" => [:unverified, :canceled],
+      unverified: [:invited, :backup, :canceled],
+      invited: [:canceled, :paid, :backup, :unverified],
+      backup: [:invited, :canceled, :unverified],
+      paid: [:canceled]
     }
 end

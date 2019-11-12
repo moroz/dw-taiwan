@@ -46,6 +46,19 @@ environment :prod do
   )
 end
 
+environment :staging do
+  set(include_erts: true)
+  set(include_src: false)
+  set(cookie: :"~8U%=qS2uGvCgd<Yp_p|_YYU1&9kTE<J2dVVIT5Jfsm[M{BUhs=?G5W/<1bd;lM)")
+  set(vm_args: "rel/vm.args")
+
+  set(
+    config_providers: [
+      {Distillery.Releases.Config.Providers.Elixir, ["/etc/diamondway/config.exs"]}
+    ]
+  )
+end
+
 # You may define one or more releases in this file.
 # If you have not set a default release, or selected one
 # when running `mix release`, the first release in the file
