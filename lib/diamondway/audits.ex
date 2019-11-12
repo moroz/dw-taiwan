@@ -38,7 +38,8 @@ defmodule Diamondway.Audits do
       timestamp: a.timestamp,
       description: a.description,
       guest_name: fragment("? || ' ' || ?", g.first_name, g.last_name),
-      user_name: u.display_name
+      user_name: u.display_name,
+      ip: fragment("?::text", a.ip)
     })
     |> Repo.all()
   end

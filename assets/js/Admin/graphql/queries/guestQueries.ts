@@ -4,7 +4,7 @@ fragment GuestDetails on Guest {
   notes email referenceName referenceEmail sex
   status insertedAt confirmationSent backupSent
   audits {
-    userName description timestamp
+    userName description timestamp ip
   }
   adminNotes {
     userName body timestamp

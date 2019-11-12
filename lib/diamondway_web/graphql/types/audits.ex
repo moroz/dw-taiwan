@@ -6,5 +6,6 @@ defmodule DiamondwayWeb.GraphQL.Types.Audits do
     field :description, non_null(:string)
     field :guest_name, non_null(:string)
     field :user_name, non_null(:string)
+    field :ip, :string
   end
 end
