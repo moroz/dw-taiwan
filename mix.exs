@@ -69,7 +69,7 @@ defmodule Diamondway.MixProject do
       {:phoenix_swoosh, "~> 0.2"},
 
       # Payment
-      {:ecpay, "~> 1.0"},
+      {:ecpay, "~> 1.0.1"},
 
       # Deployment
       {:distillery, "~> 2.1"},

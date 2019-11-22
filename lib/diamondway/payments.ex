@@ -59,10 +59,10 @@ defmodule Diamondway.Payments do
       description: "Taipei Mahamudra",
       amount: price(),
       timestamp: Timex.now(),
-      item_name: payment_description(guest)
+      item_name: payment_description(guest),
+      payment: "Credit",
+      language: "ENG"
     }
     |> AIOParams.to_form_data()
-    |> Map.put("ChoosePayment", "Credit")
-    |> Map.put("Language", "ENG")
   end
 end
