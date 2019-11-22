@@ -13,7 +13,6 @@ interface Props extends React.Props<DisplayGuest> {
   history: History;
   match: match;
   guest: Guest | null;
-  loading: boolean;
   message: string | null;
   success: boolean;
 }
@@ -30,28 +29,13 @@ class DisplayGuest extends React.Component<Props> {
   }
 
   render() {
-    const { guest, success, message } = this.props;
-    const title = guest
-      ? `Guest: ${guest.firstName} ${guest.lastName}`
-      : "Loading Guest";
-    return (
-      <>
-        <Message
-          message={message}
-          level={success ? LogLevel.Success : LogLevel.Error}
-        />
-        <GuestCard guest={guest} goBack={this.goBack} />
-      </>
-    );
+    return <GuestCard guest={this.props.guest} goBack={this.goBack} />;
   }
 }
 
 function mapState(state: IReduxState) {
   return {
-    guest: state.guests.entry,
-    loading: state.guests.loading,
-    message: state.guests.mutationMsg,
-    success: state.guests.mutationSuccess
+    guest: state.guests.entry
   };
 }
 

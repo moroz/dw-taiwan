@@ -58,15 +58,7 @@ export default class Guests {
   static async addNote(id: id) {
     try {
       const note = prompt("Please enter your remark and press [Enter].");
-      if (!note) {
-        store.dispatch({
-          type: GuestActionType.MutationFailed,
-          payload: {
-            message: "No text was entered."
-          }
-        });
-        return;
-      }
+      if (!note) return;
       const { createNote } = await client.query(ADD_GUEST_NOTE, {
         guestId: id,
         body: note

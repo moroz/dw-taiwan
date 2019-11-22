@@ -1,13 +1,9 @@
 import React from "react";
 import Guests from "../actions/Guests";
-import {
-  Guest,
-  GuestStatus,
-  GuestActionType,
-  EmailType
-} from "../types/guests";
+import { Guest, GuestStatus, EmailType } from "../types/guests";
 import { connect } from "react-redux";
 import SendEmailButton from "./SendEmailButton";
+import IssuePaymentButton from "./IssuePaymentButton";
 import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<GuestActionButtons> {
@@ -34,7 +30,7 @@ function GuestButton({ toState, guest, className, label, confirm }: any) {
 function AddNoteButton({ guest }: any) {
   return (
     <button className="ui button teal" onClick={() => Guests.addNote(guest.id)}>
-      Add note
+      Note
     </button>
   );
 }
@@ -54,7 +50,7 @@ function guestButtons(guest: Guest) {
             guest={guest}
             className="yellow"
             toState={GuestStatus.Backup}
-            label="To backup list"
+            label="Reject"
           />
           <GuestButton
             guest={guest}
@@ -73,17 +69,17 @@ function guestButtons(guest: Guest) {
             guest={guest}
             className="yellow"
             toState={GuestStatus.Backup}
-            label="To backup list"
+            label="To backup"
           />
           <GuestButton
             guest={guest}
             className="negative"
-            label="Cancel registration"
+            label="Cancel"
             toState={GuestStatus.Canceled}
             confirm="Are you sure you want to cancel this registration?"
           />
           <SendEmailButton emailType={EmailType.Confirmation} />
-          <SendEmailButton emailType={EmailType.Payment} />
+          <IssuePaymentButton />
         </>
       );
 

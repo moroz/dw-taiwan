@@ -22,8 +22,8 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Emails do
       {:ok, updated} ->
         {:ok, %{success: true, guest: updated}}
 
-      {_, _, reason} ->
-        {:ok, %{success: false, message: reason, guest: guest}}
+      _ ->
+        {:ok, %{success: false, message: "Action failed, oooops", guest: guest}}
     end
   end
 end

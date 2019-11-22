@@ -61,3 +61,13 @@ mutation sendEmail($type: EmailType!, $id: ID!, $force: Boolean!) {
     message
   }
 }`;
+
+export const ISSUE_PAYMENT = `
+${GUEST_DETAILS}
+mutation issuePayment($id: ID!) {
+  issuePayment: issuePaymentLink(id: $id) {
+    success
+    guest { ...GuestDetails }
+    message
+  }
+}`;
