@@ -1,4 +1,4 @@
-defmodule DiamondwayWeb.RegistrationEmail do
+defmodule DiamondwayWeb.GuestEmail do
   use Phoenix.Swoosh, view: DiamondwayWeb.EmailView, layout: {DiamondwayWeb.EmailView, :layout}
   alias Diamondway.Guests
 
@@ -27,6 +27,12 @@ defmodule DiamondwayWeb.RegistrationEmail do
     common(guest)
     |> subject("Taipei Mahamudra Pre-registration")
     |> render_body("registration.html", guest: guest)
+  end
+
+  def payment(guest) do
+    common(guest)
+    |> subject("Taipei Mahamudra Payment Link")
+    |> render_body("payment.html", guest: guest)
   end
 
   def confirmation(guest) do

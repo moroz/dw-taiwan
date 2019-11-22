@@ -51,7 +51,8 @@ defmodule Diamondway.Factory do
       email: email(),
       sex: :male,
       residence: build(:country),
-      nationality: build(:country)
+      nationality: build(:country),
+      city: "Kudowa-Zdrój"
     }
   end
 end

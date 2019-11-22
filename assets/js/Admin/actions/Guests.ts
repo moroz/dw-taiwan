@@ -12,7 +12,6 @@ import {
   GUEST_LIST_QUERY,
   SINGLE_GUEST_QUERY
 } from "../graphql/queries/guestQueries";
-import GuestActionButtons from "../components/GuestActionButtons";
 
 export default class Guests {
   static async fetchGuests(params?: IGuestSearchParams) {

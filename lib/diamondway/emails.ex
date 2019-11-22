@@ -3,7 +3,7 @@ defmodule Diamondway.Emails do
   alias Diamondway.Audits
   alias Diamondway.Guests
   alias Diamondway.Guests.Guest
-  alias DiamondwayWeb.RegistrationEmail
+  alias DiamondwayWeb.GuestEmail
   alias DiamondwayWeb.Mailer
 
   email_types = Application.get_env(:diamondway, Diamondway.Emails) |> Keyword.get(:email_types)
@@ -30,7 +30,7 @@ defmodule Diamondway.Emails do
 
   defp do_send_email(type, guest, user) do
     Repo.transaction(fn ->
-      email = RegistrationEmail.render_email(type, guest)
+      email = GuestEmail.render_email(type, guest)
       resending = email_sent?(guest, type)
 
       case Mailer.deliver_and_catch(email) do

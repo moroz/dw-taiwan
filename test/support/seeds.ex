@@ -8,5 +8,14 @@ defmodule Diamondway.TestSeeds do
       },
       on_conflict: :nothing
     )
+
+    Repo.insert(
+      %Diamondway.Users.User{
+        id: 1,
+        display_name: "System User",
+        email: "system@mahamudra.taipei"
+      },
+      on_conflict: :nothing
+    )
   end
 end

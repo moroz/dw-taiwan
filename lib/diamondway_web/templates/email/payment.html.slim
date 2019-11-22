@@ -1,0 +1,22 @@
+= header("Confirmation Letter")
+div style="line-height: 1.6; padding: 0 8px"
+  p style="text-align: right; margin-bottom: 0; margin-right: 2em"
+    = letter_date()
+
+  p style="text-indent: 2em; margin-bottom: 0; margin-top: 1em"
+    | Dear #{title(@guest)} #{full_name(@guest)},
+
+  p style="text-indent: 2em; margin-top: .5em"
+    | We are pleased to inform you that your registration for the <strong>Mahamudra Course with Lama Ole Nydahl</strong> in Taipei has been approved. You can now book your plane tickets and accommodation.
+
+  p style="text-indent: 2em; margin-top: .5em"
+    | We had to send this e-mail for the second time to make sure it could reach everyone. If you have already received this message once, please ignore it.
+
+  p style="text-indent: 2em; margin-top: .5em"
+    | At the moment, we are still working on our ticketing system. Once we're ready to go, you will receive another e-mail with a payment link. The price for the whole event is <strong>TWD&nbsp;4800</strong> (New Taiwan Dollars).
+
+  p style="text-indent: 2em; margin-top: .5em"
+    | If you already know that you can't make it to the course, please let us know so we can invite someone from the backup list. Our contact e-mail is <a href="mailto:info@mahamudra.taipei">info@mahamudra.taipei</a>.
+
+  p style="margin-left: 2em; margin-top: .5em; margin-bottom: 1em"
+    | All the best,<br/>Diamond Way Group Taipei

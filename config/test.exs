@@ -14,5 +14,7 @@ config :diamondway, DiamondwayWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+config :diamondway, DiamondwayWeb.Mailer, adapter: Swoosh.Adapters.Test
+
 # Print only warnings and errors during test
 config :logger, level: :warn
