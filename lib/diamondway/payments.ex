@@ -13,10 +13,10 @@ defmodule Diamondway.Payments do
     |> Base.encode16(case: :lower)
   end
 
-  def issue_payment_email(%Guest{status: :invited} = guest) do
+  def issue_payment_email(%Guest{status: :invited} = guest, user \\ 1) do
     Repo.transaction(fn ->
       {:ok, updated} = set_payment_token(guest)
-      Emails.send_email(:payment, updated, 1, false)
+      Emails.send_email(:payment, updated, user, true)
       updated
     end)
   end

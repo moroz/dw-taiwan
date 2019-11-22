@@ -27,6 +27,11 @@ defmodule DiamondwayWeb.GraphQL.Actions.Guests do
       resolve(&Resolvers.Guests.add_note/2)
     end
 
+    field :issue_payment_link, :guest_mutation_response do
+      arg(:id, non_null(:id))
+      resolve(&Resolvers.Emails.issue_payment_link/2)
+    end
+
     field :send_email, :guest_mutation_response do
       arg(:id, non_null(:id))
       arg(:force, non_null(:boolean), default_value: false)

@@ -57,7 +57,7 @@ defmodule Diamondway.Guests do
 
   def mark_paid(%Guest{} = guest, ip) do
     Repo.transaction(fn ->
-      update_guest(guest, %{paid_at: Timex.now()})
+      update_guest(guest, %{paid_at: Timex.now(), status: :paid})
       Audits.create_guest_audit(guest, 4, "accepted payment.", ip)
     end)
   end

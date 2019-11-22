@@ -83,6 +83,7 @@ function guestButtons(guest: Guest) {
             confirm="Are you sure you want to cancel this registration?"
           />
           <SendEmailButton emailType={EmailType.Confirmation} />
+          <SendEmailButton emailType={EmailType.Payment} />
         </>
       );
 

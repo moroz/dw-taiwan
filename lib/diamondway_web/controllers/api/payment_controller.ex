@@ -6,8 +6,6 @@ defmodule DiamondwayWeb.API.PaymentController do
   require Logger
 
   def verify(conn, params) do
-    Logger.warn(Jason.encode!(params))
-
     case Payments.verify_payment(params) do
       {:ok, guest} ->
         Guests.mark_paid(guest, conn.assigns[:ip])

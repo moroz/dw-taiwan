@@ -10,4 +10,4 @@ config :diamondway, DiamondwayWeb.Endpoint,
 config :ecpay, prod: false, return_url: "https://staging.mahamudra.taipei/api/payments"
 
 config :diamondway, DiamondwayWeb.Mailer, adapter: Swoosh.Adapters.Local
-config :logger, level: :debug
+# config :logger, level: :debug
