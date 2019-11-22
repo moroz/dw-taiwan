@@ -100,7 +100,7 @@ defmodule Diamondway.Guests do
 
   def update_guest(%Guest{} = guest, attrs) do
     guest
-    |> Guest.changeset(attrs)
+    |> Guest.update_changeset(attrs)
     |> Repo.update()
   end
 

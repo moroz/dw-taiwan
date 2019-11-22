@@ -7,7 +7,9 @@ defmodule Diamondway.Guests.Guest do
 
   @required ~w(city email first_name last_name reference_name reference_email phone sex nationality_id residence_id)a
   @all @required ++
-         ~w(single_person_registration travel_insurance visa_requirements notes registration_sent confirmation_sent payment_sent backup_sent payment_token paid_at)a
+         ~w(single_person_registration travel_insurance visa_requirements notes)a
+
+  @updatable ~w(paid_at status payment_token backup_sent payment_sent confirmation_sent)a
 
   schema "guests" do
     field :city, :string
@@ -58,6 +60,11 @@ defmodule Diamondway.Guests.Guest do
     |> validate_email()
     |> validate_email(:reference_email)
     |> validate_different_emails()
+  end
+
+  def update_changeset(guest, attrs) do
+    changeset(guest, attrs)
+    |> cast(attrs, @updatable)
   end
 
   def put_status(guest, new_state) do

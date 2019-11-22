@@ -16,10 +16,13 @@ export default class Emails {
     try {
       const sent = GuestHelpers.emailSent(guest, EmailType.Payment);
       if (!this.shouldSend(sent)) return;
-      const { sendEmail } = await client.query(ISSUE_PAYMENT, {
+      const { issuePayment } = await client.query(ISSUE_PAYMENT, {
         id: guest.id
       });
-      store.dispatch({ type: GuestActionType.EmailSent, payload: sendEmail });
+      store.dispatch({
+        type: GuestActionType.EmailSent,
+        payload: issuePayment
+      });
     } catch (e) {
       Guests.handleError(e);
     }
