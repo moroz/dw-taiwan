@@ -30,6 +30,29 @@ defmodule Diamondway.Payments do
     Guests.update_guest(guest, %{payment_token: token()})
   end
 
+  def verify_payment(data) when is_map(data) do
+    with :ok <- Checksum.verify(data) do
+      %{
+        "TradeAmt" => amount,
+        "MerchantTradeNo" => token,
+        "PaymentType" => method,
+        "RtnCode" => return_code
+      } = data
+
+      if return_code in [1, "1"] do
+        case Guests.get_guest_by_payment_token(token) do
+          %Guest{} = guest ->
+            {:ok, guest}
+
+          _ ->
+            {:error, :not_found}
+        end
+      else
+        {:error, :payment_failed}
+      end
+    end
+  end
+
   def payment_params_for_guest(%Guest{} = guest) do
     %AIOParams{
       transaction_no: guest.payment_token,
@@ -39,5 +62,7 @@ defmodule Diamondway.Payments do
       item_name: payment_description(guest)
     }
     |> AIOParams.to_form_data()
+    |> Map.put("ChoosePayment", "Credit")
+    |> Map.put("Language", "ENG")
   end
 end

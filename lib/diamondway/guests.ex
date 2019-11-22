@@ -7,6 +7,7 @@ defmodule Diamondway.Guests do
   alias Diamondway.Repo
   alias Diamondway.Guests.Guest
   alias Diamondway.Emails
+  alias Diamondway.Audits
 
   def list_guests do
     Repo.all(from g in Guest, preload: [:residence, :nationality], order_by: [desc: :id])
@@ -52,6 +53,13 @@ defmodule Diamondway.Guests do
 
   def get_guest_by_payment_token(token) do
     Repo.get_by!(Guest, payment_token: token)
+  end
+
+  def mark_paid(%Guest{} = guest, ip) do
+    Repo.transaction(fn ->
+      update_guest(guest, %{paid_at: Timex.now()})
+      Audits.create_guest_audit(guest, 4, "accepted payment.", ip)
+    end)
   end
 
   def get_guest_by_email(email) do

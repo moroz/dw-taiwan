@@ -41,6 +41,12 @@ defmodule Diamondway.Guests.Guest do
     timestamps()
   end
 
+  defimpl Phoenix.Param do
+    def to_param(%{payment_token: token}) when is_binary(token) do
+      token
+    end
+  end
+
   @doc false
   def changeset(guest, attrs) do
     guest

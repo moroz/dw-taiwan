@@ -13,8 +13,8 @@ div style="line-height: 1.6; padding: 0 8px"
     | If you wish, you can now pay for your ticket using the link below:
 
   div align="center" style="text-align: center; margin: 1.5em 0"
-    a href="#" style="display: inline-block; text-align: center; text-decoration: none; color: white; background-color: #{brand_color()}; padding: .5em 1.8em; border-radius: 3px; font-weight: bold"
-      | Pay TWD 4800 online
+    = link to: Routes.payment_url(DiamondwayWeb.Endpoint, :show, @guest), style: "inline-block; text-align: center; text-decoration: none; color: white; background-color: #{brand_color()}; padding: .5em 1.8em; border-radius: 3px; font-weight: bold", target: "_blank" do
+      Pay TWD 4800 online
 
   p style="text-indent: 2em; margin-top: .5em"
     | Please note that a payment link can only be used once. It is not possible to purchase tickets for your friends or family using the same payment link.

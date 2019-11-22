@@ -20,6 +20,7 @@ defmodule DiamondwayWeb.Router do
 
   pipeline :public_api do
     plug :accepts, ["json"]
+    plug DiamondwayWeb.Plugs.PublicIp
   end
 
   pipeline :admin do

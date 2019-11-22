@@ -6,7 +6,7 @@ defmodule DiamondwayWeb.RegistrationController do
   alias Diamondway.Countries
   alias Diamondway.Guests.Guest
 
-  plug :set_body_class, "opaque-header"
+  plug DiamondwayWeb.Plugs.OpaqueHeader
 
   defp set_body_class(conn, class) do
     assign(conn, :body_class, class)
