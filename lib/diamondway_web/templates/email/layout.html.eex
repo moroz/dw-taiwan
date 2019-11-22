@@ -10,7 +10,7 @@
   <table bgcolor="<%= body_bg() %>" border="0" width="100%" style="width: 100%; background-color: <%= body_bg() %>; border: none;">
     <tr>
       <td>
-        <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" bgcolor="<%= body_bg() %>" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 18px;">
+        <table align="center" border="0" cellpadding="0" cellspacing="0" width="640" bgcolor="<%= body_bg() %>" style="max-width: 100vw; box-sizing: border-box; border-collapse: collapse; font-family: <%= font(:sans) %>; font-size: 19px;">
           <tr>
             <td class="spacer" style="height: 30px;"></td>
           </tr>

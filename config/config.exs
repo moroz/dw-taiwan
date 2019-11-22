@@ -39,6 +39,8 @@ config :diamondway, Diamondway.Guardian,
   issuer: "diamondway",
   secret_key: "EEw6QTfn9QkkVYBiFkqzlvqGsW6mqHsfeIW0iffMc4Yhod2X8eSLo6hMvfK4zfdr"
 
+config :diamondway, course_price: 4800
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

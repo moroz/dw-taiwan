@@ -50,6 +50,10 @@ defmodule Diamondway.Guests do
     Repo.preload(guest, [:residence, :nationality])
   end
 
+  def get_guest_by_payment_token(token) do
+    Repo.get_by!(Guest, payment_token: token)
+  end
+
   def get_guest_by_email(email) do
     trimmed = String.trim(email)
 

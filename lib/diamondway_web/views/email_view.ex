@@ -41,7 +41,7 @@ defmodule DiamondwayWeb.EmailView do
   end
 
   def font(:sans) do
-    "'Open Sans', 'Source Sans Pro', 'Myriad Pro', -apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;"
+    "'Roboto', 'Segoe UI', 'Open Sans', 'Source Sans Pro', 'Myriad Pro', -apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'San Francisco', 'Roboto', 'Helvetica Neue', 'Lucida Grande', sans-serif;"
   end
 
   def font(:serif) do

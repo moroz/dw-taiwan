@@ -1,4 +1,4 @@
-= header("Confirmation Letter")
+= header("Taipei Mahamudra Payment")
 div style="line-height: 1.6; padding: 0 8px"
   p style="text-align: right; margin-bottom: 0; margin-right: 2em"
     = letter_date()
@@ -7,13 +7,17 @@ div style="line-height: 1.6; padding: 0 8px"
     | Dear #{title(@guest)} #{full_name(@guest)},
 
   p style="text-indent: 2em; margin-top: .5em"
-    | We are pleased to inform you that your registration for the <strong>Mahamudra Course with Lama Ole Nydahl</strong> in Taipei has been approved. You can now book your plane tickets and accommodation.
+    | We are pleased to inform you that the online payment system for the <strong>Mahamudra Course with Lama Ole Nydahl</strong> in Taipei is up and running.
 
   p style="text-indent: 2em; margin-top: .5em"
-    | We had to send this e-mail for the second time to make sure it could reach everyone. If you have already received this message once, please ignore it.
+    | If you wish, you can now pay for your ticket using the link below:
+
+  div align="center" style="text-align: center; margin: 1.5em 0"
+    a href="#" style="display: inline-block; text-align: center; text-decoration: none; color: white; background-color: #{brand_color()}; padding: .5em 1.8em; border-radius: 3px; font-weight: bold"
+      | Pay TWD 4800 online
 
   p style="text-indent: 2em; margin-top: .5em"
-    | At the moment, we are still working on our ticketing system. Once we're ready to go, you will receive another e-mail with a payment link. The price for the whole event is <strong>TWD&nbsp;4800</strong> (New Taiwan Dollars).
+    | Please note that a payment link can only be used once. It is not possible to purchase tickets for your friends or family using the same payment link.
 
   p style="text-indent: 2em; margin-top: .5em"
     | If you already know that you can't make it to the course, please let us know so we can invite someone from the backup list. Our contact e-mail is <a href="mailto:info@mahamudra.taipei">info@mahamudra.taipei</a>.

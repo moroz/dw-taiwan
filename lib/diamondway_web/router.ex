@@ -18,6 +18,10 @@ defmodule DiamondwayWeb.Router do
     plug DiamondwayWeb.Plugs.PublicIp
   end
 
+  pipeline :public_api do
+    plug :accepts, ["json"]
+  end
+
   pipeline :admin do
     plug :browser
     plug DiamondwayWeb.Plugs.RestrictAccess
@@ -38,6 +42,8 @@ defmodule DiamondwayWeb.Router do
     post "/check", RegistrationController, :check_status
     post "/resend_email", RegistrationController, :resend_email
 
+    get "/payment/:token", PaymentController, :show
+
     for page <- pages do
       get "/#{page}", PageController, page
     end
@@ -51,12 +57,17 @@ defmodule DiamondwayWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      for email <- ~w(registration confirmation backup)a do
+      for email <- ~w(registration confirmation backup payment)a do
         get "/email/#{email}", DiamondwayWeb.EmailController, email
       end
 
       forward("/mailbox", Plug.Swoosh.MailboxPreview, base_path: "/dev/mailbox")
     end
+  end
+
+  scope "/api" do
+    pipe_through :public_api
+    post "/payments", DiamondwayWeb.API.PaymentController, :confirm
   end
 
   scope "/api" do
