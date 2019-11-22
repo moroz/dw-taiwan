@@ -3,7 +3,6 @@ defmodule Diamondway.Payments do
   alias Diamondway.Guests
   alias Diamondway.Repo
   alias Diamondway.Emails
-  import Ecto.Query
   import DiamondwayWeb.GuestHelpers
   alias ECPay.{AIOParams, Checksum}
 
