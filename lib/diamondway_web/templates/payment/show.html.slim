@@ -1,14 +1,14 @@
-.check_status_form.container
-  h1.title Payment
+.public_view.container
+  h1.title #{full_name(@guest)}'s Payment Link
 
   p Hi, #{full_name(@guest)}.<br/> This is your <strong>personalized payment page</strong> for the <strong>Mahamudra Course with Lama Ole Nydahl</strong> in Taipei.
 
-  p When you click the button below, you will be redirected to the website of our payment provider, ECPay (綠界科技股份有限公司). Please follow the steps on the website to pay for your ticket. The total price is <strong>TWD 4800</strong>.
+  p When you click the button below, you will be redirected to the website of our payment provider, ECPay (綠界科技股份有限公司). Please follow the steps on the website to pay for your ticket. The process involves SMS code verification&mdash;make sure you enter the correct number with country code. The total price is <strong>TWD 4800</strong>.
 
   = form_for @conn, ECPay.Config.payment_url(), [csrf_token: false, enforce_utf8: false], fn f ->
     = for {key, val} <- @payment_params do
       = hidden_input f, key, value: val
     = submit "Pay TWD 4800 via ECPay", class: "button is-primary"
 
-  p You can only pay using a credit or debit card (Visa, MasterCard, JCB, or UnionPay 銀聯). If the payment succeeds, your payment will be automatically processed and you should receive a confirmation e-mail and an electronic receipt. Some of the messages might be in Chinese.  
+  p You can only pay using a credit or debit card (Visa, MasterCard, JCB, or UnionPay 銀聯). If the payment succeeds, your payment will be automatically processed and you should receive a confirmation e-mail and an electronic receipt. Some of the messages might be in Chinese.
   p If the payment fails for some reason, you will need to request a new payment link using the <a href="/check" target="_blank">Didn't get your email?</a> page.

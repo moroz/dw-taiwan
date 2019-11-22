@@ -1,4 +1,4 @@
-.check_status_form.container
+.public_view.container
 
   = case @guest.status do
     - :invited ->
@@ -27,4 +27,4 @@
     - _ ->
       h3.title.is-3 Nope!
 
-  = link "<< Back to homepage", to: "/", class: "check_status_form__go_back"
+  = link "<< Back to homepage", to: "/", class: "public_view__go_back"
