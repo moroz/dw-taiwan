@@ -67,7 +67,7 @@ defmodule DiamondwayWeb.Router do
 
   scope "/api" do
     pipe_through :public_api
-    post "/payments", DiamondwayWeb.API.PaymentController, :confirm
+    post "/payments", DiamondwayWeb.API.PaymentController, :verify
   end
 
   scope "/api" do
