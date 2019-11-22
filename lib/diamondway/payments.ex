@@ -33,9 +33,7 @@ defmodule Diamondway.Payments do
   def verify_payment(data) when is_map(data) do
     with :ok <- Checksum.verify(data) do
       %{
-        "TradeAmt" => amount,
         "MerchantTradeNo" => token,
-        "PaymentType" => method,
         "RtnCode" => return_code
       } = data
 
