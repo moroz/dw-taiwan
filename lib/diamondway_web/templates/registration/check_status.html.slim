@@ -1,6 +1,11 @@
 .public_view.container
 
   = case @guest.status do
+    - :paid ->
+      h3.title.is-3 You're good to go!
+      p
+        | You have successfully paid for your ticket. See you in Taipei!
+
     - :invited ->
       h3.title.is-3 Hooray, you're going!
       p

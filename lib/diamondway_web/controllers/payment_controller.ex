@@ -6,6 +6,11 @@ defmodule DiamondwayWeb.PaymentController do
 
   def show(conn, %{"token" => token}) do
     case Guests.get_guest_by_payment_token(token) do
+      %Guests.Guest{status: :paid} = guest ->
+        conn
+        |> put_view(DiamondwayWeb.RegistrationView)
+        |> render("check_status.html", guest: guest)
+
       %Guests.Guest{} = guest ->
         payment_params = Payments.payment_params_for_guest(guest, token)
         render(conn, "show.html", guest: guest, payment_params: payment_params)
