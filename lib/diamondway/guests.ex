@@ -52,7 +52,10 @@ defmodule Diamondway.Guests do
   end
 
   def get_guest_by_payment_token(token) do
-    Repo.get_by!(Guest, payment_token: token)
+    Guest
+    |> join(:inner, [g], p in assoc(g, :payment_tokens))
+    |> where([g, p], p.token == ^token)
+    |> Repo.one()
   end
 
   def mark_paid(%Guest{} = guest, ip) do

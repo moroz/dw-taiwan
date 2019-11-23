@@ -5,10 +5,6 @@ defmodule Diamondway.NotesTest do
 
   alias Diamondway.Notes.Note
 
-  @valid_attrs %{body: "some body"}
-  @update_attrs %{body: "some updated body"}
-  @invalid_attrs %{body: nil}
-
   test "get_note!/1 returns the note with given id" do
     note = insert(:note)
     %Note{} = actual = Notes.get_note!(note.id)
@@ -24,6 +20,7 @@ defmodule Diamondway.NotesTest do
       insert(:note, user: user, guest: guest, body: "First note")
       insert(:note, user: user, guest: guest, body: "Second note")
       notes = Notes.list_guest_notes(guest)
+      assert Enum.all?(notes, &is_map/1)
     end
   end
 

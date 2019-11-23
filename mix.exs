@@ -55,6 +55,7 @@ defmodule Diamondway.MixProject do
 
       # Testing
       {:ex_machina, "~> 2.3", only: :test},
+      {:mock, "~> 0.3"},
 
       # CSV generation
       {:nimble_csv, "~> 0.6.0"},

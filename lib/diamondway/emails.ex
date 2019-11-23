@@ -2,6 +2,7 @@ defmodule Diamondway.Emails do
   alias Diamondway.Repo
   alias Diamondway.Audits
   alias Diamondway.Guests
+  alias Diamondway.Payments
   alias Diamondway.Guests.Guest
   alias DiamondwayWeb.GuestEmail
   alias DiamondwayWeb.Mailer
@@ -14,11 +15,17 @@ defmodule Diamondway.Emails do
   defp email_allowed?(:backup, guest), do: guest.status == :backup
   defp email_allowed?(_, guest), do: guest.status == :invited
 
+  def send_payment_email(guest, user, token) do
+    GuestEmail.payment(guest, token)
+    |> deliver_and_log(guest, user, :payment)
+  end
+
   def send_email(type, guest, user, force) when type in @email_types do
     if !email_sent?(guest, type) || force do
       case email_allowed?(type, guest) do
         true ->
-          do_send_email(type, guest, user)
+          GuestEmail.render_email(type, guest)
+          |> deliver_and_log(guest, user, type)
 
         _ ->
           {:error, :illegal_email_type}
@@ -28,9 +35,8 @@ defmodule Diamondway.Emails do
     end
   end
 
-  defp do_send_email(type, guest, user) do
+  defp deliver_and_log(email, guest, user, type) do
     Repo.transaction(fn ->
-      email = GuestEmail.render_email(type, guest)
       resending = email_sent?(guest, type)
 
       case Mailer.deliver_and_catch(email) do
@@ -64,7 +70,9 @@ defmodule Diamondway.Emails do
   def request_email_resend(%Guest{status: :invited} = guest, ip) do
     Repo.transaction(fn ->
       Audits.create_guest_audit(guest, 1, "requested e-mail resend.", ip)
-      do_send_email(:confirmation, guest, 1)
+
+      {:ok, guest} = Payments.issue_payment_email(guest)
+      guest
     end)
   end
 

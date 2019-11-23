@@ -2,8 +2,8 @@
   = if @success do
     h3.title.is-3 Email resent
     p
-      | The confirmation email has been sent to <%= guest_email(@guest) %>. If you still cannot find it in your inbox, please check in the SPAM folder. Thank you!
+      | The payment email has been sent to <%= guest_email(@guest) %>. If you still cannot find it in your inbox, please check in the SPAM folder. Thank you!
   - else
     h3.title.is-3 Request failed
     p
-      | For some reason we were unable to deliver the confirmation email to you. If the problem persists, please let us know at <a href="mailto:info@mahamudra.taipei">info@mahamudra.taipei</a>.
+      | For some reason we were unable to deliver the payment email to you. If the problem persists, please let us know at <a href="mailto:info@mahamudra.taipei">info@mahamudra.taipei</a>.

@@ -4,20 +4,18 @@ defmodule Diamondway.Payments do
   alias Diamondway.Repo
   alias Diamondway.Emails
   import DiamondwayWeb.GuestHelpers
+  import Ecto.Query
   alias ECPay.{AIOParams, Checksum}
+
+  alias Diamondway.Payments.PaymentToken
 
   defp price, do: Application.get_env(:diamondway, :course_price, 4800)
 
-  def token(bytes \\ 10) do
-    :crypto.strong_rand_bytes(bytes)
-    |> Base.encode16(case: :lower)
-  end
-
   def issue_payment_email(%Guest{status: :invited} = guest, user \\ 1) do
     Repo.transaction(fn ->
-      {:ok, updated} = set_payment_token(guest)
-      Emails.send_email(:payment, updated, user, true)
-      updated
+      {:ok, token} = create_token_for_guest(guest)
+      Emails.send_payment_email(guest, user, token)
+      guest
     end)
   end
 
@@ -25,8 +23,15 @@ defmodule Diamondway.Payments do
     "Taipei Mahamudra Ticket for #{full_name(guest)}"
   end
 
-  def set_payment_token(%Guest{} = guest) do
-    Guests.update_guest(guest, %{payment_token: token()})
+  def create_token_for_guest(%Guest{} = guest) do
+    {:ok, record} = create_payment_token(%{guest_id: guest.id})
+    {:ok, record.token}
+  end
+
+  def list_guest_tokens(%Guest{id: guest_id}) do
+    PaymentToken
+    |> where([p], p.guest_id == ^guest_id)
+    |> Repo.all()
   end
 
   def verify_payment(data) when is_map(data) do
@@ -50,9 +55,10 @@ defmodule Diamondway.Payments do
     end
   end
 
-  def payment_params_for_guest(%Guest{} = guest) do
+  @spec payment_params_for_guest(Diamondway.Guests.Guest.t(), binary()) :: map()
+  def payment_params_for_guest(%Guest{} = guest, token) do
     %AIOParams{
-      transaction_no: guest.payment_token,
+      transaction_no: token,
       description: "Taipei Mahamudra",
       amount: price(),
       timestamp: Timex.now(),
@@ -61,5 +67,17 @@ defmodule Diamondway.Payments do
       language: "ENG"
     }
     |> AIOParams.to_form_data()
+  end
+
+  def get_payment_token!(id), do: Repo.get!(PaymentToken, id)
+
+  def create_payment_token(attrs \\ %{}) do
+    %PaymentToken{}
+    |> PaymentToken.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def delete_payment_token(%PaymentToken{} = payment_token) do
+    Repo.delete(payment_token)
   end
 end

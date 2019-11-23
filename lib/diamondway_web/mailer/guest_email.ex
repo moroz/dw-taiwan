@@ -29,10 +29,10 @@ defmodule DiamondwayWeb.GuestEmail do
     |> render_body("registration.html", guest: guest)
   end
 
-  def payment(guest) do
+  def payment(guest, token) do
     common(guest)
     |> subject("Taipei Mahamudra Payment Link")
-    |> render_body("payment.html", guest: guest)
+    |> render_body("payment.html", guest: guest, token: token)
   end
 
   def confirmation(guest) do

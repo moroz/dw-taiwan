@@ -19,6 +19,12 @@ defmodule Diamondway.Factory do
     }
   end
 
+  def payment_token_factory do
+    %Diamondway.Payments.PaymentToken{
+      guest: build(:guest)
+    }
+  end
+
   def note_factory do
     %Diamondway.Notes.Note{
       user: build(:user),

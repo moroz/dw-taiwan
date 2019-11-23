@@ -9,7 +9,7 @@ defmodule Diamondway.Guests.Guest do
   @all @required ++
          ~w(single_person_registration travel_insurance visa_requirements notes)a
 
-  @updatable ~w(paid_at status payment_token backup_sent payment_sent confirmation_sent)a
+  @updatable ~w(paid_at status backup_sent payment_sent confirmation_sent)a
 
   schema "guests" do
     field :city, :string
@@ -26,7 +26,6 @@ defmodule Diamondway.Guests.Guest do
 
     field :sex, Diamondway.Enums.GuestSex
     field :status, Diamondway.Enums.GuestStatus, default: :unverified
-    field :payment_token, :string
     field :paid_at, :utc_datetime
 
     belongs_to :nationality, Diamondway.Countries.Country
@@ -34,6 +33,7 @@ defmodule Diamondway.Guests.Guest do
     has_one :continent, through: [:residence, :continent]
     has_many :audits, Diamondway.Audits.Audit
     has_many :admin_notes, Diamondway.Notes.Note
+    has_many :payment_tokens, Diamondway.Payments.PaymentToken
 
     field :single_person_registration, :boolean, virtual: true
     field :travel_insurance, :boolean, virtual: true

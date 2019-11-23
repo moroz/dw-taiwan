@@ -5,8 +5,13 @@ defmodule DiamondwayWeb.PaymentController do
   plug DiamondwayWeb.Plugs.OpaqueHeader
 
   def show(conn, %{"token" => token}) do
-    guest = Guests.get_guest_by_payment_token(token)
-    payment_params = Payments.payment_params_for_guest(guest)
-    render(conn, "show.html", guest: guest, payment_params: payment_params)
+    case Guests.get_guest_by_payment_token(token) do
+      %Guests.Guest{} = guest ->
+        payment_params = Payments.payment_params_for_guest(guest, token)
+        render(conn, "show.html", guest: guest, payment_params: payment_params)
+
+      nil ->
+        render(conn, "not_found.html")
+    end
   end
 end
