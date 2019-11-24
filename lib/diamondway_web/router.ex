@@ -9,6 +9,7 @@ defmodule DiamondwayWeb.Router do
     plug :put_secure_browser_headers
     plug DiamondwayWeb.Plugs.FetchUser
     plug DiamondwayWeb.Plugs.PublicIp
+    plug DiamondwayWeb.Plugs.SetLocale
   end
 
   pipeline :api do
