@@ -11,6 +11,7 @@ body, html
   margin: 0
   padding: 0
   min-height: 100vh
+  color: #000
 
 body:not(.admin)
   font-size: 1.2rem
@@ -21,6 +22,13 @@ body
   flex-direction: column
   width: 100vw
   overflow-x: hidden
+
+[lang="zh"]
+  p
+    line-height: 1.65
+
+    &:not(:last-child)
+      margin-bottom: 1em
 
 .container
   margin: 0 auto

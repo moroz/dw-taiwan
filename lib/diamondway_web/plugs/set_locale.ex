@@ -10,13 +10,10 @@ defmodule DiamondwayWeb.Plugs.SetLocale do
       get_locale_from_params(conn) || get_locale_from_session(conn) ||
         get_locale_from_headers(conn)
 
-    if locale do
-      Logger.debug("Setting locale to #{locale}")
-      Gettext.put_locale(DiamondwayWeb.Gettext, locale)
-      maybe_set_locale_session(conn)
-    else
-      conn
-    end
+    Gettext.put_locale(DiamondwayWeb.Gettext, locale)
+
+    maybe_set_locale_session(conn)
+    |> assign(:locale, locale)
   end
 
   defp get_locale_from_params(conn) do
