@@ -13,8 +13,8 @@ echo "Fetching the DB dump..."
 mkdir -p ../db
 scp $REMOTE_NAME:~/$DATE.dump ../db/
 echo "Dropping database..."
-psql -c "drop database $LOCAL_DB"
-psql -c "create database $LOCAL_DB"
+dropdb $LOCAL_DB
+createdb $LOCAL_DB
 echo "Restoring dump..."
 pg_restore -O -d $LOCAL_DB ../db/$DATE.dump
 echo "OK"
