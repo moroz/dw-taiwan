@@ -35,7 +35,7 @@ defmodule DiamondwayWeb.Plugs.SetLocale do
       SetLocale.Headers.extract_accept_language(conn)
       |> Enum.find(&String.match?(&1, ~r/(zh|en)/i))
 
-    if locale =~ ~r/zh/i do
+    if is_binary(locale) && locale =~ ~r/zh/i do
       "zh"
     else
       "en"
