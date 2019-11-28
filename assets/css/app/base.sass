@@ -92,3 +92,11 @@ h1, h2, h3, h4, h5, h6
 
 .monospace
   font-family: monospace, monospace
+
+.hide-on-desktop
+  +not-hamburger
+    display: none !important
+
+.hide-on-mobile
+  +hamburger-only
+    display: none !important

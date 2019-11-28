@@ -37,6 +37,7 @@ $secondary: $blue
 $desktop-breakpoint: 1200px
 $tablet-breakpoint: 810px
 $mobile-breakpoint: 570px
+$hamburger-breakpoint: 1150px
 
 $container-width: 960px
 
@@ -46,9 +47,21 @@ $control-height: 2.5em
   @media (max-width: $mobile-breakpoint - 1px)
     @content
 
+=hamburger-only
+  @media (max-width: $hamburger-breakpoint - 1px)
+    @content
+
 =gt-mobile
   @media screen and (min-width: $mobile-breakpoint)
     @content
+
+=not-hamburger
+  @media screen and (min-width: $hamburger-breakpoint)
+    @content
+
+=hide-on-desktop
+  +not-hamburger
+    display: none
 
 =gt-desktop
   @media screen and (min-width: $desktop-breakpoint)
