@@ -34,7 +34,8 @@ export enum GuestActionType {
   EmailSent = "GUEST_EMAIL_SENT",
   EmailFailed = "GUEST_EMAIL_SENDING_FAILED",
   SetParams = "CHANGE_GUEST_SEARCH_PARAMS",
-  ResetParams = "RESET_SEARCH_PARAMS"
+  ResetParams = "RESET_SEARCH_PARAMS",
+  SetTerm = "CHANGE_GUEST_SEARCH_TERM"
 }
 
 export enum EmailType {

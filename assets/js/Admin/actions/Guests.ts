@@ -17,8 +17,9 @@ export default class Guests {
   static async fetchGuests(params?: IGuestSearchParams) {
     try {
       const currentParams = store.getState().guests.params;
+      const merged = { ...currentParams, ...params };
       const { guests } = await client.query(GUEST_LIST_QUERY, {
-        params: { ...currentParams, ...params }
+        params: merged
       });
       store.dispatch({
         type: GuestActionType.Fetch,

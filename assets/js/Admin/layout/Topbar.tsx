@@ -11,19 +11,18 @@ interface Props {
   history: History;
 }
 
-class Topbar extends React.Component<Props> {
-  state = {
-    term: ""
-  };
+interface State {
+  term: string;
+}
 
+class Topbar extends React.Component<Props, State> {
   handleSubmit = (e: any) => {
     e.preventDefault();
     this.submit();
   };
 
   submit = () => {
-    const { term } = this.state;
-    Search.setSearchParams({ term }, this.props.history);
+    Search.search(this.props.history);
   };
 
   componentDidMount() {
@@ -32,10 +31,7 @@ class Topbar extends React.Component<Props> {
   }
 
   handleChange = (e: any) => {
-    const { value } = e.target;
-    this.setState({ term: value }, () => {
-      if (!value) this.submit();
-    });
+    Search.setTerm(e.target.value);
   };
 
   render() {
@@ -55,7 +51,7 @@ class Topbar extends React.Component<Props> {
             autoFocus
             autoComplete="off"
             onChange={this.handleChange}
-            value={this.state.term}
+            value={this.props.term}
           ></input>
           <img src="/images/search.svg" className="topbar__search__icon"></img>
         </form>

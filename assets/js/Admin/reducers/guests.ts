@@ -21,13 +21,19 @@ export interface SearchParams {
   status?: GuestStatus | null;
 }
 
+export const initialParams = {
+  term: "",
+  page: 1,
+  status: null
+};
+
 const initialState: IGuestReducerState = {
   entries: [],
   entry: null,
   cursor: null,
   loading: true,
   emailSending: false,
-  params: { term: "" }
+  params: initialParams
 };
 
 export default function(
@@ -50,18 +56,34 @@ export default function(
         ...action.payload
       };
 
-    case GuestActionType.SetParams:
+    case GuestActionType.SetTerm:
       return {
         ...state,
-        params: action.payload,
+        params: {
+          term: action.payload
+        }
+      };
+
+    case GuestActionType.SetParams:
+      const page = action.payload.page
+        ? parseInt(action.payload.page)
+        : parseInt(state && (state.params.page as any));
+      return {
+        ...state,
         loading: true,
-        entries: []
+        entries: [],
+        params: {
+          ...state.params,
+          ...action.payload,
+          page
+        }
       };
 
     case GuestActionType.ResetParams:
       return {
         ...state,
-        params: initialState.params,
+        params: initialParams,
+        loading: true,
         entries: []
       };
 

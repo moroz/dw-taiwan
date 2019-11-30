@@ -24,7 +24,7 @@ class GuestTable extends React.Component<Props> {
     this.props.history.push(`/guests/${id}`);
   };
 
-  async componentDidMount() {
+  async componentWillMount() {
     Search.setInitialParams(this.props.location, this.props.history);
   }
 
