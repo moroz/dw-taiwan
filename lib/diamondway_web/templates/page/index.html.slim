@@ -7,7 +7,7 @@
     h3.landing__hero__subheader Taipei, Taiwan<br/> 6-8 March, 2020
     .landing__hero__cta
       = link "Didn't get your email?", to: Routes.registration_path(@conn, :check_status_form), class: "landing__hero__cta__button landing__hero__cta__button--important"
-      = link "Registration", to: Routes.registration_path(@conn, :new), class: "landing__hero__cta__button"
+      = link "中文版", to: "/?locale=zh", class: "landing__hero__cta__button"
 
   section.landing__section.landing__section--responsive
     header.landing__section__header

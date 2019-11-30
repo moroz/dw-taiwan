@@ -65,6 +65,17 @@
   font-weight: 600
   font-family: $family-serif
   @include fluid-type($min_width, $max_width, 26px, 52px)
+[lang="zh"]
+  h1
+    @include fluid-type($min_width, $max_width, 26px, 52px)
+  .landing__hero__header, .landing__section__header
+    h1
+      margin-top: 1rem
+      font-weight: 600
+      font-size: 1.7rem
+
+  .landing__section--responsive
+    grid-row-gap: 1rem
 
 .landing__section__header
   text-align: center
@@ -139,8 +150,6 @@
     .landing__section__header,
     .landing__section__cta
       grid-column: 1
-      text-align: right
-      justify-self: end
 
 
 .landing__section__read_more

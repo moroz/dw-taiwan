@@ -11,6 +11,7 @@ body, html
   margin: 0
   padding: 0
   min-height: 100vh
+  color: #000
 
 body:not(.admin)
   font-size: 1.2rem
@@ -21,6 +22,14 @@ body
   flex-direction: column
   width: 100vw
   overflow-x: hidden
+
+[lang="zh"]
+  p
+    font-size: 1.1em
+    line-height: 1.65
+
+    &:not(:last-child)
+      margin-bottom: 1em
 
 .container
   margin: 0 auto
@@ -83,3 +92,11 @@ h1, h2, h3, h4, h5, h6
 
 .monospace
   font-family: monospace, monospace
+
+.hide-on-desktop
+  +not-hamburger
+    display: none !important
+
+.hide-on-mobile
+  +hamburger-only
+    display: none !important

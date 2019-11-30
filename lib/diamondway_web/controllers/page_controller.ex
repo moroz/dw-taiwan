@@ -6,7 +6,13 @@ defmodule DiamondwayWeb.PageController do
   plug DiamondwayWeb.Plugs.SetBodyClass, "opaque-header" when action != :index
 
   def index(conn, _params) do
-    render(conn, "index.html")
+    case Gettext.get_locale(DiamondwayWeb.Gettext) do
+      "en" ->
+        render(conn, "index.html")
+
+      "zh" ->
+        render(conn, "index.zh.html")
+    end
   end
 
   for page <- @pages do

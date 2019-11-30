@@ -60,6 +60,9 @@ defmodule Diamondway.MixProject do
       # CSV generation
       {:nimble_csv, "~> 0.6.0"},
 
+      # Localization
+      {:set_locale, "~> 0.2.8"},
+
       # Pagination
       {:scrivener_ecto, "~> 2.0"},
       {:scrivener_html, "~> 1.8"},

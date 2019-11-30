@@ -10,7 +10,8 @@ $navbar-bg: transparentize(black, .6)
 $admin-navbar-height: $navbar-height
 $admin-navbar-bg: #fff
 
-$family-sans: "myriad-pro", -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif
+$family-cjk: 'Noto Sans TC', 'Noto Sans CJK TC', 'Source Han Sans TW', 'Source Han Sans SC', 'Hiragino Sans GB W3', 'Droid Sans Fallback','Microsoft Yahei', 'Microsoft JhengHei','\5FAE软雅黑','PingFang TC', 'STXihei', '\534E文细黑'
+$family-sans: "myriad-pro", -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", $family-cjk, sans-serif
 
 // Set your brand colors
 $purple: #8A4D76
@@ -36,6 +37,7 @@ $secondary: $blue
 $desktop-breakpoint: 1200px
 $tablet-breakpoint: 810px
 $mobile-breakpoint: 570px
+$hamburger-breakpoint: 1150px
 
 $container-width: 960px
 
@@ -45,9 +47,21 @@ $control-height: 2.5em
   @media (max-width: $mobile-breakpoint - 1px)
     @content
 
+=hamburger-only
+  @media (max-width: $hamburger-breakpoint - 1px)
+    @content
+
 =gt-mobile
   @media screen and (min-width: $mobile-breakpoint)
     @content
+
+=not-hamburger
+  @media screen and (min-width: $hamburger-breakpoint)
+    @content
+
+=hide-on-desktop
+  +not-hamburger
+    display: none
 
 =gt-desktop
   @media screen and (min-width: $desktop-breakpoint)

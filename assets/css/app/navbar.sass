@@ -19,8 +19,20 @@ $offcanvas-bg: #fff
     font-size: 1rem
 
     &:hover
-      color: #fff
-      background: transparentize(#fff, .85)
+      color: inherit
+      background: transparentize(#fff, .75)
+
+  +not-hamburger
+    background-image: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,.7))
+    --navbar-fg: #{$brand-color}
+
+    a:hover
+      background: transparentize(white, .7)
+
+    #logo-white
+      display: block
+    #logo-opaque
+      display: none
 
 .navbar__inner
   position: relative
@@ -30,8 +42,11 @@ $offcanvas-bg: #fff
   padding: 0 .5em 0 1em
   height: $navbar-height
   line-height: $navbar-height
+  +not-hamburger
+    flex-direction: row-reverse
 
 .navbar__sitename
+  +hide-on-desktop
   position: absolute
   top: 50%
   left: 50%
@@ -43,27 +58,32 @@ $offcanvas-bg: #fff
   border-bottom-width: 1px
   --navbar-fg: #{$brand-color}
 
+  #logo-white
+    display: none
+  #logo-opaque
+    display: block
+
   a
     &:hover
-      color: inherit
       background: darken(#fff, 5%)
 
 .navbar__menu
-  position: fixed
-  background: $offcanvas-bg
-  overflow: hidden
-  pointer-events: none
-  height: 100vh
-  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)
-  opacity: 0
-  display: flex
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  padding-top: $navbar-height
-  flex-direction: column
-  transition: .2s
+  +hamburger-only
+    position: fixed
+    background: $offcanvas-bg
+    overflow: hidden
+    pointer-events: none
+    height: 100vh
+    clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)
+    opacity: 0
+    display: flex
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    padding-top: $navbar-height
+    flex-direction: column
+    transition: .2s
 
 .navbar__menu--open
   height: 100vh
@@ -72,21 +92,32 @@ $offcanvas-bg: #fff
   max-height: 100vh
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)
 
-.navbar
-  .navbar__item
-    font-size: 1.5rem
-    color: $offcanvas-fg
-    height: 2.25em
-    line-height: 2.25em
-    padding-left: 1rem
-    transition: .1s ease-in-out
++hamburger-only
+  .navbar
+    .navbar__item
+      font-size: 1.5rem
+      color: $offcanvas-fg
+      height: 2.25em
+      line-height: 2.25em
+      padding-left: 1rem
+      transition: .1s ease-in-out
 
-    &:first-of-type
-      border-top: 1px solid $offcanvas-fg
+      &:first-of-type
+        border-top: 1px solid $offcanvas-fg
 
-    &:hover
-      color: $offcanvas-bg
-      background: $offcanvas-fg
+      &:hover
+        color: $offcanvas-bg
+        background: $offcanvas-fg
+
++not-hamburger
+  .navbar .navbar__item
+    text-transform: uppercase
+    display: inline-block
+    height: $navbar-height
+    padding: 0 .65em
+
+    &:not([lang="zh"])
+      font-weight: 600
 
 .navbar__right
   display: flex
@@ -103,28 +134,9 @@ a.navbar__logo
     margin: auto
     height: 50px
 
-a.navbar__dashboard
-  color: $dashboard-link-color !important
-  height: $navbar-height
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  line-height: 20px
-  img
-    height: 1.6em
-  +mobile-only
-    padding: 0
-
-  .navbar__dashboard__label
-    font-size: .7em
-    text-transform: uppercase
-    font-weight: bold
-
-.navbar__dashboard + .navbar__logo
-  display: none
-
 #hamburgerToggle
+  +hide-on-desktop
+
   input
     display: block
     width: $navbar-height

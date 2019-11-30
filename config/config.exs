@@ -31,6 +31,8 @@ config :phoenix, :template_engines,
 
 config :diamondway, DiamondwayWeb.Mailer, adapter: Swoosh.Adapters.Local
 
+config :diamondway, DiamondwayWeb.Gettext, default_locale: "en", locales: ~w(en zh)
+
 config :diamondway, Diamondway.Emails, email_types: ~w(registration confirmation payment backup)a
 
 config :scrivener_html, view_style: :bulma
