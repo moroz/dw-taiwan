@@ -8,6 +8,7 @@ const ImageminPlugin = require("imagemin-webpack-plugin").default;
 const imageminMozjpeg = require("imagemin-mozjpeg");
 
 module.exports = (env, options) => ({
+  devtool: "cheap-eval-source-map",
   optimization: {
     minimizer: [
       new UglifyJsPlugin({ cache: true, parallel: true, sourceMap: false }),

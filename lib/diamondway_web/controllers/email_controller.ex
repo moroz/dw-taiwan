@@ -6,10 +6,18 @@ defmodule DiamondwayWeb.EmailController do
   alias Diamondway.Repo
   alias Diamondway.Guests
   alias Diamondway.Guests.Guest
+  alias Diamondway.Payments.PaymentToken
 
-  def action(conn, _) do
+  def email(conn, %{"type" => "payment"}) do
+    token = Repo.one!(last(PaymentToken))
+    guest = Repo.one!(from g in Guest, where: g.id == ^token.guest_id)
+    email = %{subject: "Test email"}
+    render(conn, "payment.html", %{guest: guest, email: email, token: token.token})
+  end
+
+  def email(conn, %{"type" => type}) do
     guest = Repo.one(last(Guest)) |> Guests.preload_countries()
     email = %{subject: "Test email"}
-    render(conn, "#{action_name(conn)}.html", %{guest: guest, email: email})
+    render(conn, "#{type}.html", %{guest: guest, email: email})
   end
 end

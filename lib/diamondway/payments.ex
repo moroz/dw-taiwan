@@ -15,7 +15,7 @@ defmodule Diamondway.Payments do
     Repo.transaction(fn ->
       {:ok, token} = create_token_for_guest(guest)
       Emails.send_payment_email(guest, user, token)
-      guest
+      Guests.preload_countries(guest)
     end)
   end
 

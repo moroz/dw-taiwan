@@ -20,29 +20,23 @@ defmodule Diamondway.Emails do
     |> deliver_and_log(guest, user, :payment)
   end
 
-  def send_email(type, guest, user, force) when type in @email_types do
-    if !email_sent?(guest, type) || force do
-      case email_allowed?(type, guest) do
-        true ->
-          GuestEmail.render_email(type, guest)
-          |> deliver_and_log(guest, user, type)
+  def send_email(type, guest, user) when type in @email_types do
+    case email_allowed?(type, guest) do
+      true ->
+        GuestEmail.render_email(type, guest)
+        |> deliver_and_log(guest, user, type)
 
-        _ ->
-          {:error, :illegal_email_type}
-      end
-    else
-      {:error, :already_sent}
+      _ ->
+        {:error, :illegal_email_type}
     end
   end
 
   defp deliver_and_log(email, guest, user, type) do
     Repo.transaction(fn ->
-      resending = email_sent?(guest, type)
-
       case Mailer.deliver_and_catch(email) do
         {:ok, _ref} ->
           {:ok, updated} = mark_email_sent(guest, type)
-          Audits.create_guest_audit(guest, user, success_audit_text(type, resending))
+          Audits.create_guest_audit(guest, user, "sent out #{type} e-mail.")
           Guests.preload_countries(updated)
 
         error ->
@@ -50,16 +44,6 @@ defmodule Diamondway.Emails do
           error
       end
     end)
-  end
-
-  defp success_audit_text(type, resending) do
-    case resending do
-      false ->
-        "sent out #{type} e-mail."
-
-      _ ->
-        "resent #{type} e-mail."
-    end
   end
 
   defp email_sent?(guest, email_type) when email_type in @email_types do

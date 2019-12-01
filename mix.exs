@@ -73,7 +73,7 @@ defmodule Diamondway.MixProject do
       {:phoenix_swoosh, "~> 0.2"},
 
       # Payment
-      {:ecpay, "~> 1.0.1"},
+      {:ecpay, path: "../ecpay"},
 
       # Deployment
       {:distillery, "~> 2.1"},
