@@ -7,9 +7,9 @@ defmodule DiamondwayWeb.EmailController do
   alias Diamondway.Guests
   alias Diamondway.Guests.Guest
 
-  def action(conn, _) do
+  def preview(conn, %{"type" => type}) do
     guest = Repo.one(last(Guest)) |> Guests.preload_countries()
     email = %{subject: "Test email"}
-    render(conn, "#{action_name(conn)}.html", %{guest: guest, email: email})
+    render(conn, "#{type}.html", %{guest: guest, email: email})
   end
 end
