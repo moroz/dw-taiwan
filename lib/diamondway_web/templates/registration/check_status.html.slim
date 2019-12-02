@@ -9,10 +9,10 @@
     - :invited ->
       h3.title.is-3 Hooray, you're going!
       p
-        | Your e-mail address, <%= guest_email(@guest) %>, is on the list of approved guests. You can safely book your plane tickets and stay put until we're ready to launch our payment system. This should happen around the end of November.
+        | Your e-mail address, <%= guest_email(@guest) %>, is on the list of approved guests. You can safely book your plane tickets and stay put until we're ready to launch our payment system. This should happen sometime in December.
       = form_for @conn, Routes.registration_path(@conn, :resend_email), [method: :post], fn f ->
         = hidden_input f, :email, value: @guest.email
-        = submit "Please send me a payment link", class: "button is-primary"
+        = submit "Please send me the confirmation email", class: "button is-primary"
 
     - :backup ->
       h3.title.is-3 You are ##{@waiting_list_no} on the waiting list.

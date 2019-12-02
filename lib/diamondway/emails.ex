@@ -71,7 +71,8 @@ defmodule Diamondway.Emails do
     Repo.transaction(fn ->
       Audits.create_guest_audit(guest, 1, "requested e-mail resend.", ip)
 
-      {:ok, guest} = Payments.issue_payment_email(guest)
+      # {:ok, guest} = Payments.issue_payment_email(guest)
+      send_email(:confirmation, guest, 1, true)
       guest
     end)
   end
