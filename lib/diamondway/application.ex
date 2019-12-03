@@ -8,12 +8,9 @@ defmodule Diamondway.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
       Diamondway.Repo,
-      # Start the endpoint when the application starts
-      DiamondwayWeb.Endpoint
-      # Starts a worker by calling: Diamondway.Worker.start_link(arg)
-      # {Diamondway.Worker, arg},
+      DiamondwayWeb.Endpoint,
+      {Oban, Application.get_env(:diamondway, Oban)}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -18,3 +18,5 @@ config :diamondway, DiamondwayWeb.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :my_app, Oban, queues: false, prune: :disabled

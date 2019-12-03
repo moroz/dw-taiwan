@@ -22,6 +22,11 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :diamondway, Oban,
+  repo: Diamondway.Repo,
+  prune: {:maxlen, 100_000},
+  queues: [mailing: 5]
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

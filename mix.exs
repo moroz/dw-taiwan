@@ -71,6 +71,7 @@ defmodule Diamondway.MixProject do
       {:swoosh, "~> 0.23"},
       {:gen_smtp, "~> 0.14"},
       {:phoenix_swoosh, "~> 0.2"},
+      {:oban, "~> 0.12"},
 
       # Payment
       {:ecpay, "~> 1.0.1"},
