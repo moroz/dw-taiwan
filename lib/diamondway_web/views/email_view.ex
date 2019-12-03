@@ -35,13 +35,13 @@ defmodule DiamondwayWeb.EmailView do
   def header(text) do
     content_tag :h1,
       align: "center",
-      style: "font-family: #{font(:serif)}; font-size: 24px; font-weight: bold;" do
+      style: "font-family: #{font(:sans)}; font-size: 24px; font-weight: bold;" do
       {:safe, text}
     end
   end
 
   def font(:sans) do
-    "'Segoe UI', 'Open Sans', 'Source Sans Pro', 'Myriad Pro', -apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'San Francisco', 'Roboto', 'Helvetica Neue', 'Lucida Grande', Verdana, sans-serif;"
+    "'Segoe UI', -apple-system, BlinkMacSystemFont,'.SFNSText-Regular', 'Roboto', 'Helvetica Neue', 'Lucida Grande', Verdana, sans-serif;"
   end
 
   def font(:serif) do
