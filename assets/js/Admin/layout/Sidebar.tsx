@@ -35,9 +35,6 @@ export default function Sidebar(_props?: any) {
         <SidebarLink exact to="/help">
           Read This First
         </SidebarLink>
-        <a href="/" className="admin__sidebar__link">
-          Back to Website
-        </a>
       </div>
     </div>
   );

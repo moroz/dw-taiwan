@@ -9,4 +9,11 @@ defmodule DiamondwayWeb.GraphQL.Types.Dashboard do
     field :unverified_count, non_null(:integer)
     field :backup_count, non_null(:integer)
   end
+
+  object :mailer_job do
+    field :total_count, non_null(:integer)
+    field :timestamp, non_null(:naive_datetime)
+    field :completed, non_null(:boolean)
+    field :states, :json
+  end
 end

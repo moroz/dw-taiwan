@@ -1,5 +1,5 @@
 defmodule DiamondwayWeb.Mailer.DeliveryJob do
-  use Oban.Worker, queue: "mailing", max_attempts: 5, unique: [period: 300]
+  use Oban.Worker, queue: "mailing", max_attempts: 10, unique: [period: 300]
   alias Diamondway.Emails
   alias Diamondway.Guests
 

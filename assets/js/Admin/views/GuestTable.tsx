@@ -25,7 +25,7 @@ class GuestTable extends React.Component<Props> {
   };
 
   async componentWillMount() {
-    Search.setInitialParams(this.props.location, this.props.history);
+    Search.setInitialParams(this.props.location, this.props.history, true);
   }
 
   render() {

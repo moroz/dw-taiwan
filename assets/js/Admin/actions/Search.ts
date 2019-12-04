@@ -20,9 +20,13 @@ export default class Search {
     Guests.fetchGuests(store.getState().guests.params);
   }
 
-  static setInitialParams(location: any, history: History) {
+  static setInitialParams(
+    location: any,
+    history: History,
+    force: boolean = false
+  ) {
     const initial = this.getInitialParams(location);
-    this.setSearchParams(initial, history);
+    this.setSearchParams(initial, history, force);
   }
 
   static paramsToUrl(params?: SearchParams) {
@@ -66,10 +70,14 @@ export default class Search {
     return diff;
   }
 
-  static async setSearchParams(newParams: SearchParams, history?: History) {
+  static async setSearchParams(
+    newParams: SearchParams,
+    history?: History,
+    force: boolean = false
+  ) {
     const { params } = store.getState().guests;
     let searchParams = { ...params, ...newParams };
-    if (!this.statesDiffer(searchParams, params)) return;
+    if (!this.statesDiffer(searchParams, params) && !force) return;
     if (
       searchParams.status !== params.status ||
       searchParams.term !== params.term

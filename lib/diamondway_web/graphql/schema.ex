@@ -5,6 +5,7 @@ defmodule DiamondwayWeb.GraphQL.Schema do
   alias DiamondwayWeb.GraphQL.Actions
 
   import_types(Absinthe.Type.Custom)
+  import_types(Types.JSON)
   import_types(Types.Guests)
   import_types(Types.Users)
   import_types(Types.Audits)

@@ -25,7 +25,7 @@ config :logger, :console,
 config :diamondway, Oban,
   repo: Diamondway.Repo,
   prune: {:maxlen, 100_000},
-  queues: [mailing: 5]
+  queues: [mailing: 3]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

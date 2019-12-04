@@ -10,15 +10,18 @@ defmodule Diamondway.Emails do
   email_types = Application.get_env(:diamondway, Diamondway.Emails) |> Keyword.get(:email_types)
   @email_types email_types
 
-  def enqueue(%Guest{id: guest_id}, type) when type in @email_types do
-    %{"guest_id" => guest_id, "email_type" => type}
+  def enqueue(%Guest{id: guest_id}, type, timestamp \\ :os.system_time(:seconds))
+      when type in @email_types do
+    %{"guest_id" => guest_id, "email_type" => type, "timestamp" => timestamp}
     |> DiamondwayWeb.Mailer.DeliveryJob.new()
     |> Oban.insert()
   end
 
   def batch_enqueue(list, type) do
+    timestamp = :os.system_time(:seconds)
+
     for item <- list, %Guest{} = item do
-      enqueue(item, type)
+      enqueue(item, type, timestamp)
     end
   end
 

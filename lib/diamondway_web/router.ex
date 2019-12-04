@@ -60,6 +60,7 @@ defmodule DiamondwayWeb.Router do
 
       get "/email/:type", DiamondwayWeb.EmailController, :preview
 
+      forward("/graphiql", Absinthe.Plug.GraphiQL, schema: DiamondwayWeb.GraphQL.Schema)
       forward("/mailbox", Plug.Swoosh.MailboxPreview, base_path: "/dev/mailbox")
     end
   end
