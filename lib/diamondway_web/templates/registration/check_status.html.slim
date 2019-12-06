@@ -1,15 +1,11 @@
 .public_view.container
 
   = case @guest.status do
-    - :paid ->
-      h3.title.is-3 You're good to go!
-      p
-        | You have successfully paid for your ticket. See you in Taipei!
-
     - :invited ->
       h3.title.is-3 Hooray, you're going!
       p
-        | Your e-mail address, <%= guest_email(@guest) %>, is on the list of approved guests. You can safely book your plane tickets and stay put until we're ready to launch our payment system. This should happen sometime in December.
+        | Your e-mail address, <%= guest_email(@guest) %>, is on the list of approved guests. You can safely book your plane tickets. You don't have to pay for anything right now&mdash;just make sure to bring <strong>TWD 4800 in cash</strong> to the course site on the first day of the course.
+      p If you know that you won't make it to the course, please let us know so we can invite someone from the waiting list.
       = form_for @conn, Routes.registration_path(@conn, :resend_email), [method: :post], fn f ->
         = hidden_input f, :email, value: @guest.email
         = submit "Please send me the confirmation email", class: "button is-primary"

@@ -29,7 +29,7 @@ defmodule DiamondwayWeb.Router do
     plug DiamondwayWeb.Plugs.PublicIp
   end
 
-  pages = [:venue, :faq, :ticketing]
+  pages = [:venue, :faq]
 
   scope "/", DiamondwayWeb do
     pipe_through :browser

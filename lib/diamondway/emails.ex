@@ -28,7 +28,6 @@ defmodule Diamondway.Emails do
   defp email_allowed?(type, guest)
   defp email_allowed?(:registration, guest), do: guest.status == :unreviewed
   defp email_allowed?(:backup, guest), do: guest.status == :backup
-  defp email_allowed?(:ticket, guest), do: guest.status == :paid
   defp email_allowed?(_, guest), do: guest.status == :invited
 
   def send_payment_email(guest, user, token) do

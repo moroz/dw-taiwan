@@ -69,7 +69,7 @@ function guestButtons(guest: Guest) {
             guest={guest}
             className="yellow"
             toState={GuestStatus.Backup}
-            label="To backup"
+            label="Reject"
           />
           <GuestButton
             guest={guest}
@@ -79,7 +79,6 @@ function guestButtons(guest: Guest) {
             confirm="Are you sure you want to cancel this registration?"
           />
           <SendEmailButton emailType={EmailType.Confirmation} />
-          <IssuePaymentButton />
         </>
       );
 

@@ -10,7 +10,6 @@
         <a class="navbar__item" href="/">Homepage</a>
         <%= link "Registration", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
         <a class="navbar__item" href="/faq">Travel info</a>
-        <a class="navbar__item" href="/ticketing">Ticketing</a>
         <a class="navbar__item" href="/check">Check your status</a>
         <a class="navbar__item" lang="zh" href="/?locale=zh">中文版</a>
         <% _ -> %>
