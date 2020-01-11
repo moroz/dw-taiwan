@@ -74,7 +74,7 @@ defmodule Diamondway.MixProject do
       {:oban, "~> 0.12"},
 
       # Payment
-      {:ecpay, "~> 1.0.1"},
+      {:ecpay, git: "https://gitlab.com/moroz2137/ecpay_elixir"},
 
       # Deployment
       {:distillery, "~> 2.1"},
