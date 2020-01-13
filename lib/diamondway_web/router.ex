@@ -66,11 +66,6 @@ defmodule DiamondwayWeb.Router do
   end
 
   scope "/api" do
-    pipe_through :public_api
-    post "/payments", DiamondwayWeb.API.PaymentController, :verify
-  end
-
-  scope "/api" do
     pipe_through :api
 
     forward "/", Absinthe.Plug, schema: DiamondwayWeb.GraphQL.Schema

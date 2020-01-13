@@ -48,6 +48,10 @@ config :diamondway, Diamondway.Guardian,
 
 config :diamondway, course_price: 4800
 
+config :speakeasy,
+  user_key: :current_user,
+  authn_error_message: :unauthenticated
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

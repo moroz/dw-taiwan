@@ -19,4 +19,25 @@ defmodule DiamondwayWeb.GraphQL.UsersTest do
       assert actual["displayName"] == me.display_name
     end
   end
+
+  @query """
+  { listUsers { id displayName email avatarUrl human admin } }
+  """
+  describe "listUsers query" do
+    test "returns list of users when called as admin" do
+      insert(:user)
+      me = insert(:admin)
+
+      %{"listUsers" => actual} = run_with_user(@query, me)
+      assert length(actual) == 2
+    end
+
+    test "denies access when called as regular user" do
+      insert(:admin)
+      me = insert(:user)
+
+      actual = run_with_user(@query, me)
+      refute actual["listUsers"]
+    end
+  end
 end
