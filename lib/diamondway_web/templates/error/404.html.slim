@@ -1,0 +1,10 @@
+doctype html
+html(lang="en")
+  = render DiamondwayWeb.LayoutView, "_head.html", assigns
+  body.not-found
+    = render DiamondwayWeb.LayoutView, "_header.html", assigns
+    main
+      .error.public_view
+        h1.title.is-1 404
+        h4.subtitle.is-4 Page Not Found
+    = render DiamondwayWeb.LayoutView, "_footer.html", assigns

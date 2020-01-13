@@ -8,13 +8,13 @@
       <%= case assigns[:locale] do %>
         <% en when en in ["en", :en] -> %>
         <a class="navbar__item" href="/">Homepage</a>
-        <%= link "Registration", to: Routes.registration_path(@conn, :new), class: "navbar__item" %>
+        <%= link "Registration", to: Routes.registration_path(Endpoint, :new), class: "navbar__item" %>
         <a class="navbar__item" href="/faq">Travel info</a>
         <a class="navbar__item" href="/check">Check your status</a>
         <a class="navbar__item" lang="zh" href="/?locale=zh">中文版</a>
         <% _ -> %>
         <a class="navbar__item" href="/" lang="zh">主頁</a>
-        <%= link "註冊 (英文)", to: Routes.registration_path(@conn, :new), class: "navbar__item", lang: "zh" %>
+        <%= link "註冊 (英文)", to: Routes.registration_path(Endpoint, :new), class: "navbar__item", lang: "zh" %>
         <a class="navbar__item" href="/check" lang="zh">檢查註冊狀態</a>
         <a class="navbar__item" href="/?locale=en">English</a>
       <% end %>
@@ -22,9 +22,9 @@
     <a href="/" class="navbar__sitename">mahamudra.taipei</a>
     <div class="navbar__right">
       <a class="navbar__logo" href="/">
-        <%= img_tag Routes.static_path(@conn, "/images/logo-solo.svg"), class: "hide-on-desktop" %>
-        <%= img_tag Routes.static_path(@conn, "/images/logo-desktop-white.svg"), class: "hide-on-mobile", id: "logo-white" %>
-        <%= img_tag Routes.static_path(@conn, "/images/logo-desktop.svg"), class: "hide-on-mobile", id: "logo-opaque" %>
+        <%= img_tag Routes.static_path(Endpoint, "/images/logo-solo.svg"), class: "hide-on-desktop" %>
+        <%= img_tag Routes.static_path(Endpoint, "/images/logo-desktop-white.svg"), class: "hide-on-mobile", id: "logo-white" %>
+        <%= img_tag Routes.static_path(Endpoint, "/images/logo-desktop.svg"), class: "hide-on-mobile", id: "logo-opaque" %>
       </a>
     </div>
   </div>

@@ -45,6 +45,7 @@ defmodule DiamondwayWeb do
       import DiamondwayWeb.GuestHelpers
       import DiamondwayWeb.Gettext
       alias DiamondwayWeb.Router.Helpers, as: Routes
+      alias DiamondwayWeb.Endpoint, as: Endpoint
     end
   end
 

@@ -7,16 +7,6 @@ defmodule Diamondway.PaymentsTest do
   import Mock
   import Swoosh.TestAssertions
 
-  describe "issue_payment_email/1" do
-    test "sets the guest's payment_token and sends email" do
-      guest = insert(:guest, status: :invited)
-      assert Payments.list_guest_tokens(guest) == []
-      {:ok, updated} = Payments.issue_payment_email(guest)
-      assert [payment_token] = Payments.list_guest_tokens(guest)
-      assert_email_sent(GuestEmail.payment(updated, payment_token.token))
-    end
-  end
-
   describe "verify_payment/1" do
     test "returns {:ok, guest} when payment is successful" do
       with_mock Checksum, verify: fn _ -> :ok end do

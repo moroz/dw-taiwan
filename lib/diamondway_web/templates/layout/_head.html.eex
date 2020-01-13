@@ -9,6 +9,6 @@
     <% _ -> %>
       <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
   <% end %>
-  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-  <link rel="icon" href="<%= Routes.static_path(@conn, "/images/logo-solo.svg") %>" type="image/svg+xml"/>
+  <link rel="stylesheet" href="<%= Routes.static_path(Endpoint, "/css/app.css") %>"/>
+  <link rel="icon" href="<%= Routes.static_path(Endpoint, "/images/logo-solo.svg") %>" type="image/svg+xml"/>
 </head>
