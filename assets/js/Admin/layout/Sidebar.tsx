@@ -38,12 +38,12 @@ class Sidebar extends React.Component<Props> {
           >
             Guest list
           </SidebarLink>
-          <SidebarLink to="/help">Read This First</SidebarLink>
           {user?.admin ? (
             <SidebarLink to="/users">User Management</SidebarLink>
           ) : (
             ""
           )}
+          <SidebarLink to="/help">Documentation</SidebarLink>
         </div>
       </div>
     );
