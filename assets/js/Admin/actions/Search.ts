@@ -15,6 +15,10 @@ export default class Search {
     return params;
   }
 
+  static anyParams(params: SearchParams) {
+    return params?.term || params?.status;
+  }
+
   static async resetSearchParams() {
     store.dispatch({ type: GuestActionType.ResetParams });
     Guests.fetchGuests(store.getState().guests.params);

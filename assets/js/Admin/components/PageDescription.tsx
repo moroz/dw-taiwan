@@ -13,7 +13,24 @@ export default function({ params, cursor }: Props) {
   if (!cursor) return null;
   const { page, totalEntries, pageSize } = cursor;
   if (!totalEntries)
-    return <p className="page_description">No entries found.</p>;
+    return (
+      <p className="page_description">
+        No entries found
+        {params.status ? (
+          <>
+            {" "}
+            for status <strong>{params.status.toLowerCase()}</strong>
+          </>
+        ) : (
+          ""
+        )}
+        .
+        <Link to="/guests" onClick={Search.resetSearchParams}>
+          {" "}
+          Show all entries.
+        </Link>
+      </p>
+    );
   const lastNumber =
     page * pageSize > totalEntries ? totalEntries : page * pageSize;
   return (
@@ -29,10 +46,14 @@ export default function({ params, cursor }: Props) {
         {(page - 1) * pageSize + 1}-{lastNumber}
       </strong>{" "}
       out of <strong>{totalEntries}</strong>.
-      <Link to="/guests" onClick={Search.resetSearchParams}>
-        {" "}
-        Show all entries.
-      </Link>
+      {Search.anyParams(params) ? (
+        <Link to="/guests" onClick={Search.resetSearchParams}>
+          {" "}
+          Show all entries.
+        </Link>
+      ) : (
+        " No filters applied."
+      )}
     </p>
   );
 }

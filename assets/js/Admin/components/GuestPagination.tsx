@@ -31,7 +31,7 @@ export default class GuestPagination extends React.Component<Props> {
         breakLinkClassName="item"
         initialPage={pageNumber - 1}
         pageCount={totalPages}
-        pageRangeDisplayed={15}
+        pageRangeDisplayed={12}
         onPageChange={this.handlePageChange}
         marginPagesDisplayed={2}
       />

@@ -3,6 +3,7 @@ import Loader from "../components/Loader";
 import client from "../graphql/client";
 import { GuestStatus } from "../types/guests";
 import { Link } from "react-router-dom";
+import Search from "../actions/Search";
 
 interface State {
   counts: {
@@ -58,6 +59,7 @@ class Dashboard extends React.Component<any, State> {
   async componentDidMount() {
     const { counts } = await client.query(DASHBOARD_QUERY);
     this.setState({ loading: false, counts });
+    Search.resetSearchParams();
   }
 
   render() {
@@ -67,7 +69,7 @@ class Dashboard extends React.Component<any, State> {
       <div className="dashboard">
         <h1>Dashboard</h1>
         <div className="statistics">
-          <Statistic label="Invited, not paid" status={GuestStatus.Invited}>
+          <Statistic label="Invited" status={GuestStatus.Invited}>
             {counts.invitedCount}
           </Statistic>
           <Statistic label="Tickets sold" status={GuestStatus.Paid}>
@@ -79,13 +81,7 @@ class Dashboard extends React.Component<any, State> {
           <Statistic label="Unrevieved" status={GuestStatus.Unverified}>
             {counts.unverifiedCount}
           </Statistic>
-          <Statistic label="Total guests" status={null} className="total">
-            {counts.totalCount}
-          </Statistic>
-          <Statistic
-            label="Canceled reservations"
-            status={GuestStatus.Canceled}
-          >
+          <Statistic label="Canceled" status={GuestStatus.Canceled}>
             {counts.canceledCount}
           </Statistic>
         </div>
