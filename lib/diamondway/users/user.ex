@@ -7,6 +7,8 @@ defmodule Diamondway.Users.User do
     field :email, :string
     field :password_hash, :string
     field :avatar_url, :string
+    field :human, :boolean
+    field :admin, :boolean
 
     field(:password, :string, virtual: true)
 

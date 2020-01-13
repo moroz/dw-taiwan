@@ -89,6 +89,10 @@ defmodule Diamondway.MixProject do
       {:comeonin, "~> 4.1"},
       {:guardian, "~> 1.2"},
       {:argon2_elixir, "~> 1.3"},
+      {:bodyguard, "~> 2.4.0"},
+      {:speakeasy, "~> 0.3.0"},
+
+      # Templating
       {:phoenix_slime, "~> 0.12.0"}
     ]
   end
