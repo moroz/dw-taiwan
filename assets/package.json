@@ -45,8 +45,8 @@
     "url-loader": "^2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
+    "@babel/core": "^7.8.0",
+    "@babel/preset-env": "^7.8.2",
     "@types/react-redux": "^7.1.4",
     "babel-loader": "^8.0.0",
     "copy-webpack-plugin": "^4.5.0",

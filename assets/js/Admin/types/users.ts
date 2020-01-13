@@ -5,6 +5,8 @@ export interface User {
   displayName: string;
   email: string;
   avatarUrl: string | null;
+  admin: boolean;
+  human: boolean;
 }
 
 export enum UserActionType {

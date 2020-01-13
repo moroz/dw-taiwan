@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { User } from "../types/users";
 import { IReduxState } from "../reducers";
@@ -7,7 +7,7 @@ interface Props extends React.Props<SidebarProfile> {
   user: User | null;
 }
 
-class SidebarProfile extends React.Component<Props> {
+export default class SidebarProfile extends Component<Props> {
   render() {
     const { user } = this.props;
     return (
@@ -29,11 +29,3 @@ class SidebarProfile extends React.Component<Props> {
     return "/images/avatar.jpg";
   };
 }
-
-function mapState(state: IReduxState) {
-  return {
-    user: state.user.user
-  };
-}
-
-export default connect(mapState)(SidebarProfile);

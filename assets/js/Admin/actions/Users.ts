@@ -1,14 +1,7 @@
 import client from "../graphql/client";
 import store from "../store";
 import { UserActionType } from "../types/users";
-
-const FETCH_USER_QUERY = `
-{
-  currentUser {
-    id email displayName avatarUrl
-  }
-}
-`;
+import { FETCH_USER_QUERY } from "../graphql/queries/userQueries";
 
 export default class Users {
   static async fetchUser() {
