@@ -11,14 +11,6 @@ defmodule Diamondway.Payments do
 
   defp price, do: Application.get_env(:diamondway, :course_price, 4800)
 
-  def issue_payment_email(%Guest{status: :invited} = guest, user \\ 1) do
-    Repo.transaction(fn ->
-      {:ok, token} = create_token_for_guest(guest)
-      Emails.send_payment_email(guest, user, token)
-      guest
-    end)
-  end
-
   def payment_description(guest) do
     "Taipei Mahamudra Ticket for #{full_name(guest)}"
   end

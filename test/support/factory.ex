@@ -40,6 +40,10 @@ defmodule Diamondway.Factory do
     }
   end
 
+  def admin_factory do
+    build(:user) |> Map.put(:admin, true)
+  end
+
   def country_factory do
     %Diamondway.Countries.Country{
       name: sequence(:country, &"Country #{&1}"),

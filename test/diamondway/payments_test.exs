@@ -3,9 +3,7 @@ defmodule Diamondway.PaymentsTest do
   alias Diamondway.Payments
   alias Diamondway.Guests.Guest
   alias ECPay.Checksum
-  alias DiamondwayWeb.GuestEmail
   import Mock
-  import Swoosh.TestAssertions
 
   describe "verify_payment/1" do
     test "returns {:ok, guest} when payment is successful" do

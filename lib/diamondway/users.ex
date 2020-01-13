@@ -5,7 +5,9 @@ defmodule Diamondway.Users do
 
   @behaviour Bodyguard.Policy
 
-  def authorize(_, %{admin: true}, resource), do: true
+  def authorize(_, %{admin: true}, _), do: true
+  def authorize(:create_user, _, _), do: false
+  def authorize(:list_users, _, _), do: false
   def authorize(_, %{id: id}, %{id: id}), do: true
   def authorize(_, _, _), do: false
 

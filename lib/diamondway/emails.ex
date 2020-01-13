@@ -30,11 +30,6 @@ defmodule Diamondway.Emails do
   defp email_allowed?(:backup, guest), do: guest.status == :backup
   defp email_allowed?(_, guest), do: guest.status == :invited
 
-  def send_payment_email(guest, user, token) do
-    GuestEmail.payment(guest, token)
-    |> deliver_and_log(guest, user, :payment)
-  end
-
   def send_email(type, guest, user) when type in @email_types do
     case email_allowed?(type, guest) do
       true ->
