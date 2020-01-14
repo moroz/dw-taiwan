@@ -43,8 +43,6 @@ defmodule DiamondwayWeb.Router do
     post "/check", RegistrationController, :check_status
     post "/resend_email", RegistrationController, :resend_email
 
-    get "/payment/:token", PaymentController, :show
-
     for page <- pages do
       get "/#{page}", PageController, page
     end

@@ -78,17 +78,4 @@ defmodule Diamondway.Guests.GuestTest do
       refute changeset.valid?
     end
   end
-
-  describe "get_guest_by_payment_token/1" do
-    test "returns guest record when token exists" do
-      guest = insert(:guest)
-      payment_token = insert(:payment_token, guest: guest)
-      actual = Guests.get_guest_by_payment_token(payment_token.token)
-      assert actual.id == guest.id
-    end
-
-    test "returns nil when there is no such token" do
-      refute Guests.get_guest_by_payment_token("foobar2000")
-    end
-  end
 end
