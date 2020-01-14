@@ -23,13 +23,19 @@ body
   width: 100vw
   overflow-x: hidden
 
-[lang="zh"]
+html[lang="zh-Hant"]
   p
     font-size: 1.1em
     line-height: 1.65
 
     &:not(:last-child)
       margin-bottom: 1em
+
+html[lang="en"]
+  [lang="zh-Hant"]
+    font-family: $family-cjk
+    font-size: .975em
+    font-weight: 500
 
 .container
   margin: 0 auto

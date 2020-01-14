@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= @locale %>">
+<%= html_tag(@conn) %>
   <%= render "_head.html", assigns %>
   <%= if assigns[:body_class] do %>
     <body class="<%= @body_class %>">
