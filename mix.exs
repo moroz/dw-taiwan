@@ -34,7 +34,7 @@ defmodule Diamondway.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.7"},
+      {:phoenix, "~> 1.4.11"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.0"},
@@ -43,7 +43,7 @@ defmodule Diamondway.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:cowboy, "~> 2.6.3", override: true},
+      {:cowboy, "~> 2.7", override: true},
       {:plug_cowboy, "~> 2.0"},
       {:ecto_enum, "~> 1.3"},
       {:email_tld_validator, "~> 0.1.0"},
