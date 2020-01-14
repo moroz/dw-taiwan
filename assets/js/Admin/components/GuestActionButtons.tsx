@@ -3,7 +3,6 @@ import Guests from "../actions/Guests";
 import { Guest, GuestStatus, EmailType } from "../types/guests";
 import { connect } from "react-redux";
 import SendEmailButton from "./SendEmailButton";
-import IssuePaymentButton from "./IssuePaymentButton";
 import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<GuestActionButtons> {
@@ -35,6 +34,20 @@ function AddNoteButton({ guest }: any) {
   );
 }
 
+function ContactButton({ guest }: any) {
+  const url = `mailto:${guest.email}`;
+  return (
+    <a
+      className="ui button violet contact_button"
+      href={url}
+      title={`Send email to ${guest.email}`}
+    >
+      <img src="/images/envelope.svg"></img>
+      Email
+    </a>
+  );
+}
+
 function guestButtons(guest: Guest) {
   switch (guest.status) {
     case GuestStatus.Unverified:
@@ -48,7 +61,7 @@ function guestButtons(guest: Guest) {
           />
           <GuestButton
             guest={guest}
-            className="yellow"
+            className="orange"
             toState={GuestStatus.Backup}
             label="Reject"
           />
@@ -65,12 +78,6 @@ function guestButtons(guest: Guest) {
     case GuestStatus.Invited:
       return (
         <>
-          <GuestButton
-            guest={guest}
-            className="yellow"
-            toState={GuestStatus.Backup}
-            label="Reject"
-          />
           <GuestButton
             guest={guest}
             className="negative"
@@ -117,6 +124,7 @@ class GuestActionButtons extends React.Component<Props> {
       <div className="display_guest__actions">
         {guestButtons(guest)}
         <AddNoteButton guest={guest} />
+        <ContactButton guest={guest} />
       </div>
     );
   }
