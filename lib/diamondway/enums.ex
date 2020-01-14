@@ -19,3 +19,5 @@ defenum(Diamondway.Enums.GuestStatus,
   canceled: 4,
   paid: 5
 )
+
+defenum(Diamondway.Enums.TicketType, full: 1, single: 2)
