@@ -46,7 +46,10 @@ config :diamondway, Diamondway.Guardian,
   issuer: "diamondway",
   secret_key: "EEw6QTfn9QkkVYBiFkqzlvqGsW6mqHsfeIW0iffMc4Yhod2X8eSLo6hMvfK4zfdr"
 
-config :diamondway, course_price: 4800
+config :diamondway, :ticket_prices, %{
+  full: 4800,
+  single: 600
+}
 
 config :speakeasy,
   user_key: :current_user,
