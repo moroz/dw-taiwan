@@ -3,8 +3,10 @@ import store from "../store";
 import { UserActionType } from "../types/users";
 import {
   FETCH_USER_QUERY,
-  LIST_USERS_QUERY
+  LIST_USERS_QUERY,
+  GET_USER_QUERY
 } from "../graphql/queries/userQueries";
+import { id } from "../types/common";
 
 export default class Users {
   static async fetchUser() {
@@ -27,5 +29,10 @@ export default class Users {
       console.error(e);
       return [];
     }
+  }
+
+  static async getUser(id: id) {
+    const { user } = await client.query(GET_USER_QUERY, { id });
+    return user;
   }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Loader from "../components/Loader";
 import { User } from "../types/users";
+import { id } from "../types/common";
 import Users from "../actions/Users";
 
 interface State {
@@ -9,9 +10,13 @@ interface State {
 }
 
 class UserTable extends React.Component<any, State> {
-  state = {
+  state: State = {
     users: [],
     loading: true
+  };
+
+  handleNavigate = (id: id) => {
+    this.props.history.push(`/users/${id}`);
   };
 
   async componentDidMount() {
@@ -37,7 +42,10 @@ class UserTable extends React.Component<any, State> {
             </thead>
             <tbody>
               {users.map(user => (
-                <tr key={`user-${user.id}`}>
+                <tr
+                  key={`user-${user.id}`}
+                  onClick={() => this.handleNavigate(user.id)}
+                >
                   <td className="guest_table__id">{user.id}</td>
                   <td className="user_table__admin">
                     {user.admin ? "Yes" : "No"}

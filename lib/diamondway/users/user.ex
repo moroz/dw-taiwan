@@ -12,7 +12,7 @@ defmodule Diamondway.Users.User do
 
     field(:password, :string, virtual: true)
 
-    timestamps()
+    timestamps(type: :utc_datetime)
   end
 
   @doc false

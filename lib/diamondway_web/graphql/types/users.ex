@@ -10,6 +10,8 @@ defmodule DiamondwayWeb.GraphQL.Types.Users do
     field :avatar_url, :string
     field :human, non_null(:boolean)
     field :admin, non_null(:boolean)
+    field :updated_at, non_null(:datetime)
+    field :inserted_at, non_null(:datetime)
   end
 
   object :user_queries do
@@ -21,6 +23,13 @@ defmodule DiamondwayWeb.GraphQL.Types.Users do
       middleware(Speakeasy.Authn)
       middleware(Speakeasy.Authz, {Users, :list_users})
       resolve(&Resolvers.Users.list_users/2)
+    end
+
+    field :user, :user do
+      arg(:id, non_null(:id))
+      middleware(Speakeasy.Authn)
+      middleware(Speakeasy.Authz, {Users, :get_user!})
+      resolve(&Resolvers.Users.get_user/2)
     end
   end
 end

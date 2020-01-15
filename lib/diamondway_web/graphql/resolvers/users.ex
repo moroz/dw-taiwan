@@ -8,4 +8,8 @@ defmodule DiamondwayWeb.GraphQL.Resolvers.Users do
   def list_users(_, _) do
     {:ok, Users.list_users()}
   end
+
+  def get_user(%{id: id}, _) do
+    {:ok, Users.get_user!(id)}
+  end
 end

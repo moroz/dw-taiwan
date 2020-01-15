@@ -1,12 +1,10 @@
 import React, { SyntheticEvent } from "react";
 import { History } from "history";
-import MainWrapper from "../layout/MainWrapper";
 import GuestCard from "../components/GuestCard";
 import { match } from "react-router";
 import { Guest } from "../types/guests";
 import Guests from "../actions/Guests";
 import { connect } from "react-redux";
-import Message, { LogLevel } from "../components/Message";
 import { IReduxState } from "../reducers";
 
 interface Props extends React.Props<DisplayGuest> {

@@ -7,6 +7,8 @@ export interface User {
   avatarUrl: string | null;
   admin: boolean;
   human: boolean;
+  insertedAt: string;
+  updatedAt: string;
 }
 
 export enum UserActionType {
