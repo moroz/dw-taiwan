@@ -4,6 +4,7 @@ import client from "../graphql/client";
 import { GuestStatus } from "../types/guests";
 import { Link } from "react-router-dom";
 import Search from "../actions/Search";
+import GuestStats from "../components/dashboard/GuestStats";
 
 interface State {
   counts: {
@@ -24,24 +25,6 @@ const DASHBOARD_QUERY = `
     unverifiedCount paidCount canceledCount
   }
 }`;
-
-interface StatisticProps {
-  label: string;
-  children: number;
-  className?: string;
-  status: GuestStatus | null;
-}
-
-function Statistic({ label, children, className, status }: StatisticProps) {
-  const statusClass = status ? status.toLowerCase() : "";
-  const href = status ? `/guests?status=${status}` : "/guests";
-  return (
-    <Link className={`statistic ${className || ""} ${statusClass}`} to={href}>
-      <div className="value">{children}</div>
-      <div className="label">{label}</div>
-    </Link>
-  );
-}
 
 class Dashboard extends React.Component<any, State> {
   state: State = {
@@ -66,26 +49,17 @@ class Dashboard extends React.Component<any, State> {
     const { loading, counts } = this.state;
     if (loading) return <Loader />;
     return (
-      <div className="dashboard">
+      <>
         <h1>Dashboard</h1>
-        <div className="statistics">
-          <Statistic label="Invited" status={GuestStatus.Invited}>
-            {counts.invitedCount}
-          </Statistic>
-          <Statistic label="Tickets sold" status={GuestStatus.Paid}>
-            {counts.paidCount}
-          </Statistic>
-          <Statistic label="Waiting list" status={GuestStatus.Backup}>
-            {counts.backupCount}
-          </Statistic>
-          <Statistic label="Unrevieved" status={GuestStatus.Unverified}>
-            {counts.unverifiedCount}
-          </Statistic>
-          <Statistic label="Canceled" status={GuestStatus.Canceled}>
-            {counts.canceledCount}
-          </Statistic>
+        <div className="dashboard">
+          <GuestStats counts={counts} />
+          <div className="sales ui card">
+            <div className="content">
+              <h2 className="header">Sales statistics</h2>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -1,32 +1,39 @@
 .dashboard
-  .statistics
-    display: grid
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
-    grid-gap: 1.5rem
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-gap: 1.5rem
 
+  .ui.card
+    margin: 0
+    width: 100%
+
+  .statistics
     .statistic
       margin: 0
       width: 100%
       display: flex
-      flex-direction: column
       align-items: center
-      min-height: 160px
       justify-content: center
-      border-radius: 8px
       background: white
+      height: 70px
+      line-height: 70px
       border: none
-      font-size: 1.2em
       cursor: pointer
       transition: .2s ease-in-out
 
+      &:not(:last-of-type)
+        margin-bottom: .2em
+
       .value
-        font-size: 3em
-        margin-bottom: .5em
+        font-size: 2.2em
+        display: inline-block
+        text-align: center
+        width: 100px
 
       .label
-        font-size: 1.2em
-        margin-top: .6rem
-        text-transform: uppercase
+        font-size: 1.7em
+        padding-left: .75em
+        flex: 1
         line-height: 0
 
 $statistics-palette: ("backup": $red, "paid": $green, "invited": $teal, "unverified": $grey, "total": $blue, "canceled": $yellow)
