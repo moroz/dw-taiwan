@@ -38,12 +38,11 @@ function ContactButton({ guest }: any) {
   const url = `mailto:${guest.email}`;
   return (
     <a
-      className="ui button violet contact_button"
+      className="ui button violet icon"
       href={url}
       title={`Send email to ${guest.email}`}
     >
-      <img src="/images/envelope.svg"></img>
-      Email
+      <img src="/images/envelope.svg" className="icon"></img>
     </a>
   );
 }

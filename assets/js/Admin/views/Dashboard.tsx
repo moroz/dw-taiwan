@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Loader from "../components/Loader";
 import Search from "../actions/Search";
 import GuestStats from "../components/dashboard/GuestStats";
-import useQuery from "../graphql/withQuery";
+import useQuery from "../graphql/useQuery";
 
 const DASHBOARD_QUERY = `
 {
@@ -13,7 +13,7 @@ const DASHBOARD_QUERY = `
 }`;
 
 export default function() {
-  const { loading, data } = useQuery({ query: DASHBOARD_QUERY });
+  const { loading, data } = useQuery(DASHBOARD_QUERY);
 
   useEffect(() => {
     Search.resetSearchParams(false);
