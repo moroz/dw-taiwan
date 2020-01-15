@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import gql from "./client";
 
-export default function withQuery(query: string, variables: Object = {}) {
+interface IUseQueryState {
+  loading: boolean;
+  data: null | any;
+}
+
+export default function useQuery(query: string, variables: Object = {}) {
   const [state, setState] = useState({
     data: null,
     loading: true
@@ -13,5 +18,5 @@ export default function withQuery(query: string, variables: Object = {}) {
     });
   }, []);
 
-  return state;
+  return state as IUseQueryState;
 }

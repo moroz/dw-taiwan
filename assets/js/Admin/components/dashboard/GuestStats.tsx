@@ -20,7 +20,7 @@ export default ({ counts }: Props) => (
     </div>
     <div className="statistics">
       <Statistic
-        label="Invited"
+        label="Invited, not paid"
         status={GuestStatus.Invited}
         count={counts.invitedCount}
       />
