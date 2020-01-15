@@ -2,7 +2,18 @@ import React from "react";
 import Statistic from "./Statistic";
 import { GuestStatus } from "../../types/guests";
 
-export default ({ counts }) => (
+interface Props {
+  counts: {
+    totalCount: number;
+    invitedCount: number;
+    backupCount: number;
+    canceledCount: number;
+    unverifiedCount: number;
+    paidCount: number;
+  };
+}
+
+export default ({ counts }: Props) => (
   <div className="ui card">
     <div className="content">
       <div className="header">Guest statistics</div>

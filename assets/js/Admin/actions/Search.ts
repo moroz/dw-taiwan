@@ -19,9 +19,9 @@ export default class Search {
     return params?.term || params?.status;
   }
 
-  static async resetSearchParams() {
+  static async resetSearchParams(reload: boolean = true) {
     store.dispatch({ type: GuestActionType.ResetParams });
-    Guests.fetchGuests(store.getState().guests.params);
+    if (reload) Guests.fetchGuests(store.getState().guests.params);
   }
 
   static setInitialParams(
