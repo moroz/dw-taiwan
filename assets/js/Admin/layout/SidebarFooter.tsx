@@ -7,7 +7,7 @@ export default function SidebarFooter(_props?: any) {
         Sign out
       </a>
       <p>
-        &copy; 2019-2020 Karol Moroz.
+        &copy; 2019-2020 by Karol Moroz.
         <br />
         Licensed with BSD-3.
       </p>
