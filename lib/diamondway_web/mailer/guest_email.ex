@@ -41,6 +41,12 @@ defmodule DiamondwayWeb.GuestEmail do
     |> render_body("last_call.html", guest: guest)
   end
 
+  def course_canceled(guest) do
+    common(guest)
+    |> subject("Taipei Course Canceled")
+    |> render_body("course_canceled.html", guest: guest)
+  end
+
   def confirmation(guest) do
     common(guest)
     |> subject("Taipei Mahamudra Confirmation")
