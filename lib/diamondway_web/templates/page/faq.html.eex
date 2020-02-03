@@ -1,6 +1,10 @@
 <div class="content static_page">
   <h1>Travel information (archived)</h1>
 
+  <div class="notification is-warning">
+    Please note that the event will not take place, as explained <a href="/"> on the homepage</a>. The information on this page is left for reference only, as it could come in handy some day in the future. Brace yourselves, remember to wash your hands regularly, and avoid touching your face. Stay safe!
+  </div>
+
   <h2>Course Venue &#x1f4cd;</h2>
 
   <p>The course will take place at the <strong>Tamsui Cultural Park</strong> in Tamsui District, New Taipei City, Taiwan. The venue is situated directly at the Tamsui River (<span lang="zh-Hant">淡水河</span>), with a good view of Mount Guanyin, named after Bodhisattva Avalokiteśvara, and the Taiwan Strait, separating Taiwan from China. There are plenty of restaurants, cafés, hotels, and hostels in walking distance, and the Tamsui District is in itself a popular tourist destination.</p>
