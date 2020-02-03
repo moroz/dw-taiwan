@@ -3,7 +3,7 @@ defmodule DiamondwayWeb.PageController do
 
   @pages [:venue, :faq, :ticketing]
 
-  plug DiamondwayWeb.Plugs.SetBodyClass, "opaque-header" when action != :index
+  plug DiamondwayWeb.Plugs.SetBodyClass, "opaque-header"
 
   def index(conn, _params) do
     case Gettext.get_locale(DiamondwayWeb.Gettext) do
