@@ -30,7 +30,10 @@ defmodule Diamondway.Emails do
     end
   end
 
+  @special ~w(course_canceled quarantine_warning)a
+
   defp email_allowed?(type, guest)
+  defp email_allowed?(type, guest) when type in @special, do: true
   defp email_allowed?(:registration, guest), do: guest.status == :unreviewed
   defp email_allowed?(:backup, guest), do: guest.status == :backup
   defp email_allowed?(_, guest), do: guest.status == :invited
