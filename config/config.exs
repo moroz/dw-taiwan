@@ -39,7 +39,7 @@ config :diamondway, DiamondwayWeb.Mailer, adapter: Swoosh.Adapters.Local
 config :diamondway, DiamondwayWeb.Gettext, default_locale: "en", locales: ~w(en zh)
 
 config :diamondway, Diamondway.Emails,
-  email_types: ~w(registration confirmation payment backup last_call course_canceled do_not_come)a
+  email_types: ~w(registration confirmation payment backup last_call course_canceled quarantine_warning)a
 
 config :scrivener_html, view_style: :bulma
 
