@@ -17,7 +17,12 @@ defmodule Diamondway.Emails do
     |> Oban.insert()
   end
 
-  def batch_enqueue(list, type) do
+  def send_to_all(type) do
+    guests = Guests.list_guests()
+    batch_enqueue(guests, type)
+  end
+
+  def batch_enqueue(list, type) when is_list(list) do
     timestamp = :os.system_time(:seconds)
 
     for item <- list, %Guest{} = item do

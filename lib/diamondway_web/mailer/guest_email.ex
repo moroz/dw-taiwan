@@ -47,6 +47,12 @@ defmodule DiamondwayWeb.GuestEmail do
     |> render_body("course_canceled.html", guest: guest)
   end
 
+  def do_not_come(guest) do
+    common(guest)
+    |> subject("Quarantine Warning for Travelers")
+    |> render_body("do_not_come.html", guest: guest)
+  end
+
   def confirmation(guest) do
     common(guest)
     |> subject("Taipei Mahamudra Confirmation")
