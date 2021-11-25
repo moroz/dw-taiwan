@@ -5,8 +5,19 @@
       <span></span><span></span><span></span>
     </div>
     <div class="navbar__menu" id="offcanvas">
-      <a class="navbar__item" href="/">Homepage</a>
-      <a class="navbar__item" href="/faq">Travel info</a>
+      <%= case assigns[:locale] do %>
+        <% en when en in ["en", :en] -> %>
+        <a class="navbar__item" href="/">Homepage</a>
+        <%= link "Registration", to: Routes.registration_path(Endpoint, :new), class: "navbar__item" %>
+        <a class="navbar__item" href="/faq">Travel info</a>
+        <a class="navbar__item" href="/check">Check your status</a>
+        <a class="navbar__item" lang="zh" href="/?locale=zh">中文版</a>
+        <% _ -> %>
+        <a class="navbar__item" href="/" lang="zh">主頁</a>
+        <%= link "註冊 (英文)", to: Routes.registration_path(Endpoint, :new), class: "navbar__item", lang: "zh" %>
+        <a class="navbar__item" href="/check" lang="zh">檢查註冊狀態</a>
+        <a class="navbar__item" href="/?locale=en">English</a>
+      <% end %>
     </div>
     <a href="/" class="navbar__sitename">mahamudra.taipei</a>
     <div class="navbar__right">
