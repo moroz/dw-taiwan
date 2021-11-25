@@ -17,7 +17,12 @@ defmodule Diamondway.Emails do
     |> Oban.insert()
   end
 
-  def batch_enqueue(list, type) do
+  def send_to_all(type) do
+    guests = Guests.list_guests()
+    batch_enqueue(guests, type)
+  end
+
+  def batch_enqueue(list, type) when is_list(list) do
     timestamp = :os.system_time(:seconds)
 
     for item <- list, %Guest{} = item do
@@ -25,7 +30,10 @@ defmodule Diamondway.Emails do
     end
   end
 
+  @special ~w(course_canceled quarantine_warning)a
+
   defp email_allowed?(type, guest)
+  defp email_allowed?(type, guest) when type in @special, do: true
   defp email_allowed?(:registration, guest), do: guest.status == :unreviewed
   defp email_allowed?(:backup, guest), do: guest.status == :backup
   defp email_allowed?(_, guest), do: guest.status == :invited

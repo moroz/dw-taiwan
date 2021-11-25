@@ -25,6 +25,16 @@ defmodule DiamondwayWeb.EmailView do
     end
   end
 
+  @letter_attrs [style: "font-family: 'Georgia'; text-indent: 1.5em"]
+  def letter(do: paragraph) do
+    content_tag(:p, @letter_attrs, do: paragraph)
+  end
+
+  def letter(attrs, do: paragraph) when is_list(attrs) do
+    merged = Keyword.merge(@letter_attrs, attrs)
+    content_tag(:p, merged, do: paragraph)
+  end
+
   def disclaimer do
     content_tag :p, align: "center", style: "font-size: .85em; margin-top: 2.5em; color: #555" do
       {:safe,
