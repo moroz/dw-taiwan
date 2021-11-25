@@ -1,46 +1,36 @@
-.content.static_page.cancelation_notice
-  h3.title.has-text-centered Taipei Course Canceled
+.landing
+  section.landing__section#landingHero
+    h1.landing__hero__header
+      | Mahamudra Course
+      br/
+      | with Lama Ole Nydahl
+    h3.landing__hero__subheader Taipei, Taiwan<br/> 6-8 March, 2020
+    .landing__hero__cta
+      = link "Didn't get your email?", to: Routes.registration_path(@conn, :check_status_form), class: "landing__hero__cta__button landing__hero__cta__button--important"
+      = link "中文版", to: "/?locale=zh", class: "landing__hero__cta__button"
 
-  p
-    | Due to the ongoing novel coronavirus outbreak in Mainland China, international travel is becoming increasingly difficult. Many of you have had your plane tickets canceled by airline companies and it is yet uncertain how serious the situation around the world could become by March. Therefore, Lama Ole has decided to <strong>cancel the Mahamudra Course</strong> in Taipei.
+  section.landing__section.landing__section--responsive
+    header.landing__section__header
+      h1 Lama Ole Nydahl
+    = img_tag "/images/card-ole.jpg", class: "landing__section__image"
+    .landing__section__text
+      | Lama Ole Nydahl is one of the few fully qualified Western Buddhist lamas in the Karma Kagyu lineage. Since being asked by the 16th Karmapa, in 1972 to offer Buddhism to those who were interested in the West, he has been doing so constantly in spiritually free countries all around the world.
+    / .landing__section__cta
+    /   = link "Read more...", to: "#"
 
-  p
-    | The decision is best explained in Lama Ole's open letter, which follows:
+  section.landing__section.landing__section--responsive.landing__section--inverted
+    header.landing__section__header
+      h1 Venue
+    = img_tag "/images/card-venue.jpg", class: "landing__section__image"
+    .landing__section__text
+      | The lectures will take place at the Tamsui Cultural Park in Taipei’s Danshui (Tamsui) District. The venue is located in a beautiful seaside neighborhood, with convenient connections to the city center and numerous tourist spots.
+      small.landing__section__cc_attribution Picture: <a href="https://www.flickr.com/photos/sese87/18618845979/" target="_blank">Flickr: sese_87</a>, CC BY-SA 2.0, 2012.
+      = link "Read more...", to: "/faq", class: "landing__section__read_more"
 
-  hr
-
-  h3.title.has-text-centered 臺北大手印課程取消通知
-
-  p
-    | 由於新型冠狀病毒疫情持續蔓延，導致眾多朋友無法來台灣，歐雷&#x30fb;尼達爾喇嘛於2020年2月3日宣佈取消臺北大手印課程。請見以下喇嘛歐雷公開說明：
-
-  hr
-  h3.title.has-text-centered Lama Ole Nydahl's Open Letter
-  .open_letter
-
-    p.has-text-right
-      | Irkutsk, February 3rd, 2020
-
-    p
-      | Dearest Diamond Way students and friends everywhere,
-
-    p
-      | In connection with calamities and wars, responsible people will always choose to save their assets. This is because timeless knowledge may easily be lost and accumulated wisdom may not reappear in a world of so many changes. For that reason, we, the Diamond Way practitioners and teachers must absolutely create the spaces for the knowledge of our lineages to survive and in every possible situation to revive this wisdom and again pass it on.
-
-    p
-      | So, with the heartbreaking disease hitting the world from China at present, it’s our job to do this. Most of us have practised for many years and are well educated to overview our present situation which has been increasingly worse.
-
-    p
-      | We, therefore &ndash; and with great pain towards you, who became our dharma family and close friends &ndash; cannot presently visit Vladivostok, Taipei and Glentui. Here, it’s our responsibility to preserve this living wisdom which we hold and which is the lifeblood of our lineage.
-
-    p
-      | After the course in Irkutsk, we will, therefore, use our time for preserving and passing on the teachings in Europe. It will hopefully be just for a short time and when the sky will again be free, we will be able to pass on these living transmissions under safe and responsible conditions worldwide.
-
-    p
-      | We deeply hope that you are all safe and please focus on our Diamond Way practices that you already enjoy. They are exceedingly meaningful.
-
-    p
-      | Look forward very much to seeing you soon again,
-
-    p.open_letter__signature
-      | Yours from Irkutsk in Siberia, only with -25 degrees,<br/>Lama Ole and friends.
+section.landing__section.landing__section--responsive
+    header.landing__section__header
+      h1 Diamond Way Buddhism
+    = img_tag "/images/card-diamondway.jpg", class: "landing__section__image"
+    .landing__section__text
+      | Diamond Way Buddhism is a worldwide network for lay people from all walks of life, who incorporate Buddhist practice in their daily lives. Lama Ole Nydahl established Diamond Way Buddhism in the 1970s, together with his wife Hannah Nydahl.
+    / .landing__section__cta

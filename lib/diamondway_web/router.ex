@@ -8,8 +8,8 @@ defmodule DiamondwayWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug DiamondwayWeb.Plugs.FetchUser
-    # plug DiamondwayWeb.Plugs.PublicIp
-    # plug DiamondwayWeb.Plugs.SetLocale
+    plug DiamondwayWeb.Plugs.PublicIp
+    plug DiamondwayWeb.Plugs.SetLocale
   end
 
   pipeline :api do
@@ -36,12 +36,12 @@ defmodule DiamondwayWeb.Router do
 
     get "/", PageController, :index
     get "/registration", RegistrationController, :new
-    # post "/registration", RegistrationController, :create
-    # get "/registration/success", RegistrationController, :success
+    post "/registration", RegistrationController, :create
+    get "/registration/success", RegistrationController, :success
 
-    # get "/check", RegistrationController, :check_status_form
-    # post "/check", RegistrationController, :check_status
-    # post "/resend_email", RegistrationController, :resend_email
+    get "/check", RegistrationController, :check_status_form
+    post "/check", RegistrationController, :check_status
+    post "/resend_email", RegistrationController, :resend_email
 
     for page <- pages do
       get "/#{page}", PageController, page
